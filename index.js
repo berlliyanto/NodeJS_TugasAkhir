@@ -67,7 +67,7 @@ app.listen(Port, function(){
     console.log("Connected to : ", Port)    
 });
 
-//WHATSAPP BOT
+//-------------------------WHATSAPP BOT-----------------------//
 client.on('qr',(qr)=>{
     qrcode.generate(qr,{small:true});
 });
