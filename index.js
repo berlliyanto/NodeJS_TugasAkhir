@@ -28,7 +28,20 @@ app.use(
     auth.authenticateToken.unless({
         path:[
             {url: "/api/login", methods: ["POST"]},
-            {url: "/api/register", methods: ["POST"]}
+            {url: "/api/register", methods: ["POST"]},
+            {url: "/api/users", methods: ["POST"]},
+            {url: "/api/users/:id", methods: ["PUT"]},
+            {url: "/api/users/:id", methods: ["DELETE"]},
+            {url: "/api/inputParam", methods: ["POST"]},
+            {url: "/api/resetParamM1", methods: ["PUT"]},
+            {url: "/api/deleteParam", methods: ["DELETE"]},
+            {url: "/api/inputStock", methods: ["POST"]},
+            {url: "/api/deleteStock", methods: ["DELETE"]},
+            {url: "/api/addStockM1", methods: ["PUT"]},
+            {url: "/api/insertStat", methods: ["POST"]},
+            {url: "/api/statusM1", methods: ["PUT"]},
+            {url: "/api/statusM2", methods: ["PUT"]},
+            {url: "/api/insertEnergy", methods: ["POST"]},
         ],
     })
 );
