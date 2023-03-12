@@ -4,7 +4,6 @@ function authenticateToken(req,res,next){
     const authHeader = req.headers["authorization"];
     const token =  authHeader && authHeader.split(" ")[1];
     if(token == null) return res.sendStatus(401);
-    console.log(authHeader)
     jwt.verify(token, "Berli_SecretKEY", (err,user)=>{
         console.log(err);
         if(err) return res.sendStatus(403);
