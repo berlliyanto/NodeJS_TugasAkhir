@@ -1,24 +1,6 @@
+const { response } = require("express");
+const { riwayatstock } = require("../models/stock.model");
 const { stock } = require("../models/stock.model");
-
-// CREATE DATA
-async function createstock(params, callback) {
-    if (!params) {
-        return callback({
-            message: "stock Required",
-        }),
-            ""
-    };
-
-    const stockModel = stock(params);
-    stockModel
-        .save()
-        .then((response) => {
-            return callback(null, response);
-        })
-        .catch((error) => {
-            return callback(error);
-        });
-};
 
 //READ DATA
 async function getstock(params, callback) {
@@ -76,12 +58,12 @@ async function stock2(params,callback) {
 
 //Tambah Jumlah Bahan Mesin 1
 async function stockAddM1(params,callback){
-    stock.findOneAndUpdate({machine_id: 1},{
+    stock.updateOne({machine_id: 1},{
         $inc: {
             A: params.A,
             B: params.B,
             C: params.C
-        }
+        }, 
     }).then((response) => {
         if (!response) callback("Gagal Input");
         else return callback(null, response);
@@ -91,11 +73,44 @@ async function stockAddM1(params,callback){
     });
 }
 
+//-----------------------------RIWAYAT----------------------------------------//
+
+// CREATE DATA
+async function riwayatStock(params, callback) {
+    if (!params) {
+        return callback({
+            message: "stock Required",
+        }),
+            ""
+    };
+
+    const stockModel = riwayatstock(params);
+    stockModel
+        .save()
+        .then((response) => {
+            return callback(null, response);
+        })
+        .catch((error) => {
+            return callback(error);
+        });
+};
+
+//READ HISTORY MESIN 1
+async function historyM1 (params, callback){
+    riwayatstock.find({machine_id:1}).sort({_id: -1}).limit(10).then(response=>{
+        if (!response) callback("No Data");
+        else return callback(null, response);
+    }).catch((error)=>{
+        return callback(error);
+    });
+}
+
 module.exports = {
-    createstock,
+    riwayatStock,
     getstock,
     deletestock,
     stock1,
     stock2,
     stockAddM1,
+    historyM1,
 };

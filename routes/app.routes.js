@@ -31,12 +31,14 @@ router.get("/latestParamM1", paramController.latestM1);
 router.get("/latestParamM2", paramController.latestM2);
 
 //Stock
-router.post("/inputStock", stockController.create);
 router.get("/allStock", stockController.findAll);
 router.delete("/DeleteStock", stockController.delete);
 router.get("/StockM1", stockController.M1);
 router.get("/StockM2", stockController.M2);
 router.put("/addStockM1", stockController.addM1);
+//Riwayat Stock
+router.post("/inputStock", stockController.create);
+router.get("/historiM1", stockController.riwayatStockM1)
 
 //Status
 router.post("/insertStat", statusController.create);

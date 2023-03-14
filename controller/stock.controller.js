@@ -2,32 +2,10 @@
 const upload = require("../middleware/upload");
 const stockServices = require("../service/stock.services");
 
-//INSERT DATA
-exports.create = (req, res, next) => {
-    upload(req, res, function (err) {
-        if (err) {
-            next(err);
-        } else {
-            var model = {
-                machine_id: req.body.machine_id,
-                A: req.body.A,
-                B: req.body.B,
-                C: req.body.C,
-            };
-
-            stockServices.createstock(model, (error, results) => {
-                if (error) {
-                    return next(error);
-                } else {
-                    return res.status(200).send({
-                        message: "Success",
-                        data: results
-                    });
-                }
-            });
-        }
-    });
-};
+let date = new Date(); // Menggunakan tanggal yang telah ditentukan sebelumnya
+let localTime = date.getTime() - (date.getTimezoneOffset() * 60000); // Mengonversi ke waktu setempat dengan menyesuaikan offset waktu lokal
+let localDate = new Date(localTime);
+let nowdate = localDate.toLocaleString('id', { timeZone: 'UTC' });
 
 //READ ALL DATA
 exports.findAll = (req, res, next) => {
@@ -105,7 +83,7 @@ exports.addM1 = (req,res,next) =>{
     var model = {
         A: req.body.A,
         B: req.body.B,
-        C: req.body.C
+        C: req.body.C,
     }
     stockServices.stockAddM1(model,(error,results)=>{
         if(error){
@@ -114,6 +92,52 @@ exports.addM1 = (req,res,next) =>{
             return res.status(200).send({
                 message: "Success",
                 data:results
+            })
+        }
+    })
+}
+
+//-----------------------------RIWAYAT----------------------------------------//
+
+//INSERT DATA
+exports.create = (req, res, next) => {
+    upload(req, res, function (err) {
+        if (err) {
+            next(err);
+        } else {
+            var model = {
+                machine_id: req.body.machine_id,
+                tipe: req.body.tipe,
+                jumlah: req.body.jumlah,
+                dibuat: nowdate
+            };
+
+            stockServices.riwayatStock(model, (error, results) => {
+                if (error) {
+                    return next(error);
+                } else {
+                    return res.status(200).send({
+                        message: "Success",
+                        data: results
+                    });
+                }
+            });
+        }
+    });
+};
+
+//RIWAYAT MESIN 1
+exports.riwayatStockM1 = (req, res, next) => {
+    var model = {
+        stockId: req.params.id,
+    }
+    stockServices.historyM1(model,(error, results)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message: "Success",
+                data: results,
             })
         }
     })

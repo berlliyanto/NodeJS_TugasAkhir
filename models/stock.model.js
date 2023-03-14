@@ -14,6 +14,21 @@ const stock = mongoose.model(
     )
 );
 
+const riwayatstock = mongoose.model(
+    "riwayatstock",
+    mongoose.Schema({
+        machine_id: Number,
+        tipe: String,
+        jumlah: Number,
+        dibuat: String
+    },
+    {
+        timestamps: true
+    }
+    )
+);
+
 module.exports = {
-    stock
+    stock,
+    riwayatstock
 }

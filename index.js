@@ -23,7 +23,7 @@ mongoose.connect(MONGO_DB_CONFIG.DB, {
         console.log("Database Connected to : ", MONGO_DB_CONFIG);
     },
     (error) => {
-        console.log("Database can't connected " + error)
+        console.log("Database can't connected " + error);
     }
 );
  
@@ -75,4 +75,5 @@ app.listen(Port, function(){
 // });
 
 // client.initialize();
+
 
