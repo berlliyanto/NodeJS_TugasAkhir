@@ -1,7 +1,7 @@
 const pressureService = require('../service/pressure.services');
 
 //INPUT PRESSURE
-exports.inputPress = (req, req, next)=>{
+exports.inputPress = (req, res, next)=>{
     upload(req, res, function (err) {
         if (err) {
             next(err);
