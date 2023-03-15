@@ -4,6 +4,7 @@ const paramController = require("../controller/param.controller");
 const stockController = require("../controller/stock.controller");
 const statusController = require("../controller/status.controller");
 const energyController = require("../controller/energy.controller");
+const pressureController = require("../controller/pressure.controller");
 const oeeController = require("../controller/oee.controller");
 
 const express = require("express");
@@ -54,5 +55,10 @@ router.put("/statusM2", statusController.updateSM2);
 router.post("/insertEnergy", energyController.create);
 router.get("/latestEnergy", energyController.newEnergy);
 router.get("/grafikEnergy", energyController.graphEnergy);
+
+//Pressure
+router.post("insertPressure", pressureController.inputPress);
+router.get("/pressureGauge", pressureController.pressGauge);
+router.get("/pressureChart", pressureController.pressChart);
 
 module.exports = router;

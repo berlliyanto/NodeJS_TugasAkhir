@@ -14,7 +14,7 @@ function authenticateToken(req,res,next){
 
 function generateAccessToken(username){
     return jwt.sign({data: username}, "Berli_SecretKEY", {
-        expiresIn: "1h",
+        expiresIn: "2h",
     });
 }
 

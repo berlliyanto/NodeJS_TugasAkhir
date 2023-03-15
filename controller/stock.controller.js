@@ -1,4 +1,3 @@
-
 const upload = require("../middleware/upload");
 const stockServices = require("../service/stock.services");
 
