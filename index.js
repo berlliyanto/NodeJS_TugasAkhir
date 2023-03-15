@@ -52,6 +52,8 @@ app.use(
             {url: "/api/statusM2", methods: ["PUT"]},
             //ENERGY
             {url: "/api/insertEnergy", methods: ["POST"]},
+            //PRESSURE
+            {url: "/api/insertPressure", methods:["POST"]}
         ],
     })
 );

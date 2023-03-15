@@ -1,5 +1,5 @@
 const pressureService = require('../service/pressure.services');
-
+const upload = require("../middleware/upload");
 //INPUT PRESSURE
 exports.inputPress = (req, res, next)=>{
     upload(req, res, function (err) {
@@ -29,7 +29,7 @@ exports.pressGauge = (req, res, next) => {
     var model = {
         parameterId: req.params.id,
     }
-    pressureService.pressureGauges(model,(error, results)=>{
+    pressureService.pressureGauges((error, results)=>{
         if(error){
             return next(error);
         }else{
@@ -46,7 +46,7 @@ exports.pressChart = (req, res, next) => {
     var model = {
         parameterId: req.params.id,
     }
-    pressureService.pressureChart(model,(error, results)=>{
+    pressureService.pressureChart((error, results)=>{
         if(error){
             return next(error);
         }else{

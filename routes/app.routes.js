@@ -57,7 +57,7 @@ router.get("/latestEnergy", energyController.newEnergy);
 router.get("/grafikEnergy", energyController.graphEnergy);
 
 //Pressure
-router.post("insertPressure", pressureController.inputPress);
+router.post("/insertPressure", pressureController.inputPress);
 router.get("/pressureGauge", pressureController.pressGauge);
 router.get("/pressureChart", pressureController.pressChart);
 
