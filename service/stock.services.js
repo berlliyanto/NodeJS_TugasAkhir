@@ -97,7 +97,7 @@ async function riwayatStock(params, callback) {
 
 //READ HISTORY MESIN 1
 async function historyM1 (params, callback){
-    riwayatstock.find({machine_id:1}).sort({_id: -1}).limit(10).then(response=>{
+    riwayatstock.find({machine_id:1}).sort({_id: -1}).limit(30).then(response=>{
         if (!response) callback("No Data");
         else return callback(null, response);
     }).catch((error)=>{
