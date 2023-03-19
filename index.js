@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
 
+
 const {Client} = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
 const client = new Client();
 
+const{quality} = require("./models/oee.model");
 const mongoose = require("mongoose");
 const {MONGO_DB_CONFIG} = require("./config/app.config");
 
@@ -53,7 +55,9 @@ app.use(
             //ENERGY
             {url: "/api/insertEnergy", methods: ["POST"]},
             //PRESSURE
-            {url: "/api/insertPressure", methods:["POST"]}
+            {url: "/api/insertPressure", methods:["POST"]},
+            //OEE
+            {url: "/api/OEE", methods:["POST"]}
         ],
     })
 );
@@ -64,7 +68,7 @@ app.use("/api", require("./routes/app.routes"));
 app.use(errors.errorHandler);
 
 app.listen(Port, function(){
-    console.log("Connected to : ", Port)    
+    console.log("Connected to : ", Port);  
 });
 
 //-------------------------WHATSAPP BOT-----------------------//
@@ -77,5 +81,3 @@ app.listen(Port, function(){
 // });
 
 // client.initialize();
-
-

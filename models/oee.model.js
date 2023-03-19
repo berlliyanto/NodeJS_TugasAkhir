@@ -7,6 +7,7 @@ const availability = mongoose.model(
         operationtime: Number,
         downtime: Number,
         runningtime: Number,
+        availabilityrate: Number,
         state: Boolean,
     },
     {
@@ -21,7 +22,8 @@ const performance = mongoose.model(
         machine_id: Number,
         operationtime: Number,
         cycletime: Number,
-        flawless: Number,
+        good: Number,
+        performancerate:Number,
         state: Boolean,
     },
     {
@@ -34,9 +36,10 @@ const quality = mongoose.model(
     "quality",
     mongoose.Schema({
         machine_id: Number,
-        flawless: Number,
+        good: Number,
         defect: Number,
         processed: Number,
+        qualityrate: Number,
         state: Boolean,
     },
     {
@@ -49,6 +52,17 @@ const oee = mongoose.model(
     "oee",
     mongoose.Schema({
         machine_id: Number,
+        tanggal: String,
+        operationtime: Number,
+        downtime: Number,
+        runningtime: Number,
+        cycletime: Number,
+        good: Number,
+        defect: Number,
+        processed: Number,
+        availability: Number,
+        quality:Number,
+        performance:Number,
         nilaioee: Number,
         hasiloee: String,
         state: Boolean,

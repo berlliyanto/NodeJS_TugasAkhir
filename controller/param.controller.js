@@ -32,7 +32,8 @@ exports.create = (req, res, next) => {
     });
 };
 
-exports.update = (req, res, next) => {
+//RESET PARAMETER M1
+exports.ResetM1 = (req, res, next) => {
     upload(req, res, function (err) {
         if (err) {
             next(err);
@@ -41,6 +42,75 @@ exports.update = (req, res, next) => {
                 state: req.body.state
             };
             parameterServices.resetParam(model, (error, results) => {
+                if (error) {
+                    return next(error);
+                } else {
+                    return res.status(200).send({
+                        message: "Success Reset",
+                        data: results
+                    });
+                }
+            });
+        }
+    });
+};
+
+//RESET PARAMETER M2
+exports.ResetM2 = (req, res, next) => {
+    upload(req, res, function (err) {
+        if (err) {
+            next(err);
+        } else {
+            var model = {
+                state: req.body.state
+            };
+            parameterServices.resetParamM2(model, (error, results) => {
+                if (error) {
+                    return next(error);
+                } else {
+                    return res.status(200).send({
+                        message: "Success Reset",
+                        data: results
+                    });
+                }
+            });
+        }
+    });
+};
+
+//RESET PARAMETER M3
+exports.ResetM3 = (req, res, next) => {
+    upload(req, res, function (err) {
+        if (err) {
+            next(err);
+        } else {
+            var model = {
+                state: req.body.state
+            };
+            parameterServices.resetParamM3(model, (error, results) => {
+                if (error) {
+                    return next(error);
+                } else {
+                    return res.status(200).send({
+                        message: "Success Reset",
+                        data: results
+                    });
+                }
+            });
+        }
+    });
+};
+
+//RESET PARAMETER M4
+exports.ResetM4 = (req, res, next) => {
+    upload(req, res, function (err) {
+        if (err) {
+            next(err);
+        } else {
+            var model = {
+                state: req.body.state
+            };
+            parameterServices.resetParamM4(model, (error, results) => {
                 if (error) {
                     return next(error);
                 } else {
@@ -72,42 +142,6 @@ exports.findAll = (req, res, next) => {
     });
 };
 
-// READ SINGLE DATA
-exports.findOne = (req, res, next) => {
-    var model = {
-        parameterId: req.params.id,
-    };
-
-    parameterServices.getParameterbyId(model, (error, results) => {
-        if (error) {
-            return next(error);
-        } else {
-            return res.status(200).send({
-                message: "Succes",
-                data: results
-            });
-        }
-    });
-};
-
-//DELETE DATA
-exports.delete = (req, res, next) => {
-    var model = {
-        parameterId: req.params.id,
-    };
-
-    parameterServices.deleteParameter(model, (error, results) => {
-        if (error) {
-            return next(error);
-        } else {
-            return res.status(200).send({
-                message: "Succes",
-                data: results
-            });
-        }
-    });
-};
-
 //READ DATA TERBARU MESIN 1
 exports.latestM1 = (req, res, next) => {
     var model = {
@@ -131,6 +165,40 @@ exports.latestM2 = (req, res, next) => {
         parameterId: req.params.id,
     }
     parameterServices.latestParameter2(model,(error, results)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message: "Success",
+                data: results,
+            })
+        }
+    })
+}
+
+//READ DATA TERBARU MESIN 3
+exports.latestM3 = (req, res, next) => {
+    var model = {
+        parameterId: req.params.id,
+    }
+    parameterServices.latestParameter3(model,(error, results)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message: "Success",
+                data: results,
+            })
+        }
+    })
+}
+
+//READ DATA TERBARU MESIN 4
+exports.latestM4 = (req, res, next) => {
+    var model = {
+        parameterId: req.params.id,
+    }
+    parameterServices.latestParameter4(model,(error, results)=>{
         if(error){
             return next(error);
         }else{

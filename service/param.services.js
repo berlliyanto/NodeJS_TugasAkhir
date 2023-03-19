@@ -38,35 +38,6 @@ async function getParameter(params, callback) {
         });
 };
 
-//READ DATA by ID
-async function getParameterbyId(params, callback) {
-    const ParamId = params.ParamId;
-    parameter
-        .findById(ParamId)
-        .then((response) => {
-            if (!response) callback("Param ID invalid");
-            else return callback(null, response);
-        })
-        .catch((error) => {
-            return callback(error);
-        });
-};
-
-
-//DELETE DATA
-async function deleteParameter(params, callback) {
-    const ParamId = params.ParamId;
-    parameter
-        .findByIdAndRemove(ParamId, params, { useFindAndModify: false })
-        .then((response) => {
-            if (!response) callback("Param ID invalid");
-            else return callback(null, response);
-        })
-        .catch((error) => {
-            return callback(error);
-        });
-};
-
 //UPDATE / RESET DATA Mesin 1
 async function resetParam(params,callback){
     parameter.updateMany({machine_id: 1},params)
@@ -78,6 +49,43 @@ async function resetParam(params,callback){
         return callback(error);
     });
 }
+
+//UPDATE / RESET DATA Mesin 2
+async function resetParamM2(params,callback){
+    parameter.updateMany({machine_id: 2},params)
+    .then((response) => {
+        if (!response) callback("Gagal Input");
+        else return callback(null, response);
+    })
+    .catch((error) => {
+        return callback(error);
+    });
+}
+
+//UPDATE / RESET DATA Mesin 3
+async function resetParamM3(params,callback){
+    parameter.updateMany({machine_id: 3},params)
+    .then((response) => {
+        if (!response) callback("Gagal Input");
+        else return callback(null, response);
+    })
+    .catch((error) => {
+        return callback(error);
+    });
+}
+
+//UPDATE / RESET DATA Mesin 4
+async function resetParamM4(params,callback){
+    parameter.updateMany({machine_id: 4},params)
+    .then((response) => {
+        if (!response) callback("Gagal Input");
+        else return callback(null, response);
+    })
+    .catch((error) => {
+        return callback(error);
+    });
+}
+
 
 //READ DATA TERBARU Mesin 1
 async function latestParameter1(params, callback) {
@@ -101,12 +109,37 @@ async function latestParameter2(params, callback) {
     
 }
 
+//READ DATA TERBARU Mesin 3
+async function latestParameter3(params, callback) {
+    parameter.find({ machine_id: 3 }).sort({ _id: -1 }).limit(1).then((response) => {
+        if (!response) callback("No Data");
+        else return callback(null, response);
+    }).catch((error) => {
+        return callback(error);
+    });
+    
+}
+
+//READ DATA TERBARU Mesin 4
+async function latestParameter4(params, callback) {
+    parameter.find({ machine_id: 4 }).sort({ _id: -1 }).limit(1).then((response) => {
+        if (!response) callback("No Data");
+        else return callback(null, response);
+    }).catch((error) => {
+        return callback(error);
+    });
+    
+}
+
 module.exports = {
     createParameter,
-    resetParam,
     getParameter,
-    getParameterbyId,
-    deleteParameter,
+    resetParam,
+    resetParamM2,
+    resetParamM3,
+    resetParamM4,
     latestParameter1,
-    latestParameter2
+    latestParameter2,
+    latestParameter3,
+    latestParameter4
 };

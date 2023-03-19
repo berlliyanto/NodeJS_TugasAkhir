@@ -63,7 +63,7 @@ async function stockAddM1(params,callback){
             A: params.A,
             B: params.B,
             C: params.C
-        }, 
+        },
     }).then((response) => {
         if (!response) callback("Gagal Input");
         else return callback(null, response);

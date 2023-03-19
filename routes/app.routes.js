@@ -24,12 +24,15 @@ router.get("/user-profile", authController.userProfile);
 
 //Parameter
 router.post("/inputParam", paramController.create);
-router.put("/resetParamM1", paramController.update);
+router.put("/resetParamM1", paramController.ResetM1);
+router.put("/resetParamM2", paramController.ResetM2);
+router.put("/resetParamM3", paramController.ResetM3);
+router.put("/resetParamM4", paramController.ResetM4);
 router.get("/allParam", paramController.findAll);
-router.get("/singleParam/:id", paramController.findOne);
-router.delete("/deleteParam", paramController.delete);
 router.get("/latestParamM1", paramController.latestM1);
 router.get("/latestParamM2", paramController.latestM2);
+router.get("/latestParamM3", paramController.latestM3);
+router.get("/latestParamM4", paramController.latestM4);
 
 //Stock
 router.get("/allStock", stockController.findAll);
@@ -60,5 +63,9 @@ router.get("/grafikEnergy", energyController.graphEnergy);
 router.post("/insertPressure", pressureController.inputPress);
 router.get("/pressureGauge", pressureController.pressGauge);
 router.get("/pressureChart", pressureController.pressChart);
+
+//OEE
+router.get("/good", oeeController.good);
+router.post("/OEE", oeeController.OEE);
 
 module.exports = router;
