@@ -9,6 +9,7 @@
   "author": "berli",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "calculateoee": "^0.0.1-c",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",

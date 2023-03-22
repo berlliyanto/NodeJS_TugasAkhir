@@ -1,12 +1,11 @@
 const express = require("express");
 const app = express();
-
+const bodyParser = require("body-parser");
 
 const {Client} = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
 const client = new Client();
 
-const{quality} = require("./models/oee.model");
 const mongoose = require("mongoose");
 const {MONGO_DB_CONFIG} = require("./config/app.config");
 
@@ -22,7 +21,7 @@ mongoose.connect(MONGO_DB_CONFIG.DB, {
     useUnifiedTopology: true
 }).then(
     ()=> {
-        console.log("Database Connected to : ", MONGO_DB_CONFIG);
+        console.log("Database Connected to : Database Berli");
     },
     (error) => {
         console.log("Database can't connected " + error);
@@ -44,10 +43,15 @@ app.use(
             {url: "/api/inputParam", methods: ["POST"]},
             {url: "/api/resetParamM1", methods: ["PUT"]},
             {url: "/api/deleteParam", methods: ["DELETE"]},
+            {url: "/api/latestParamM1", methods: ["GET"]},
+            {url: "/api/latestParamM2", methods: ["GET"]},
+            {url: "/api/latestParamM3", methods: ["GET"]},
+            {url: "/api/latestParamM4", methods: ["GET"]},
             //STOCK
             {url: "/api/inputStock", methods: ["POST"]},
             {url: "/api/deleteStock", methods: ["DELETE"]},
-            {url: "/api/addStockM1", methods: ["PUT"]},
+            {url: "/api/addStock", methods: ["PUT"]},
+            {url: "/api/kurangiStock", methods: ["PUT"]},
             //STATUS
             {url: "/api/insertStat", methods: ["POST"]},
             {url: "/api/statusM1", methods: ["PUT"]},
@@ -57,12 +61,17 @@ app.use(
             //PRESSURE
             {url: "/api/insertPressure", methods:["POST"]},
             //OEE
-            {url: "/api/OEE", methods:["POST"]}
+            {url: "/api/OEE", methods:["POST"]},
+            {url: "/api/QualityM1", methods:["POST"]},
+            //PRODUCTION
+            {url: "/api/insertProduction", methods:["POST"]}
         ],
     })
 );
 
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 app.use('/uploads', express.static('uploads'));
 app.use("/api", require("./routes/app.routes"));
 app.use(errors.errorHandler);

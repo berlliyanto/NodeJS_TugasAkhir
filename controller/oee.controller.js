@@ -1,23 +1,9 @@
 const oeeService = require('../service/oee.services');
-const upload = require("../middleware/upload");
 
 let date = new Date(); // Menggunakan tanggal yang telah ditentukan sebelumnya
 let localTime = date.getTime() - (date.getTimezoneOffset() * 60000); // Mengonversi ke waktu setempat dengan menyesuaikan offset waktu lokal
 let localDate = new Date(localTime);
 let nowdate = localDate.toLocaleString('id', { timeZone: 'UTC' });
-
-
-exports.good = (req, res, next) => {
-    oeeService.Vquality((error, results) => {
-        if (error) {
-            return next(error);
-        } else {
-            return res.status(200).send({
-                data: results,
-            })
-        }
-    })
-}
 
 exports.OEE = (req, res, next) => {
     var loadingtime = req.body.availabilitytime - req.body.planneddown
@@ -39,7 +25,7 @@ exports.OEE = (req, res, next) => {
         performance: pfrmnc,
         nilaioee: avblty * qlty * pfrmnc,
         hasiloee: req.body.hasiloee,
-        state: req.body.state,
+        state: req.body.state
     };
     oeeService.createoee(model, (error, results) => {
         if (error) {
@@ -52,3 +38,24 @@ exports.OEE = (req, res, next) => {
         }
     });
 };
+
+exports.QualityM1 = (req, res , next)=>{
+    var model = {
+        machine_id: req.body.machine_id,
+        state: req.body.state,
+        processed: req.body.processed,
+        defect: req.body.defect,
+    };
+
+    oeeService.QualityM1(model,(error,result)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message:"Success",
+                data:result
+            })
+        }
+    });
+    console.log(req.params);
+}

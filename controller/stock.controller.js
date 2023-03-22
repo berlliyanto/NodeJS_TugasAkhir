@@ -77,20 +77,41 @@ exports.M2 = (req, res, next) => {
     })
 }
 
-//TAMBAH JUMLAH BAHAN MESIN 1
-exports.addM1 = (req,res,next) =>{
+//TAMBAH JUMLAH BAHAN MESIN 
+exports.add = (req,res,next) =>{
     var model = {
+        m_id: req.query.m_id,
         A: req.body.A,
         B: req.body.B,
         C: req.body.C,
     }
-    stockServices.stockAddM1(model,(error,results)=>{
+    stockServices.stockAdd(model,(error,results)=>{
         if(error){
             return next(error);
         }else{
             return res.status(200).send({
                 message: "Success",
                 data:results
+            })
+        }
+    })
+}
+
+//KURANG JUMLAH BAHAN MESIN 
+exports.min = (req, res, next)=>{
+    var model ={
+        m_id: req.query.m_id,
+        A: req.query.A,
+        B: req.query.B,
+        C: req.query.C,
+    }
+    stockServices.kurangiStock(model,(error,result)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message:"Succes Kurangi",
+                data:result
             })
         }
     })

@@ -8,7 +8,7 @@ const availability = mongoose.model(
         downtime: Number,
         runningtime: Number,
         availabilityrate: Number,
-        state: Boolean,
+        state: Number,
     },
     {
         timestamps: true,
@@ -24,7 +24,7 @@ const performance = mongoose.model(
         cycletime: Number,
         good: Number,
         performancerate:Number,
-        state: Boolean,
+        state: Number,
     },
     {
         timestamps: true,
@@ -40,7 +40,7 @@ const quality = mongoose.model(
         defect: Number,
         processed: Number,
         qualityrate: Number,
-        state: Boolean,
+        state: Number,
     },
     {
         timestamps: true,
@@ -65,7 +65,7 @@ const oee = mongoose.model(
         performance:Number,
         nilaioee: Number,
         hasiloee: String,
-        state: Boolean,
+        state: Number,
     },
     {
         timestamps: true,

@@ -56,9 +56,10 @@ async function stock2(params,callback) {
     
 }
 
-//Tambah Jumlah Bahan Mesin 1
-async function stockAddM1(params,callback){
-    stock.updateOne({machine_id: 1},{
+//Tambah Jumlah Bahan Mesin 
+async function stockAdd(params,callback){
+    var machine_id = params.m_id;
+    stock.updateOne({machine_id: Number(machine_id)},{
         $inc: {
             A: params.A,
             B: params.B,
@@ -71,6 +72,46 @@ async function stockAddM1(params,callback){
     .catch((error) => {
         return callback(error);
     });
+}
+
+//Kurangi Jumlah Bahan Mesin 
+async function kurangiStock(params, callback){
+    var machine_id = params.m_id
+    if(params.A==1){
+        stock.updateOne({machine_id:Number(machine_id)},{
+            $inc:{
+                A: -(params.A)
+            }
+        }).then((response)=>{
+            if(!response) callback("Gagal Kurangi");
+            else return callback(null, response);
+        }).catch((error)=>{
+            return callback(error);
+        })
+    }else if(params.B==1){
+        stock.updateOne({machine_id:Number(machine_id)},{
+            $inc:{
+                B: -(params.B)
+            }
+        }).then((response)=>{
+            if(!response) callback("Gagal Kurangi");
+            else return callback(null, response);
+        }).catch((error)=>{
+            return callback(error);
+        })
+    }else if(params.C==1){
+        stock.updateOne({machine_id:Number(machine_id)},{
+            $inc:{
+                C: -(params.C)
+            }
+        }).then((response)=>{
+            if(!response) callback("Gagal Kurangi");
+            else return callback(null, response);
+        }).catch((error)=>{
+            return callback(error);
+        })
+    }
+    
 }
 
 //-----------------------------RIWAYAT----------------------------------------//
@@ -111,6 +152,7 @@ module.exports = {
     deletestock,
     stock1,
     stock2,
-    stockAddM1,
+    stockAdd,
+    kurangiStock,
     historyM1,
 };

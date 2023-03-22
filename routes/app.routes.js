@@ -6,6 +6,7 @@ const statusController = require("../controller/status.controller");
 const energyController = require("../controller/energy.controller");
 const pressureController = require("../controller/pressure.controller");
 const oeeController = require("../controller/oee.controller");
+const productionController = require("../controller/production.controller");
 
 const express = require("express");
 const router = express.Router();
@@ -39,7 +40,8 @@ router.get("/allStock", stockController.findAll);
 router.delete("/DeleteStock", stockController.delete);
 router.get("/StockM1", stockController.M1);
 router.get("/StockM2", stockController.M2);
-router.put("/addStockM1", stockController.addM1);
+router.put("/addStock", stockController.add);
+router.put("/kurangiStock",stockController.min);
 //Riwayat Stock
 router.post("/inputStock", stockController.create);
 router.get("/historiM1", stockController.riwayatStockM1)
@@ -65,7 +67,12 @@ router.get("/pressureGauge", pressureController.pressGauge);
 router.get("/pressureChart", pressureController.pressChart);
 
 //OEE
-router.get("/good", oeeController.good);
 router.post("/OEE", oeeController.OEE);
+router.post("/QualityM1", oeeController.QualityM1)
+
+//PRODUCTION
+router.post("/insertProduction", productionController.processed);
+router.get("/getProcessed", productionController.getProcessed);
+router.delete("/deleteProduction", productionController.delete)
 
 module.exports = router;
