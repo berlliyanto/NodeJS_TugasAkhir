@@ -1,4 +1,3 @@
-const { response } = require("express");
 const { production } = require("../models/production.model");
 
 // INPUT PROCESSED MESIN 1
@@ -25,11 +24,12 @@ async function getProcessed(params, callback) {
     var m_id = params.machine_id;
     var status = params.status;
     var state = params.state;
+    var tipe = params.tipe;
     production.aggregate([
         {
             $match: {
                 $and:[
-                    {machine_id:Number(m_id)},{state:Number(state)},{status:Number(status)}
+                    {machine_id:Number(m_id)},{state:Number(state)},{status:Number(status)},{tipeBenda:tipe}
                 ],
                 
             }
@@ -45,6 +45,20 @@ async function getProcessed(params, callback) {
     })
 }
 
+// RESET PROCESSED
+async function resetProcess(params, callback){
+    var m_id = params.m_id
+    production.updateMany({machine_id:Number(m_id)},{
+        state: params.state
+    }).then((response)=>{
+        if(!response) callback("gagal");
+        return callback(null,response);
+    }).catch((error)=>{
+        callback(error);
+    })
+
+}
+
 async function deleteData(callback){
     production.deleteMany().then((response)=>{
         return callback(null, response);
@@ -54,6 +68,7 @@ async function deleteData(callback){
 }
 module.exports = {
     inputProcessed,
+    resetProcess,
     getProcessed,
     deleteData
 };

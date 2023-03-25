@@ -39,23 +39,3 @@ exports.OEE = (req, res, next) => {
     });
 };
 
-exports.QualityM1 = (req, res , next)=>{
-    var model = {
-        machine_id: req.body.machine_id,
-        state: req.body.state,
-        processed: req.body.processed,
-        defect: req.body.defect,
-    };
-
-    oeeService.QualityM1(model,(error,result)=>{
-        if(error){
-            return next(error);
-        }else{
-            return res.status(200).send({
-                message:"Success",
-                data:result
-            })
-        }
-    });
-    console.log(req.params);
-}

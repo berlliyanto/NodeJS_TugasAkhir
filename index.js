@@ -1,3 +1,5 @@
+const cors = require('cors');
+
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -27,7 +29,8 @@ mongoose.connect(MONGO_DB_CONFIG.DB, {
         console.log("Database can't connected " + error);
     }
 );
- 
+
+app.use(cors());
 auth.authenticateToken.unless = unless;
 app.use(
     auth.authenticateToken.unless({
@@ -62,9 +65,11 @@ app.use(
             {url: "/api/insertPressure", methods:["POST"]},
             //OEE
             {url: "/api/OEE", methods:["POST"]},
-            {url: "/api/QualityM1", methods:["POST"]},
+            {url: "/api/Quality", methods:["POST"]},
             //PRODUCTION
-            {url: "/api/insertProduction", methods:["POST"]}
+            {url: "/api/insertProduction", methods:["POST"]},
+            {url: "/api/getProcessed", methods:["GET"]},
+            {url: "/api/resetProcessed", methods:["PUT"]},
         ],
     })
 );

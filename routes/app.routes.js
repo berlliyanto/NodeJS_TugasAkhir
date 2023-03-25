@@ -7,6 +7,7 @@ const energyController = require("../controller/energy.controller");
 const pressureController = require("../controller/pressure.controller");
 const oeeController = require("../controller/oee.controller");
 const productionController = require("../controller/production.controller");
+const qualityController = require("../controller/quality.controller");
 
 const express = require("express");
 const router = express.Router();
@@ -68,11 +69,11 @@ router.get("/pressureChart", pressureController.pressChart);
 
 //OEE
 router.post("/OEE", oeeController.OEE);
-router.post("/QualityM1", oeeController.QualityM1)
-
+router.post("/Quality", qualityController.Quality);
 //PRODUCTION
 router.post("/insertProduction", productionController.processed);
 router.get("/getProcessed", productionController.getProcessed);
+router.put("/resetProcessed", productionController.resetProcessed);
 router.delete("/deleteProduction", productionController.delete)
 
 module.exports = router;
