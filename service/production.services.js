@@ -66,6 +66,9 @@ async function deleteData(callback){
         callback(error);
     })
 }
+
+
+
 module.exports = {
     inputProcessed,
     resetProcess,

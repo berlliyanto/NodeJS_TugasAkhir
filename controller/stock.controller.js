@@ -2,7 +2,7 @@ const upload = require("../middleware/upload");
 const stockServices = require("../service/stock.services");
 
 let date = new Date(); // Menggunakan tanggal yang telah ditentukan sebelumnya
-let localTime = date.getTime() - (date.getTimezoneOffset('Asia/Jakarta')); // Mengonversi ke waktu setempat dengan menyesuaikan offset waktu lokal
+let localTime = date.getTime() - (date.getTimezoneOffset()*60000); // Mengonversi ke waktu setempat dengan menyesuaikan offset waktu lokal
 let localDate = new Date(localTime);
 let nowdate = localDate.toLocaleString('id', { timeZone: 'Asia/Jakarta' });
 

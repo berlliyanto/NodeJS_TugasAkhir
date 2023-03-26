@@ -69,7 +69,15 @@ router.get("/pressureChart", pressureController.pressChart);
 
 //OEE
 router.post("/OEE", oeeController.OEE);
-router.post("/Quality", qualityController.Quality);
+
+//QUALITY
+router.post("/trigQuality", qualityController.triggerQuality);
+router.get("/getQualityData", qualityController.getProcessData);
+router.get("/getRecQuality", qualityController.getRecQuality);
+router.put("/processed", qualityController.processedUnit);
+router.put("/resetQuality", qualityController.resetQuality);
+router.put("/defect", qualityController.defectUnit);
+
 //PRODUCTION
 router.post("/insertProduction", productionController.processed);
 router.get("/getProcessed", productionController.getProcessed);

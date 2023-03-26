@@ -36,6 +36,7 @@ const quality = mongoose.model(
     "quality",
     mongoose.Schema({
         machine_id: Number,
+        tipe: String,
         good: Number,
         defect: Number,
         processed: Number,
