@@ -1,21 +1,21 @@
 const { quality } = require('../models/oee.model');
 const fetch = require('node-fetch');
 
-const processed1_A = 'http://localhost:5000/api/getQualityData?m_id=1&tipe=A';
-const processed1_B = 'http://localhost:5000/api/getQualityData?m_id=1&tipe=B';
-const processed1_C = 'http://localhost:5000/api/getQualityData?m_id=1&tipe=C';
+const processed1_A = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=1&tipe=A';
+const processed1_B = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=1&tipe=B';
+const processed1_C = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=1&tipe=C';
 
-const processed2_A = 'http://localhost:5000/api/getQualityData?m_id=2&tipe=A';
-const processed2_B = 'http://localhost:5000/api/getQualityData?m_id=2&tipe=B';
-const processed2_C = 'http://localhost:5000/api/getQualityData?m_id=2&tipe=C';
+const processed2_A = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=2&tipe=A';
+const processed2_B = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=2&tipe=B';
+const processed2_C = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=2&tipe=C';
 
-const processed3_A = 'http://localhost:5000/api/getQualityData?m_id=3&tipe=A';
-const processed3_B = 'http://localhost:5000/api/getQualityData?m_id=3&tipe=B';
-const processed3_C = 'http://localhost:5000/api/getQualityData?m_id=3&tipe=C';
+const processed3_A = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=3&tipe=A';
+const processed3_B = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=3&tipe=B';
+const processed3_C = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=3&tipe=C';
 
-const processed4_A = 'http://localhost:5000/api/getQualityData?m_id=4&tipe=A';
-const processed4_B = 'http://localhost:5000/api/getQualityData?m_id=4&tipe=B';
-const processed4_C = 'http://localhost:5000/api/getQualityData?m_id=4&tipe=C';
+const processed4_A = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=4&tipe=A';
+const processed4_B = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=4&tipe=B';
+const processed4_C = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=4&tipe=C';
 
 //VARIABEL PROCESSED
 let M1_A;
@@ -319,8 +319,8 @@ async function Defect(params, callback){
             },{
                 $set:{
                     defect: defect,
-                    good: M2_B - defect,
-                    qualityrate: (M2_B - defect) / M2_B
+                    good: M2_A - defect,
+                    qualityrate: (M2_A - defect) / M2_A
                 }
             }).sort({_id:-1}).then((response)=>{
                 if(!response) callback('GAGAL');
