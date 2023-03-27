@@ -202,11 +202,7 @@ async function recQuality(params,callback){
 async function dashQuality(machine_id){
     const latestdata =[];
     for (const id of machine_id) {
-        const result = await quality.findOne({
-            $and:[
-                {machine_id:id},{state:1}
-            ]
-        }).sort({ _id: -1 }).select('machine_id processed good defect tipe state');
+        const result = await quality.findOne({machine_id:id}).sort({ _id: -1 }).select('machine_id processed good defect tipe state');
         latestdata.push(result);
     }
     return latestdata;
