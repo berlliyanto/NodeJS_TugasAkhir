@@ -198,6 +198,20 @@ async function recQuality(params,callback){
     })
 }
 
+//GET 4 DATA FOR DASHBOARD QUALITY
+async function dashQuality(machine_id){
+    const latestdata =[];
+    for (const id of machine_id) {
+        const result = await quality.findOne({
+            $and:[
+                {machine_id:id},{state:1}
+            ]
+        }).sort({ _id: -1 }).select('machine_id processed good defect tipe state');
+        latestdata.push(result);
+    }
+    return latestdata;
+}
+
 //GET DATA QUALITY TERBARU
 async function getProcessed(params,callback){
     var tipe = params.tipe
@@ -482,4 +496,5 @@ module.exports = {
     getProcessed,
     Defect,
     resetQuality,
+    dashQuality,
 }

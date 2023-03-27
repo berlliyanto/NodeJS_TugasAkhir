@@ -74,6 +74,7 @@ router.post("/OEE", oeeController.OEE);
 router.post("/trigQuality", qualityController.triggerQuality);
 router.get("/getQualityData", qualityController.getProcessData);
 router.get("/getRecQuality", qualityController.getRecQuality);
+router.get("/dashboardQuality", qualityController.getDashQuality);
 router.put("/processed", qualityController.processedUnit);
 router.put("/resetQuality", qualityController.resetQuality);
 router.put("/defect", qualityController.defectUnit);

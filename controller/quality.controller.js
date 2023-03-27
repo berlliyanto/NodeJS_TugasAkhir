@@ -60,6 +60,20 @@ exports.getRecQuality = (req, res, next)=>{
     })
 }
 
+//GET 4 DATA FOR DASHBOARD QUALITY
+exports.getDashQuality = async (req, res, next)=>{
+    const machine_id = [1,2,3,4];
+    try {
+        const latestdata = await qualityService.dashQuality(machine_id);
+        res.status(200).send({
+            message: "Success",
+            data: latestdata
+        });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 //UPDATE PROCESSED DATA
 exports.processedUnit = (req, res, next)=>{
     var model ={
