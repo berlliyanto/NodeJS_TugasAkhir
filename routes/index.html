@@ -9,15 +9,16 @@
 </head>
 <body>
     <script>
-        function onClick(token) {
-          document.getElementById("demo-form").click();
+        function onSubmit(token) {
+          document.getElementById("demo-form").submit();
         }
       </script>
     <button class="g-recaptcha" 
     data-sitekey="6LcUJzolAAAAAJVpIszGZVDNoffkfcNIpU4yjT1P" 
     data-callback='onSubmit' 
     data-action='submit'
-    id="demo-form">Submit</button>
+    id="demo-form"
+    onsubmit="onSubmit()">Submit</button>
 </body>
 <script src="https://www.google.com/recaptcha/api.js"></script>
 </html>
