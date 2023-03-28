@@ -74,6 +74,9 @@ app.use(
             {url: "/api/insertProduction", methods:["POST"]},
             {url: "/api/getProcessed", methods:["GET"]},
             {url: "/api/resetProcessed", methods:["PUT"]},
+            {url: "/api/KSJ", methods:["GET"]},
+
+
         ],
     })
 );

@@ -85,4 +85,9 @@ router.get("/getProcessed", productionController.getProcessed);
 router.put("/resetProcessed", productionController.resetProcessed);
 router.delete("/deleteProduction", productionController.delete)
 
+//COBA KSJ
+router.get("/KSJ", (req,res)=>{
+    res.sendFile('./index.html',{root:__dirname});
+})
+
 module.exports = router;
