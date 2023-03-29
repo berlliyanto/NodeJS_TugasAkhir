@@ -50,6 +50,11 @@ app.use(cors());
 //             {url: "/api/latestParamM2", methods: ["GET"]},
 //             {url: "/api/latestParamM3", methods: ["GET"]},
 //             {url: "/api/latestParamM4", methods: ["GET"]},
+//             //STATUS
+//             {url: "/api/getStatusM1", methods: ["GET"]},
+//             {url: "/api/getStatusM2", methods: ["GET"]},
+//             {url: "/api/getStatusM3", methods: ["GET"]},
+//             {url: "/api/getStatusM4", methods: ["GET"]},
 //             //STOCK
 //             {url: "/api/inputStock", methods: ["POST"]},
 //             {url: "/api/deleteStock", methods: ["DELETE"]},
@@ -65,11 +70,15 @@ app.use(cors());
 //             {url: "/api/insertPressure", methods:["POST"]},
 //             //OEE
 //             {url: "/api/OEE", methods:["POST"]},
+//             //QUALITY
 //             {url: "/api/trigQuality", methods:["POST"]},
 //             {url: "/api/getQualityData", methods:["GET"]},
 //             {url: "/api/processed", methods:["PUT"]},
 //             {url: "/api/resetQuality", methods:["PUT"]},
 //             {url: "/api/defect", methods:["PUT"]},
+//             //AVAILABILITY
+//             {url: "/api/trigAvailability", methods:["POST"]},
+//             {url: "/api/latestAvailability", methods:["GET"]},
 //             //PRODUCTION
 //             {url: "/api/insertProduction", methods:["POST"]},
 //             {url: "/api/getProcessed", methods:["GET"]},
