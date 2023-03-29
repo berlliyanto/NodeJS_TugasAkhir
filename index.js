@@ -31,55 +31,53 @@ mongoose.connect(MONGO_DB_CONFIG.DB, {
 );
 
 app.use(cors());
-auth.authenticateToken.unless = unless;
-app.use(
-    auth.authenticateToken.unless({
-        path:[
-            //AUTH
-            {url: "/api/login", methods: ["POST"]},
-            {url: "/api/register", methods: ["POST"]},
-            //USERS
-            {url: "/api/users", methods: ["POST"]},
-            {url: "/api/users/:id", methods: ["PUT"]},
-            {url: "/api/users/:id", methods: ["DELETE"]},
-            //PARAMETER
-            {url: "/api/inputParam", methods: ["POST"]},
-            {url: "/api/resetParamM1", methods: ["PUT"]},
-            {url: "/api/deleteParam", methods: ["DELETE"]},
-            {url: "/api/latestParamM1", methods: ["GET"]},
-            {url: "/api/latestParamM2", methods: ["GET"]},
-            {url: "/api/latestParamM3", methods: ["GET"]},
-            {url: "/api/latestParamM4", methods: ["GET"]},
-            //STOCK
-            {url: "/api/inputStock", methods: ["POST"]},
-            {url: "/api/deleteStock", methods: ["DELETE"]},
-            {url: "/api/addStock", methods: ["PUT"]},
-            {url: "/api/kurangiStock", methods: ["PUT"]},
-            //STATUS
-            {url: "/api/insertStat", methods: ["POST"]},
-            {url: "/api/statusM1", methods: ["PUT"]},
-            {url: "/api/statusM2", methods: ["PUT"]},
-            //ENERGY
-            {url: "/api/insertEnergy", methods: ["POST"]},
-            //PRESSURE
-            {url: "/api/insertPressure", methods:["POST"]},
-            //OEE
-            {url: "/api/OEE", methods:["POST"]},
-            {url: "/api/trigQuality", methods:["POST"]},
-            {url: "/api/getQualityData", methods:["GET"]},
-            {url: "/api/processed", methods:["PUT"]},
-            {url: "/api/resetQuality", methods:["PUT"]},
-            {url: "/api/defect", methods:["PUT"]},
-            //PRODUCTION
-            {url: "/api/insertProduction", methods:["POST"]},
-            {url: "/api/getProcessed", methods:["GET"]},
-            {url: "/api/resetProcessed", methods:["PUT"]},
-            {url: "/api/KSJ", methods:["GET"]},
+// auth.authenticateToken.unless = unless;
+// app.use(
+//     auth.authenticateToken.unless({
+//         path:[
+//             //AUTH
+//             {url: "/api/login", methods: ["POST"]},
+//             {url: "/api/register", methods: ["POST"]},
+//             //USERS
+//             {url: "/api/users", methods: ["POST"]},
+//             {url: "/api/users/:id", methods: ["PUT"]},
+//             {url: "/api/users/:id", methods: ["DELETE"]},
+//             //PARAMETER
+//             {url: "/api/inputParam", methods: ["POST"]},
+//             {url: "/api/resetParamM1", methods: ["PUT"]},
+//             {url: "/api/deleteParam", methods: ["DELETE"]},
+//             {url: "/api/latestParamM1", methods: ["GET"]},
+//             {url: "/api/latestParamM2", methods: ["GET"]},
+//             {url: "/api/latestParamM3", methods: ["GET"]},
+//             {url: "/api/latestParamM4", methods: ["GET"]},
+//             //STOCK
+//             {url: "/api/inputStock", methods: ["POST"]},
+//             {url: "/api/deleteStock", methods: ["DELETE"]},
+//             {url: "/api/addStock", methods: ["PUT"]},
+//             {url: "/api/kurangiStock", methods: ["PUT"]},
+//             //STATUS
+//             {url: "/api/insertStat", methods: ["POST"]},
+//             {url: "/api/statusM1", methods: ["PUT"]},
+//             {url: "/api/statusM2", methods: ["PUT"]},
+//             //ENERGY
+//             {url: "/api/insertEnergy", methods: ["POST"]},
+//             //PRESSURE
+//             {url: "/api/insertPressure", methods:["POST"]},
+//             //OEE
+//             {url: "/api/OEE", methods:["POST"]},
+//             {url: "/api/trigQuality", methods:["POST"]},
+//             {url: "/api/getQualityData", methods:["GET"]},
+//             {url: "/api/processed", methods:["PUT"]},
+//             {url: "/api/resetQuality", methods:["PUT"]},
+//             {url: "/api/defect", methods:["PUT"]},
+//             //PRODUCTION
+//             {url: "/api/insertProduction", methods:["POST"]},
+//             {url: "/api/getProcessed", methods:["GET"]},
+//             {url: "/api/resetProcessed", methods:["PUT"]},
 
-
-        ],
-    })
-);
+//         ],
+//     })
+// );
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:false}));

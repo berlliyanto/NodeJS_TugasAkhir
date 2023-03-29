@@ -8,6 +8,7 @@ const pressureController = require("../controller/pressure.controller");
 const oeeController = require("../controller/oee.controller");
 const productionController = require("../controller/production.controller");
 const qualityController = require("../controller/quality.controller");
+const availabilityController = require("../controller/availability.controller");
 
 const express = require("express");
 const router = express.Router();
@@ -70,6 +71,10 @@ router.get("/pressureChart", pressureController.pressChart);
 //OEE
 router.post("/OEE", oeeController.OEE);
 
+//AVAILABILITY
+router.post("/trigAvailability",availabilityController.trigAvai);
+router.get("/latestAvailability", availabilityController.latestAvai);
+
 //QUALITY
 router.post("/trigQuality", qualityController.triggerQuality);
 router.get("/getQualityData", qualityController.getProcessData);
@@ -85,9 +90,5 @@ router.get("/getProcessed", productionController.getProcessed);
 router.put("/resetProcessed", productionController.resetProcessed);
 router.delete("/deleteProduction", productionController.delete)
 
-//COBA KSJ
-router.get("/KSJ", (req,res)=>{
-    res.sendFile('./index.html',{root:__dirname});
-})
 
 module.exports = router;
