@@ -171,21 +171,20 @@ function OpTimeM1() {
                     return null;
                 }
             } else {
-                console.log("SELESAI M1");
                 availability.updateMany({ machine_id: 1 }, {
                     $set: {
                         state: 0
                     }
                 }).sort({ _id: -1 }).then(() => {
-                    console.log("Data M1 Reset")
+                    return null;
                 })
             }
         } else {
-            console.log("No Parameter M1");
+            return null;
         }
     } else {
         Time1 = 0;
-        console.log("NO DATA AVAILABLE");
+        return null;
     }
 }
 //--------------------------------MESIN 2----------------------------------//
@@ -211,21 +210,20 @@ function OpTimeM2() {
                     return null;
                 }
             } else {
-                console.log("SELESAI M2")
                 availability.updateMany({ machine_id: 2 }, {
                     $set: {
                         state: 0
                     }
                 }).sort({ _id: -1 }).then(() => {
-                    console.log("Data M2 Reset")
+                    return null;
                 })
             }
         } else {
-            console.log("No Parameter M2");
+            return null;
         }
     } else {
         Time2 = 0;
-        console.log("NO DATA AVAILABLE")
+        return null;
     }
 }
 //--------------------------------MESIN 3----------------------------------//
@@ -251,21 +249,20 @@ function OpTimeM3() {
                     return null;
                 }
             } else {
-                console.log("SELESAI M3")
                 availability.updateMany({ machine_id: 3 }, {
                     $set: {
                         state: 0
                     }
                 }).sort({ _id: -1 }).then(() => {
-                    console.log("Data M3 Reset")
+                    return null;
                 })
             }
         } else {
-            console.log("No Parameter M3");
+            return null;
         }
     } else {
         Time3 = 0;
-        console.log("NO DATA AVAILABLE")
+        return null;
     }
 }
 //--------------------------------MESIN 4----------------------------------//
@@ -291,25 +288,23 @@ function OpTimeM4() {
                     return null;
                 }
             } else {
-
-                console.log("SELESAI M4");
                 availability.updateMany({ machine_id: 4 }, {
                     $set: {
                         state: 0
                     }
                 }).sort({ _id: -1 }).then(() => {
-                    console.log("Data M4 Reset")
+                    return null;
                 })
             }
         } else {
-            console.log("No Parameter M4");
+            return null;
         }
     } else {
         Time4 = 0;
-        console.log("NO DATA AVAILABLE")
+        return null;
     }
 }
-//-------------------------------OPERATION TIME--------------------------------//
+//-------------------------------OPERATION TIME END--------------------------------//
 
 //-------------------------------DOWNTIME--------------------------------//
 
