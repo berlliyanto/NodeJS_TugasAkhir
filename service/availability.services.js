@@ -176,7 +176,7 @@ function OpTimeM1() {
                         state: 0
                     }
                 }).sort({ _id: -1 }).then(() => {
-                    return null;
+                    console.log("MESIN 1 SELESAI");
                 })
             }
         } else {
@@ -215,7 +215,7 @@ function OpTimeM2() {
                         state: 0
                     }
                 }).sort({ _id: -1 }).then(() => {
-                    return null;
+                    console.log("MESIN 2 SELESAI");
                 })
             }
         } else {
@@ -254,7 +254,7 @@ function OpTimeM3() {
                         state: 0
                     }
                 }).sort({ _id: -1 }).then(() => {
-                    return null;
+                    console.log("MESIN 3 SELESAI");
                 })
             }
         } else {
@@ -293,7 +293,7 @@ function OpTimeM4() {
                         state: 0
                     }
                 }).sort({ _id: -1 }).then(() => {
-                    return null;
+                    console.log("MESIN 4 SELESAI");
                 })
             }
         } else {
