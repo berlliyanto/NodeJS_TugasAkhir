@@ -1,4 +1,4 @@
-// const { availability } = require("../models/oee.model");
+const { availability } = require("../models/oee.model");
 // const fetch = require('node-fetch');
 
 // //ALAMAT STATUS
