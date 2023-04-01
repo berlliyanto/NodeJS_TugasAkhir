@@ -1,21 +1,4 @@
 const { quality } = require('../models/oee.model');
-const fetch = require('node-fetch');
-
-const processed1_A = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=1&tipe=A';
-const processed1_B = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=1&tipe=B';
-const processed1_C = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=1&tipe=C';
-
-const processed2_A = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=2&tipe=A';
-const processed2_B = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=2&tipe=B';
-const processed2_C = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=2&tipe=C';
-
-const processed3_A = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=3&tipe=A';
-const processed3_B = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=3&tipe=B';
-const processed3_C = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=3&tipe=C';
-
-const processed4_A = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=4&tipe=A';
-const processed4_B = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=4&tipe=B';
-const processed4_C = 'https://aplikasi-pms-berli.onrender.com/api/getQualityData?m_id=4&tipe=C';
 
 //VARIABEL PROCESSED
 let M1_A;
@@ -32,143 +15,119 @@ let M4_B;
 let M4_C;
 
 //TRIGGER FUNCTION FETCH
-setInterval(fetchM1_A,5000);
-setInterval(fetchM1_B,5000);
-setInterval(fetchM1_C,5000);
-setInterval(fetchM2_A,5000);
-setInterval(fetchM2_B,5000);
-setInterval(fetchM2_C,5000);
-setInterval(fetchM3_A,5000);
-setInterval(fetchM3_B,5000);
-setInterval(fetchM3_C,5000);
-setInterval(fetchM4_A,5000);
-setInterval(fetchM4_B,5000);
-setInterval(fetchM4_C,5000);
+setInterval(fetchM1_A,2000);
+setInterval(fetchM1_B,2000);
+setInterval(fetchM1_C,2000);
+setInterval(fetchM2_A,2000);
+setInterval(fetchM2_B,2000);
+setInterval(fetchM2_C,2000);
+setInterval(fetchM3_A,2000);
+setInterval(fetchM3_B,2000);
+setInterval(fetchM3_C,2000);
+setInterval(fetchM4_A,2000);
+setInterval(fetchM4_B,2000);
+setInterval(fetchM4_C,2000);
 
 //--------------------------------FETCH--------------------------------------//
 //-------------------------------MACHINE 1-----------------------------------//
-function fetchM1_A(){
-    fetch(processed1_A).then((result)=>result.json()).then(({data})=>{
-        if(data == NaN || data == undefined){
-            return null
-        }
-        M1_A = data[0].processed;
-    }).catch((error)=>{
-        return null
-    })
+async function fetchM1_A(){
+    const fetchPM1 = await quality.findOne({
+        $and:[
+            {machine_id:1},{tipe:"A"}
+        ]
+    }).sort({_id:-1});
+    M1_A = fetchPM1.processed;
 }
-function fetchM1_B(){
-    fetch(processed1_B).then((result)=>result.json()).then(({data})=>{
-        if(data == NaN || data == undefined){
-            return null
-        }
-        M1_B = data[0].processed;
-    }).catch((error)=>{
-        return null
-    })
+async function fetchM1_B(){
+    const fetchPM1 = await quality.findOne({
+        $and:[
+            {machine_id:1},{tipe:"B"}
+        ]
+    }).sort({_id:-1});
+    M1_B = fetchPM1.processed;
 }
-function fetchM1_C(){
-    fetch(processed1_C).then((result)=>result.json()).then(({data})=>{
-        if(data == NaN || data == undefined){
-            return null
-        }
-        M1_C = data[0].processed;
-    }).catch((error)=>{
-        return null
-    })
+async function fetchM1_C(){
+    const fetchPM1 = await quality.findOne({
+        $and:[
+            {machine_id:1},{tipe:"C"}
+        ]
+    }).sort({_id:-1});
+    M1_C = fetchPM1.processed;
 }
 //-------------------------------MACHINE 2-----------------------------------//
-function fetchM2_A(){
-    fetch(processed2_A).then((result)=>result.json()).then(({data})=>{
-        if(data == NaN || data == undefined){
-            return null;
-        }
-        M2_A = data[0].processed;
-    }).catch((error)=>{
-        return null;
-    })
+async function fetchM2_A(){
+    const fetchPM2 = await quality.findOne({
+        $and:[
+            {machine_id:2},{tipe:"A"}
+        ]
+    }).sort({_id:-1});
+    M2_A = fetchPM2.processed;
 }
-function fetchM2_B(){
-    fetch(processed2_B).then((result)=>result.json()).then(({data})=>{
-        if(data == NaN || data == undefined){
-            return null;
-        }
-        M2_B = data[0].processed;
-    }).catch((error)=>{
-        return null;
-    })
+async function fetchM2_B(){
+    const fetchPM2 = await quality.findOne({
+        $and:[
+            {machine_id:2},{tipe:"B"}
+        ]
+    }).sort({_id:-1});
+    M2_B = fetchPM2.processed;
 }
-function fetchM2_C(){
-    fetch(processed2_C).then((result)=>result.json()).then(({data})=>{
-        if(data == NaN || data == undefined){
-            return null;
-        }
-        M2_C = data[0].processed;
-    }).catch((error)=>{
-        return null;
-    })
+async function fetchM2_C(){
+    const fetchPM2 = await quality.findOne({
+        $and:[
+            {machine_id:2},{tipe:"C"}
+        ]
+    }).sort({_id:-1});
+    M2_C = fetchPM2.processed;
 }
 //-------------------------------MACHINE 3-----------------------------------//
-function fetchM3_A(){
-    fetch(processed3_A).then((result)=>result.json()).then(({data})=>{
-        if(data == NaN || data == undefined){
-            return null;
-        }
-        M3_A = data[0].processed;
-    }).catch((error)=>{
-        return null;
-    })
+async function fetchM3_A(){
+    const fetchPM3 = await quality.findOne({
+        $and:[
+            {machine_id:3},{tipe:"A"}
+        ]
+    }).sort({_id:-1});
+    M3_A = fetchPM3.processed;
 }
-function fetchM3_B(){
-    fetch(processed3_B).then((result)=>result.json()).then(({data})=>{
-        if(data == NaN || data == undefined){
-            return null;
-        }
-        M3_B = data[0].processed;
-    }).catch((error)=>{
-        return null;
-    })
+async function fetchM3_B(){
+    const fetchPM3 = await quality.findOne({
+        $and:[
+            {machine_id:3},{tipe:"B"}
+        ]
+    }).sort({_id:-1});
+    M3_B = fetchPM3.processed;
 }
-function fetchM3_C(){
-    fetch(processed3_C).then((result)=>result.json()).then(({data})=>{
-        if(data == NaN || data == undefined){
-            return null;
-        }
-        M3_C = data[0].processed;
-    }).catch((error)=>{
-        return null;
-    })
+async function fetchM3_C(){
+    const fetchPM3 = await quality.findOne({
+        $and:[
+            {machine_id:3},{tipe:"C"}
+        ]
+    }).sort({_id:-1});
+    M3_C = fetchPM3.processed;
 }
 //-------------------------------MACHINE 4-----------------------------------//
-function fetchM4_A(){
-    fetch(processed4_A).then((result)=>result.json()).then(({data})=>{
-        if(data == NaN || data == undefined){
-            return null;
-        }
-        M4_A = data[0].processed;
-    }).catch((error)=>{
-        return null;
-    })
+async function fetchM4_A(){
+    const fetchPM4 = await quality.findOne({
+        $and:[
+            {machine_id:4},{tipe:"A"}
+        ]
+    }).sort({_id:-1});
+    M4_A = fetchPM4.processed;
 }
-function fetchM4_B(){
-    fetch(processed4_B).then((result)=>result.json()).then(({data})=>{
-        if(data == NaN || data == undefined){
-            return null;
-        }
-        M4_B = data[0].processed;
-    }).catch((error)=>{
-        return null;
-    })
+async function fetchM4_B(){
+    const fetchPM4 = await quality.findOne({
+        $and:[
+            {machine_id:4},{tipe:"B"}
+        ]
+    }).sort({_id:-1});
+    M4_B = fetchPM4.processed;
 }
-function fetchM4_C(){
-    fetch(processed4_C).then((result)=>result.json()).then(({data})=>{
-        if(data == NaN || data == undefined){
-            return null;
-        }
-        M4_C = data[0].processed;
-    }).catch((error)=>{
-        return null;
-    })
+async function fetchM4_C(){
+    const fetchPM4 = await quality.findOne({
+        $and:[
+            {machine_id:4},{tipe:"C"}
+        ]
+    }).sort({_id:-1});
+    M4_C = fetchPM4.processed;
 }
 //---------------------------------API----------------------------------------//
 
