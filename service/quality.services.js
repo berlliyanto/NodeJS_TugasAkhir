@@ -173,7 +173,7 @@ async function getProcessed(params,callback){
     var m_id = params.m_id
     quality.find({
         $and:[
-            {machine_id:Number(m_id)},{state:1},{tipe:tipe}
+            {machine_id:Number(m_id)},{tipe:tipe}
         ]
     }).sort({_id:-1}).limit(1).then((response)=>{
         if(!response) callback("GAGAL");

@@ -297,7 +297,7 @@ async function trigAvailability(params, callback) {
     })
 }
 
-// //Get Availability Terbaru
+//Get Availability Terbaru
 async function getAvaiLatest(params, callback) {
     var m_id = params.machine_id;
     availability.find({ machine_id: m_id }).sort({ _id: -1 }).limit(1).then((response) => {
