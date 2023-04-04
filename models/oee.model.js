@@ -21,9 +21,9 @@ const performance = mongoose.model(
     mongoose.Schema({
         machine_id: Number,
         operationtime: Number,
-        cycletime: Number,
-        good: Number,
-        performancerate:Number,
+        cycle_time: Number,
+        processed: Number,
+        performancerate: Number,
         state: Number,
     },
     {

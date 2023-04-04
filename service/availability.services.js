@@ -133,11 +133,12 @@ function OpTimeM1() {
                     },
                         {
                             $inc: {
-                                runningtime: 1 //Second
+                                runningtime: 1, //Second
+                                operationtime: 1 //Second
                             }
                         }
                     ).sort({ _id: -1 }).then(() => {
-                        console.log(Time1);
+                        return null;
                     })
                 } else {
                     return null;
@@ -173,7 +174,8 @@ function OpTimeM2() {
                     },
                         {
                             $inc: {
-                                runningtime: 1 //Second
+                                runningtime: 1, //Second
+                                operationtime: 1 //Second
                             }
                         }
                     ).sort({ _id: -1 }).then(() => {})
@@ -211,7 +213,8 @@ function OpTimeM3() {
                     },
                         {
                             $inc: {
-                                runningtime: 1 //Second
+                                runningtime: 1, //Second
+                                operationtime: 1 //Second
                             }
                         }
                     ).sort({ _id: -1 }).then(() => {})
@@ -249,7 +252,8 @@ function OpTimeM4() {
                     },
                         {
                             $inc: {
-                                runningtime: 1 //Second
+                                runningtime: 1, //Second
+                                operationtime: 1 //Second
                             }
                         }
                     ).sort({ _id: -1 }).then(() => {})

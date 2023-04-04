@@ -9,6 +9,8 @@ const oeeController = require("../controller/oee.controller");
 const productionController = require("../controller/production.controller");
 const qualityController = require("../controller/quality.controller");
 const availabilityController = require("../controller/availability.controller");
+const performanceController = require("../controller/performance.controller");
+const costpriceController = require("../controller/costprice.controller");
 
 const express = require("express");
 const router = express.Router();
@@ -84,11 +86,17 @@ router.put("/processed", qualityController.processedUnit);
 router.put("/resetQuality", qualityController.resetQuality);
 router.put("/defect", qualityController.defectUnit);
 
+//PERFORMANCE
+router.post("/trigPerformance", performanceController.triggerPerform);
+
 //PRODUCTION
 router.post("/insertProduction", productionController.processed);
 router.get("/getProcessed", productionController.getProcessed);
 router.put("/resetProcessed", productionController.resetProcessed);
 router.delete("/deleteProduction", productionController.delete)
 
+//COST PRICE
+router.post("/insertPrice", costpriceController.inputPrice);
+router.get("/getPrice", costpriceController.getPrice);
 
 module.exports = router;

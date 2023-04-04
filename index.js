@@ -69,6 +69,8 @@ app.use(
             { url: "/api/defect", methods: ["PUT"] },
             //AVAILABILITY
             { url: "/api/trigAvailability", methods: ["POST"] },
+            //PERFORMANCE
+            { url: "/api/trigPerformance", methods: ["POST"] },
             //PRODUCTION
             { url: "/api/insertProduction", methods: ["POST"] },
             { url: "/api/resetProcessed", methods: ["PUT"] },
