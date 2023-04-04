@@ -71,6 +71,9 @@ app.use(
             { url: "/api/trigAvailability", methods: ["POST"] },
             //PERFORMANCE
             { url: "/api/trigPerformance", methods: ["POST"] },
+            //COST PRICE
+            { url: "/api/trigCost", methods: ["POST"] },
+            { url: "/api/resetCost", methods: ["PUT"] },
             //PRODUCTION
             { url: "/api/insertProduction", methods: ["POST"] },
             { url: "/api/resetProcessed", methods: ["PUT"] },

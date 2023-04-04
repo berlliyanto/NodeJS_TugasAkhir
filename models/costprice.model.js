@@ -6,7 +6,7 @@ const cost = mongoose.model(
         machine_id: Number,
         tanggal: String,
         tipe: String,
-        processed: Number,
+        good: Number,
         harga_unit: Number,
         total_harga: Number,
         state: Number,

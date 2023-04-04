@@ -96,7 +96,8 @@ router.put("/resetProcessed", productionController.resetProcessed);
 router.delete("/deleteProduction", productionController.delete)
 
 //COST PRICE
-router.post("/insertPrice", costpriceController.inputPrice);
+router.post("/trigCost", costpriceController.triggerCost);
 router.get("/getPrice", costpriceController.getPrice);
+router.put("/resetCost", costpriceController.resetCP);
 
 module.exports = router;
