@@ -1,5 +1,4 @@
 
-const { response } = require('express');
 const {price} = require('../models/costprice.model');
 const {cost} = require('../models/costprice.model');
 const { quality } = require('../models/oee.model');
@@ -169,7 +168,7 @@ function updateCM1(){
                         total_harga: goodM1*hargaA,
                     }
                 }
-                )
+                ).sort({_id:-1}).then(()=>{});
             }else if(tipeM1=="B"){
                 cost.updateOne({
                     $and:[
@@ -184,7 +183,7 @@ function updateCM1(){
                         total_harga: goodM1*hargaB,
                     }
                 }
-                )
+                ).sort({_id:-1}).then(()=>{});
             }else if(tipeM1=="C"){
                 cost.updateOne({
                     $and:[
@@ -199,9 +198,13 @@ function updateCM1(){
                         total_harga: goodM1*hargaC,
                     }
                 }
-                )
+                ).sort({_id:-1}).then(()=>{});
             }
+        }else{
+            return null;
         }
+    }else{
+        return null;
     }
 }
 function updateCM2(){
@@ -221,7 +224,7 @@ function updateCM2(){
                         total_harga: goodM2*hargaA,
                     }
                 }
-                )
+                ).sort({_id:-1}).then(()=>{});
             }else if(tipeM2=="B"){
                 cost.updateOne({
                     $and:[
@@ -236,7 +239,7 @@ function updateCM2(){
                         total_harga: goodM2*hargaB,
                     }
                 }
-                )
+                ).sort({_id:-1}).then(()=>{});
             }else if(tipeM2=="C"){
                 cost.updateOne({
                     $and:[
@@ -251,7 +254,7 @@ function updateCM2(){
                         total_harga: goodM2*hargaC,
                     }
                 }
-                )
+                ).sort({_id:-1}).then(()=>{});
             }
         }
     }
@@ -273,7 +276,7 @@ function updateCM3(){
                         total_harga: goodM3*hargaA,
                     }
                 }
-                )
+                ).sort({_id:-1}).then(()=>{});
             }else if(tipeM3=="B"){
                 cost.updateOne({
                     $and:[
@@ -288,7 +291,7 @@ function updateCM3(){
                         total_harga: goodM3*hargaB,
                     }
                 }
-                )
+                ).sort({_id:-1}).then(()=>{});
             }else if(tipeM3=="C"){
                 cost.updateOne({
                     $and:[
@@ -303,7 +306,7 @@ function updateCM3(){
                         total_harga: goodM3*hargaC,
                     }
                 }
-                )
+                ).sort({_id:-1}).then(()=>{});
             }
         }
     }
@@ -325,7 +328,7 @@ function updateCM4(){
                         total_harga: goodM4*hargaA,
                     }
                 }
-                )
+                ).sort({_id:-1}).then(()=>{});
             }else if(tipeM4=="B"){
                 cost.updateOne({
                     $and:[
@@ -340,7 +343,7 @@ function updateCM4(){
                         total_harga: goodM4*hargaB,
                     }
                 }
-                )
+                ).sort({_id:-1}).then(()=>{});
             }else if(tipeM4=="C"){
                 cost.updateOne({
                     $and:[
@@ -355,7 +358,7 @@ function updateCM4(){
                         total_harga: goodM4*hargaC,
                     }
                 }
-                )
+                ).sort({_id:-1}).then(()=>{});
             }
         }
     }
@@ -387,6 +390,19 @@ async function getPricelist(params,callback){
     })
 }
 
+//GET DATA LATEST COST
+async function getCost(params,callback){
+    m_id = params.m_id;
+    cost.find({machine_id:m_id}).sort({_id:-1}).limit(1)
+    .then((result)=>{
+        if(!result) callback("GAGAL");
+        return callback(null,result);
+    })
+    .catch((error)=>{
+        return callback(error);
+    })
+}
+
 //RESET STATE COST
 async function resetCost(params,callback){
     cost.updateMany({machine_id:m_id},{
@@ -402,6 +418,7 @@ async function resetCost(params,callback){
 }
 module.exports = {
     resetCost,
+    getCost,
     trigCost,
     getPricelist,
 }
