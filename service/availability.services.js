@@ -138,23 +138,24 @@ function OpTimeM1() {
                             }
                         }
                     ).sort({ _id: -1 }).then(() => {
-                        return null;
+                        console.log()
                     })
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
-                    availability.updateOne({
-                        $and: [
-                            { machine_id: 1 }, { state: 1 }
-                        ]
-                    },
-                        {
-                            $inc: {
-                                runningtime: 1, //Second
-                                downtime: 1, //Second
-                                operationtime: -1 //Second
-                            }
-                        }
-                    ).sort({ _id: -1 }).then(() => {});
+                    return null;
+                    // availability.updateOne({
+                    //     $and: [
+                    //         { machine_id: 1 }, { state: 1 }
+                    //     ]
+                    // },
+                    //     {
+                    //         $inc: {
+                    //             runningtime: 1, //Second
+                    //             downtime: 1, //Second
+                    //             operationtime: -1 //Second
+                    //         }
+                    //     }
+                    // ).sort({ _id: -1 }).then(() => {});
                 }
             } else {
                 availability.updateMany({ machine_id: 1 }, {
