@@ -151,11 +151,11 @@ async function fetchM4(){
 }
 //-------------------------------QUERY-----------------------------//
 //------------------------MACHINE 1------------------------//
-function updateCM1(){
+async function updateCM1(){
     if(stateCM1==1){
         if(statePM1>0&&goodM1>0){
             if(tipeM1=="A"){
-                cost.updateOne({
+                await cost.updateOne({
                     $and:[
                         {machine_id:1},{state:1}
                     ]
@@ -170,7 +170,7 @@ function updateCM1(){
                 }
                 ).sort({_id:-1}).then(()=>{});
             }else if(tipeM1=="B"){
-                cost.updateOne({
+                await cost.updateOne({
                     $and:[
                         {machine_id:1},{state:1}
                     ]
@@ -185,7 +185,7 @@ function updateCM1(){
                 }
                 ).sort({_id:-1}).then(()=>{});
             }else if(tipeM1=="C"){
-                cost.updateOne({
+                await cost.updateOne({
                     $and:[
                         {machine_id:1},{state:1}
                     ]
@@ -207,11 +207,11 @@ function updateCM1(){
         return null;
     }
 }
-function updateCM2(){
+async function updateCM2(){
     if(stateCM2==1){
         if(statePM2>0&&goodM2>0){
             if(tipeM2=="A"){
-                cost.updateOne({
+                await cost.updateOne({
                     $and:[
                         {machine_id:2},{state:1}
                     ]
@@ -226,7 +226,7 @@ function updateCM2(){
                 }
                 ).sort({_id:-1}).then(()=>{});
             }else if(tipeM2=="B"){
-                cost.updateOne({
+                await cost.updateOne({
                     $and:[
                         {machine_id:2},{state:1}
                     ]
@@ -241,7 +241,7 @@ function updateCM2(){
                 }
                 ).sort({_id:-1}).then(()=>{});
             }else if(tipeM2=="C"){
-                cost.updateOne({
+                await cost.updateOne({
                     $and:[
                         {machine_id:2},{state:1}
                     ]
@@ -259,11 +259,11 @@ function updateCM2(){
         }
     }
 }
-function updateCM3(){
+async function updateCM3(){
     if(stateCM3==1){
         if(statePM3>0&&goodM3>0){
             if(tipeM3=="A"){
-                cost.updateOne({
+                await cost.updateOne({
                     $and:[
                         {machine_id:3},{state:1}
                     ]
@@ -278,7 +278,7 @@ function updateCM3(){
                 }
                 ).sort({_id:-1}).then(()=>{});
             }else if(tipeM3=="B"){
-                cost.updateOne({
+                await cost.updateOne({
                     $and:[
                         {machine_id:3},{state:1}
                     ]
@@ -293,7 +293,7 @@ function updateCM3(){
                 }
                 ).sort({_id:-1}).then(()=>{});
             }else if(tipeM3=="C"){
-                cost.updateOne({
+                await cost.updateOne({
                     $and:[
                         {machine_id:3},{state:1}
                     ]
@@ -311,11 +311,11 @@ function updateCM3(){
         }
     }
 }
-function updateCM4(){
+async function updateCM4(){
     if(stateCM4==1){
         if(statePM4>0&&goodM4>0){
             if(tipeM4=="A"){
-                cost.updateOne({
+                await cost.updateOne({
                     $and:[
                         {machine_id:4},{state:1}
                     ]
@@ -330,7 +330,7 @@ function updateCM4(){
                 }
                 ).sort({_id:-1}).then(()=>{});
             }else if(tipeM4=="B"){
-                cost.updateOne({
+                await cost.updateOne({
                     $and:[
                         {machine_id:4},{state:1}
                     ]
@@ -345,7 +345,7 @@ function updateCM4(){
                 }
                 ).sort({_id:-1}).then(()=>{});
             }else if(tipeM4=="C"){
-                cost.updateOne({
+                await cost.updateOne({
                     $and:[
                         {machine_id:4},{state:1}
                     ]

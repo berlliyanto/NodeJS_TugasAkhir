@@ -149,10 +149,10 @@ async function fetchSP4() {
 
 //------------------------------------------------QUERY-----------------------------------------------//
 //------------------------MACHINE 1-------------------------//
-function updatePerformanceM1() {
+async function updatePerformanceM1() {
     if(processedM1>0&&OPtimeM1>0&&cycleM1>0){
         if (statePM1 == 1) {
-            performance.updateOne(
+            await performance.updateOne(
                 {
                     $and: [
                         { machine_id: 1 }, { state: 1 }

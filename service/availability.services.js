@@ -1,6 +1,6 @@
 const { availability } = require("../models/oee.model");
-const {parameter} = require("../models/param.model");
-const {status} = require("../models/status.model");
+const { parameter } = require("../models/param.model");
+const { status } = require("../models/status.model");
 
 //STATE AVAILABILITY
 var stateAM1;
@@ -33,22 +33,22 @@ let Time3 = 0;
 let Time4 = 0;
 
 //TIMER FETCH AVAILABLITY
-setInterval(fetchA1,1000);
-setInterval(fetchA2,1000);
-setInterval(fetchA3,1000);
-setInterval(fetchA4,1000);
+setInterval(fetchA1, 1000);
+setInterval(fetchA2, 1000);
+setInterval(fetchA3, 1000);
+setInterval(fetchA4, 1000);
 
 //TIMER FETCH STATUS
-setInterval(fetchS1,1000);
-setInterval(fetchS2,1000);
-setInterval(fetchS3,1000);
-setInterval(fetchS4,1000);
+setInterval(fetchS1, 1000);
+setInterval(fetchS2, 1000);
+setInterval(fetchS3, 1000);
+setInterval(fetchS4, 1000);
 
 //TIMER FETCH PARAMETER
-setInterval(fetchP1,1000);
-setInterval(fetchP2,1000);
-setInterval(fetchP3,1000);
-setInterval(fetchP4,1000);
+setInterval(fetchP1, 1000);
+setInterval(fetchP2, 1000);
+setInterval(fetchP3, 1000);
+setInterval(fetchP4, 1000);
 
 //TIMER QUERY OPERATION TIME
 setTimeout(() => {
@@ -56,77 +56,79 @@ setTimeout(() => {
     setInterval(OpTimeM2, 1000);
     setInterval(OpTimeM3, 1000);
     setInterval(OpTimeM4, 1000);
-}, 2000);
+}, 1000);
+
+
 
 
 
 //FETCH AVAILABILITY
 async function fetchA1() {
-    const fetchAM1 = await availability.findOne({machine_id:1}).sort({_id:-1});
+    const fetchAM1 = await availability.findOne({ machine_id: 1 }).sort({ _id: -1 });
     stateAM1 = fetchAM1.state;
 }
 async function fetchA2() {
-    const fetchAM2 = await availability.findOne({machine_id:2}).sort({_id:-1});
+    const fetchAM2 = await availability.findOne({ machine_id: 2 }).sort({ _id: -1 });
     stateAM2 = fetchAM2.state;
 }
 async function fetchA3() {
-    const fetchAM3 = await availability.findOne({machine_id:3}).sort({_id:-1});
+    const fetchAM3 = await availability.findOne({ machine_id: 3 }).sort({ _id: -1 });
     stateAM3 = fetchAM3.state;
 }
 async function fetchA4() {
-    const fetchAM4 = await availability.findOne({machine_id:4}).sort({_id:-1});
+    const fetchAM4 = await availability.findOne({ machine_id: 4 }).sort({ _id: -1 });
     stateAM4 = fetchAM4.state;
 }
 
 //FETCH STATUS
 async function fetchS1() {
-    const fetchSM1 = await status.findOne({machine_id:1}).sort({_id:-1});
+    const fetchSM1 = await status.findOne({ machine_id: 1 }).sort({ _id: -1 });
     statusM1 = fetchSM1.status;
 }
 async function fetchS2() {
-    const fetchSM2 = await status.findOne({machine_id:2}).sort({_id:-1});
+    const fetchSM2 = await status.findOne({ machine_id: 2 }).sort({ _id: -1 });
     statusM2 = fetchSM2.status;
 }
 async function fetchS3() {
-    const fetchSM3 = await status.findOne({machine_id:3}).sort({_id:-1});
+    const fetchSM3 = await status.findOne({ machine_id: 3 }).sort({ _id: -1 });
     statusM3 = fetchSM3.status;
 }
 async function fetchS4() {
-    const fetchSM4 = await status.findOne({machine_id:4}).sort({_id:-1});
+    const fetchSM4 = await status.findOne({ machine_id: 4 }).sort({ _id: -1 });
     statusM4 = fetchSM4.status;
 }
 
 //FETCH PARAMETER
 async function fetchP1() {
-    const fetchPM1 = await parameter.findOne({machine_id:1}).sort({_id:-1});
+    const fetchPM1 = await parameter.findOne({ machine_id: 1 }).sort({ _id: -1 });
     loadingM1 = fetchPM1.loading_time;
     statePM1 = fetchPM1.state;
 }
 async function fetchP2() {
-    const fetchPM2 = await parameter.findOne({machine_id:2}).sort({_id:-1});
+    const fetchPM2 = await parameter.findOne({ machine_id: 2 }).sort({ _id: -1 });
     loadingM2 = fetchPM2.loading_time;
     statePM2 = fetchPM2.state;
 }
 async function fetchP3() {
-    const fetchPM3 = await parameter.findOne({machine_id:3}).sort({_id:-1});
+    const fetchPM3 = await parameter.findOne({ machine_id: 3 }).sort({ _id: -1 });
     loadingM3 = fetchPM3.loading_time;
     statePM3 = fetchPM3.state;
 }
 async function fetchP4() {
-    const fetchPM4 = await parameter.findOne({machine_id:4}).sort({_id:-1});
+    const fetchPM4 = await parameter.findOne({ machine_id: 4 }).sort({ _id: -1 });
     loadingM4 = fetchPM4.loading_time;
     statePM4 = fetchPM4.state;
 }
 //QUERY
 //-------------------------------OPERATION TIME--------------------------------//
 //--------------------------------MESIN 1----------------------------------//
-function OpTimeM1() {
+async function OpTimeM1() {
     if (stateAM1 == 1) {
         if (statePM1 == 1) {
             if (Time1 < (loadingM1 * 60)) {
                 Time1++;
                 if (statusM1 == 1) {
-                    availability.updateOne({
+                    await availability.updateOne({
                         $and: [
                             { machine_id: 1 }, { state: 1 }
                         ]
@@ -137,28 +139,27 @@ function OpTimeM1() {
                                 operationtime: 1 //Second
                             }
                         }
-                    ).sort({ _id: -1 }).then(() => {
-                        console.log()
+                    ).sort({ _id: -1 }).then(()=>{
+                        console.log(Time1)
                     })
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
-                    return null;
-                    // availability.updateOne({
-                    //     $and: [
-                    //         { machine_id: 1 }, { state: 1 }
-                    //     ]
-                    // },
-                    //     {
-                    //         $inc: {
-                    //             runningtime: 1, //Second
-                    //             downtime: 1, //Second
-                    //             operationtime: -1 //Second
-                    //         }
-                    //     }
-                    // ).sort({ _id: -1 }).then(() => {});
+                    //return null;
+                    await availability.updateOne({
+                        $and: [
+                            { machine_id: 1 }, { state: 1 }
+                        ]
+                    },
+                        {
+                            $inc: {
+                                runningtime: 1, //Second
+                                downtime: 1, //Second
+                            }
+                        }
+                    ).sort({ _id: -1 }).then(() => { });
                 }
             } else {
-                availability.updateMany({ machine_id: 1 }, {
+                await availability.updateMany({ machine_id: 1 }, {
                     $set: {
                         state: 0
                     }
@@ -175,13 +176,13 @@ function OpTimeM1() {
     }
 }
 //--------------------------------MESIN 2----------------------------------//
-function OpTimeM2() {
+async function OpTimeM2() {
     if (stateAM2 == 1) {
         if (statePM2 == 1) {
             if (Time2 < (loadingM2 * 60)) {
                 Time2++;
                 if (statusM2 == 1) {
-                    availability.updateOne({
+                    await availability.updateOne({
                         $and: [
                             { machine_id: 2 }, { state: 1 }
                         ]
@@ -192,10 +193,10 @@ function OpTimeM2() {
                                 operationtime: 1 //Second
                             }
                         }
-                    ).sort({ _id: -1 }).then(() => {})
+                    ).sort({ _id: -1 }).then(() => { })
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
-                    availability.updateOne({
+                    await availability.updateOne({
                         $and: [
                             { machine_id: 2 }, { state: 1 }
                         ]
@@ -207,10 +208,10 @@ function OpTimeM2() {
                                 operationtime: -1 //Second
                             }
                         }
-                    ).sort({ _id: -1 }).then(() => {});
+                    ).sort({ _id: -1 }).then(() => { });
                 }
             } else {
-                availability.updateMany({ machine_id: 2 }, {
+                await availability.updateMany({ machine_id: 2 }, {
                     $set: {
                         state: 0
                     }
@@ -227,13 +228,13 @@ function OpTimeM2() {
     }
 }
 //--------------------------------MESIN 3----------------------------------//
-function OpTimeM3() {
+async function OpTimeM3() {
     if (stateAM3 == 1) {
         if (statePM3 == 1) {
             if (Time3 < (loadingM3 * 60)) {
                 Time3++;
                 if (statusM3 == 1) {
-                    availability.updateOne({
+                    await availability.updateOne({
                         $and: [
                             { machine_id: 3 }, { state: 1 }
                         ]
@@ -244,10 +245,10 @@ function OpTimeM3() {
                                 operationtime: 1 //Second
                             }
                         }
-                    ).sort({ _id: -1 }).then(() => {});
+                    ).sort({ _id: -1 }).then(() => { });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
-                    availability.updateOne({
+                    await availability.updateOne({
                         $and: [
                             { machine_id: 3 }, { state: 1 }
                         ]
@@ -259,10 +260,10 @@ function OpTimeM3() {
                                 operationtime: -1 //Second
                             }
                         }
-                    ).sort({ _id: -1 }).then(() => {});
+                    ).sort({ _id: -1 }).then(() => { });
                 }
             } else {
-                availability.updateMany({ machine_id: 3 }, {
+                await availability.updateMany({ machine_id: 3 }, {
                     $set: {
                         state: 0
                     }
@@ -279,13 +280,13 @@ function OpTimeM3() {
     }
 }
 //--------------------------------MESIN 4----------------------------------//
-function OpTimeM4() {
+async function OpTimeM4() {
     if (stateAM4 == 1) {
         if (statePM4 == 1) {
             if (Time4 < (loadingM4 * 60)) {
                 Time4++;
                 if (statusM4 == 1) {
-                    availability.updateOne({
+                    await availability.updateOne({
                         $and: [
                             { machine_id: 4 }, { state: 1 }
                         ]
@@ -296,10 +297,10 @@ function OpTimeM4() {
                                 operationtime: 1 //Second
                             }
                         }
-                    ).sort({ _id: -1 }).then(() => {})
+                    ).sort({ _id: -1 }).then(() => { })
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
-                    availability.updateOne({
+                    await availability.updateOne({
                         $and: [
                             { machine_id: 4 }, { state: 1 }
                         ]
@@ -311,10 +312,10 @@ function OpTimeM4() {
                                 operationtime: -1 //Second
                             }
                         }
-                    ).sort({ _id: -1 }).then(() => {});
+                    ).sort({ _id: -1 }).then(() => { });
                 }
             } else {
-                availability.updateMany({ machine_id: 4 }, {
+                await availability.updateMany({ machine_id: 4 }, {
                     $set: {
                         state: 0
                     }
@@ -332,11 +333,6 @@ function OpTimeM4() {
 }
 //-------------------------------OPERATION TIME END--------------------------------//
 
-
-
-
-
-//-------------------------------DOWNTIME--------------------------------//
 
 //---------------------------------API----------------------------------------//
 
