@@ -141,7 +141,20 @@ function OpTimeM1() {
                         return null;
                     })
                 } else {
-                    return null;
+                    //-------------------------------DOWNTIME--------------------------------//
+                    availability.updateOne({
+                        $and: [
+                            { machine_id: 1 }, { state: 1 }
+                        ]
+                    },
+                        {
+                            $inc: {
+                                runningtime: 1, //Second
+                                downtime: 1, //Second
+                                operationtime: -1 //Second
+                            }
+                        }
+                    ).sort({ _id: -1 }).then(() => {});
                 }
             } else {
                 availability.updateMany({ machine_id: 1 }, {
@@ -180,7 +193,20 @@ function OpTimeM2() {
                         }
                     ).sort({ _id: -1 }).then(() => {})
                 } else {
-                    return null;
+                    //-------------------------------DOWNTIME--------------------------------//
+                    availability.updateOne({
+                        $and: [
+                            { machine_id: 2 }, { state: 1 }
+                        ]
+                    },
+                        {
+                            $inc: {
+                                runningtime: 1, //Second
+                                downtime: 1, //Second
+                                operationtime: -1 //Second
+                            }
+                        }
+                    ).sort({ _id: -1 }).then(() => {});
                 }
             } else {
                 availability.updateMany({ machine_id: 2 }, {
@@ -217,9 +243,22 @@ function OpTimeM3() {
                                 operationtime: 1 //Second
                             }
                         }
-                    ).sort({ _id: -1 }).then(() => {})
+                    ).sort({ _id: -1 }).then(() => {});
                 } else {
-                    return null;
+                    //-------------------------------DOWNTIME--------------------------------//
+                    availability.updateOne({
+                        $and: [
+                            { machine_id: 3 }, { state: 1 }
+                        ]
+                    },
+                        {
+                            $inc: {
+                                runningtime: 1, //Second
+                                downtime: 1, //Second
+                                operationtime: -1 //Second
+                            }
+                        }
+                    ).sort({ _id: -1 }).then(() => {});
                 }
             } else {
                 availability.updateMany({ machine_id: 3 }, {
@@ -258,7 +297,20 @@ function OpTimeM4() {
                         }
                     ).sort({ _id: -1 }).then(() => {})
                 } else {
-                    return null;
+                    //-------------------------------DOWNTIME--------------------------------//
+                    availability.updateOne({
+                        $and: [
+                            { machine_id: 4 }, { state: 1 }
+                        ]
+                    },
+                        {
+                            $inc: {
+                                runningtime: 1, //Second
+                                downtime: 1, //Second
+                                operationtime: -1 //Second
+                            }
+                        }
+                    ).sort({ _id: -1 }).then(() => {});
                 }
             } else {
                 availability.updateMany({ machine_id: 4 }, {
@@ -279,7 +331,7 @@ function OpTimeM4() {
 }
 //-------------------------------OPERATION TIME END--------------------------------//
 
-//-------------------------------DOWNTIME--------------------------------//
+
 
 
 

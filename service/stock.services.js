@@ -1,4 +1,4 @@
-const { response } = require("express");
+
 const { riwayatstock } = require("../models/stock.model");
 const { stock } = require("../models/stock.model");
 
