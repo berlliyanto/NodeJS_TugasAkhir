@@ -62,6 +62,39 @@ exports.getCostM = (req, res, next)=>{
     })
 }
 
+//GET COST
+exports.getCostM = (req, res, next)=>{
+    var model = {
+        m_id: req.query.machine_id
+    }
+    costpriceService.getCost(model,(error,result)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message: "Success",
+                data: result,
+            })
+        }
+    })
+}
+//GET COST Histori
+exports.getCostHistori = (req, res, next)=>{
+    var model = {
+        m_id: req.query.machine_id
+    }
+    costpriceService.getCostHistory(model,(error,result)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message: "Success",
+                data: result,
+            })
+        }
+    })
+}
+
 //RESET COST
 exports.resetCP = (req, res, next)=>{
     var model = {

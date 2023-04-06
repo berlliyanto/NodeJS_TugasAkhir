@@ -98,6 +98,7 @@ router.delete("/deleteProduction", productionController.delete)
 //COST PRICE
 router.post("/trigCost", costpriceController.triggerCost);
 router.get("/getCost", costpriceController.getCostM);
+router.get("/getCostHistori", costpriceController.getCostHistori);
 router.get("/getPrice", costpriceController.getPrice);
 router.put("/resetCost", costpriceController.resetCP);
 

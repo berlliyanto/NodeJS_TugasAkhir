@@ -402,9 +402,22 @@ async function getCost(params,callback){
         return callback(error);
     })
 }
+//GET DATA LATEST COST
+async function getCostHistory(params,callback){
+    m_id = params.m_id;
+    cost.find({machine_id:m_id}).sort({_id:-1}).limit(30)
+    .then((result)=>{
+        if(!result) callback("GAGAL");
+        return callback(null,result);
+    })
+    .catch((error)=>{
+        return callback(error);
+    })
+}
 
 //RESET STATE COST
 async function resetCost(params,callback){
+    m_id=params.m_id;
     cost.updateMany({machine_id:m_id},{
         $set:{
             state:0
@@ -417,6 +430,7 @@ async function resetCost(params,callback){
     })
 }
 module.exports = {
+    getCostHistory,
     resetCost,
     getCost,
     trigCost,
