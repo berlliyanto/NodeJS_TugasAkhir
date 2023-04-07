@@ -50,6 +50,11 @@ function runFetch(){
     fetchO2();
     fetchO3();
     fetchO4();
+    //TIMER FETCH AVAILABILITY
+    fetchSP1();
+    fetchSP2();
+    fetchSP3();
+    fetchSP4();
     //TIMER QUERY
     updatePerformanceM1();
     updatePerformanceM2();
