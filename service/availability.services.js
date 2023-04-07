@@ -45,16 +45,16 @@ let TimeD3 = 0;
 let TimeD4 = 0;
 
 //TIMER OP TIME +1
-let TimeplusO1 = 0;
-let TimeplusO2 = 0;
-let TimeplusO3 = 0;
-let TimeplusO4 = 0;
+let TimeplusO1 = 1;
+let TimeplusO2 = 1;
+let TimeplusO3 = 1;
+let TimeplusO4 = 1;
 
 //TIMER DT TIME +1
-let TimeplusD1 = 0;
-let TimeplusD2 = 0;
-let TimeplusD3 = 0;
-let TimeplusD4 = 0;
+let TimeplusD1 = 1;
+let TimeplusD2 = 1;
+let TimeplusD3 = 1;
+let TimeplusD4 = 1;
 
 //TIMER QUERY OPERATION TIME
 function runAllFunctions() {
@@ -165,7 +165,7 @@ async function OpTimeM1() {
             if (Time1 <= (loadingM1 * 60)) {
                 Time1++;
                 if (statusM1 == 1) {
-                    TimeplusO1++
+                    TimeplusO1=TimeplusO1+1;
                     await availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 1 }, { state: 1 }
@@ -179,11 +179,11 @@ async function OpTimeM1() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 }).then(() => { });
+                    ).sort({ _id: -1 });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     //return null;
-                    TimeplusD1++;
+                    TimeplusD1=TimeplusD1+1;
                     await availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 1 }, { state: 1 }
@@ -197,7 +197,7 @@ async function OpTimeM1() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 }).then(() => { });
+                    ).sort({ _id: -1 });
                 }
             } else {
                 TimeplusD1 = 0;
@@ -254,7 +254,7 @@ async function OpTimeM2() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 }).then(() => { });
+                    ).sort({ _id: -1 });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD2++;
@@ -271,7 +271,7 @@ async function OpTimeM2() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 }).then(() => { });
+                    ).sort({ _id: -1 });
                 }
             } else {
                 TimeplusD2 = 0;
@@ -328,7 +328,7 @@ async function OpTimeM3() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 }).then(() => { });
+                    ).sort({ _id: -1 });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD3++;
@@ -345,7 +345,7 @@ async function OpTimeM3() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 }).then(() => { });
+                    ).sort({ _id: -1 });
                 }
             } else {
                 TimeplusD3 = 0;
@@ -402,7 +402,7 @@ async function OpTimeM4() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 }).then(() => { })
+                    ).sort({ _id: -1 })
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD4++;
@@ -419,7 +419,7 @@ async function OpTimeM4() {
                         }, {
                         new: true,
                     }
-                    ).sort({ _id: -1 }).then(() => { });
+                    ).sort({ _id: -1 });
                 }
             } else {
                 TimeplusD4 = 0;
