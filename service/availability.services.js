@@ -222,7 +222,7 @@ async function OpTimeM1() {
             }, {
                 $set: {
                     availabilityrate: (TimeO1 - TimeD1) / TimeO1
-                }
+                },
             }
             )
         }

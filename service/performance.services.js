@@ -174,7 +174,7 @@ async function updatePerformanceM1() {
                             processed: processedM1,
                             operationtime: OPtimeM1,
                             cycle_time: cycleM1,
-                            performancerate: (processedM1*cycleM1)/OPtimeM1
+                            performancerate: (processedM1*cycleM1)/(OPtimeM1/60)
                         }
                     }
                 )
@@ -208,7 +208,7 @@ async function updatePerformanceM2() {
                             processed: processedM2,
                             operationtime: OPtimeM2,
                             cycle_time: cycleM2,
-                            performancerate: (processedM2*cycleM2)/OPtimeM2
+                            performancerate: (processedM2*cycleM2)/(OPtimeM2/60)
                         }
                     }
                 )
@@ -242,7 +242,7 @@ async function updatePerformanceM3() {
                             processed: processedM3,
                             operationtime: OPtimeM3,
                             cycle_time: cycleM3,
-                            performancerate: (processedM3*cycleM3)/OPtimeM3
+                            performancerate: (processedM3*cycleM3)/(OPtimeM3/60)
                         }
                     }
                 )
@@ -276,7 +276,7 @@ async function updatePerformanceM4() {
                             processed: processedM4,
                             operationtime: OPtimeM4,
                             cycle_time: cycleM4,
-                            performancerate: (processedM4*cycleM4)/OPtimeM4
+                            performancerate: (processedM4*cycleM4)/(OPtimeM4/60)
                         }
                     }
                 )
