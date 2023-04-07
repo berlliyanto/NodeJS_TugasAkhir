@@ -88,7 +88,6 @@ let interval = setInterval(runAllFunctions, 1000);
 //CLEAR INTERVAL
 setTimeout(function () {
     clearInterval(interval);
-    clearInterval(intervalOP);
     console.log("clear")
 }, 1000000);
 
@@ -163,7 +162,7 @@ async function fetchP4() {
 async function OpTimeM1() {
     if (stateAM1 == 1) {
         if (statePM1 == 1) {
-            if (Time1 < (loadingM1 * 60)) {
+            if (Time1 <= (loadingM1 * 60)) {
                 Time1++;
                 if (statusM1 == 1) {
                     TimeplusO1++
@@ -211,6 +210,8 @@ async function OpTimeM1() {
                 console.log("MESIN 1 SELESAI");
             }
         } else {
+            TimeplusD1 = 0;
+            TimeplusO1 = 0;
             return null;
         }
         if (TimeO1 > 0) {
@@ -226,6 +227,8 @@ async function OpTimeM1() {
             )
         }
     } else {
+        TimeplusD1 = 0;
+        TimeplusO1 = 0;
         Time1 = 0;
     }
 
@@ -281,6 +284,8 @@ async function OpTimeM2() {
                 console.log("MESIN 2 SELESAI");
             }
         } else {
+            TimeplusD2 = 0;
+            TimeplusO2 = 0;
             return null;
         }
         if (TimeO2 > 0) {
@@ -296,6 +301,8 @@ async function OpTimeM2() {
             )
         }
     } else {
+        TimeplusD2 = 0;
+        TimeplusO2 = 0;
         Time2 = 0;
         return null;
     }
@@ -351,6 +358,8 @@ async function OpTimeM3() {
                 console.log("MESIN 3 SELESAI");
             }
         } else {
+            TimeplusD3 = 0;
+            TimeplusO3 = 0;
             return null;
         }
         if (TimeO3 > 0) {
@@ -367,6 +376,8 @@ async function OpTimeM3() {
         }
     } else {
         Time3 = 0;
+        TimeplusD3 = 0;
+        TimeplusO3 = 0;
         return null;
     }
 }
@@ -421,6 +432,8 @@ async function OpTimeM4() {
                 console.log("MESIN 4 SELESAI");
             }
         } else {
+            TimeplusD4 = 0;
+            TimeplusO4 = 0;
             return null;
         }
         if (TimeO4 > 0) {
@@ -437,6 +450,8 @@ async function OpTimeM4() {
         }
     } else {
         Time4 = 0;
+        TimeplusD4 = 0;
+        TimeplusO4 = 0;
         return null;
     }
 }
