@@ -71,11 +71,12 @@ router.get("/pressureGauge", pressureController.pressGauge);
 router.get("/pressureChart", pressureController.pressChart);
 
 //OEE
-router.post("/OEE", oeeController.OEE);
+router.post("/trigOEE", oeeController.OEE);
 
 //AVAILABILITY
 router.post("/trigAvailability",availabilityController.trigAvai);
 router.get("/latestAvailability", availabilityController.latestAvai);
+router.put("/resetAvailability", availabilityController.resetAvai);
 
 //QUALITY
 router.post("/trigQuality", qualityController.triggerQuality);
@@ -88,6 +89,7 @@ router.put("/defect", qualityController.defectUnit);
 
 //PERFORMANCE
 router.post("/trigPerformance", performanceController.triggerPerform);
+router.put("/resetPerformance", performanceController.resetPerform);
 
 //PRODUCTION
 router.post("/insertProduction", productionController.processed);

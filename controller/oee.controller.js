@@ -6,27 +6,15 @@ let localDate = new Date(localTime);
 let nowdate = localDate.toLocaleString('id', { timeZone: 'UTC' });
 
 exports.OEE = (req, res, next) => {
-    var loadingtime = req.body.availabilitytime - req.body.planneddown
-    var avblty = ((loadingtime - req.body.downtime) / loadingtime);
-    var qlty = ((req.body.processed - req.body.defect) / req.body.processed)
-    var pfrmnc = ((req.body.processed*req.body.cycletime) / req.body.operationtime);
     var model = {
-        machine_id: req.body.machine_id,
+        machine_id: req.body.machibe_id,
         tanggal: nowdate,
-        operationtime: req.body.operationtime,
-        downtime: req.body.downtime,
-        runningtime: req.body.runningtime,
-        cycletime: req.body.cycletime,
-        good: req.body.good,
-        defect: req.body.defect,
-        processed: req.body.processed,
-        availability: avblty,
-        quality: qlty,
-        performance: pfrmnc,
-        nilaioee: avblty * qlty * pfrmnc,
-        hasiloee: req.body.hasiloee,
-        state: req.body.state
-    };
+        quality: 0,
+        performance: 0,
+        availability: 0,
+        oee: 0,
+        state: 1
+    }
     oeeService.createoee(model, (error, results) => {
         if (error) {
             return next(error);

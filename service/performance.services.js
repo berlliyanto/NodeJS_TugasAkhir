@@ -150,34 +150,37 @@ async function fetchSP4() {
 //------------------------------------------------QUERY-----------------------------------------------//
 //------------------------MACHINE 1-------------------------//
 async function updatePerformanceM1() {
-    if(processedM1>0&&OPtimeM1>0&&cycleM1>0){
-        if (statePM1 == 1) {
-            await performance.updateOne(
-                {
-                    $and: [
-                        { machine_id: 1 }, { state: 1 }
-                    ]
-                },
-                {
-                    $set: {
-                        processed: processedM1,
-                        operationtime: OPtimeM1,
-                        cycle_time: cycleM1,
-                        performancerate: (processedM1*cycleM1)/OPtimeM1
+    if(statePMCM1==1){
+        if(processedM1>0&&OPtimeM1>0&&cycleM1>0){
+            if (statePM1 == 1) {
+                await performance.updateOne(
+                    {
+                        $and: [
+                            { machine_id: 1 }, { state: 1 }
+                        ]
+                    },
+                    {
+                        $set: {
+                            processed: processedM1,
+                            operationtime: OPtimeM1,
+                            cycle_time: cycleM1,
+                            performancerate: (processedM1*cycleM1)/OPtimeM1
+                        }
                     }
-                }
-            )
-                .sort({ _id: -1 })
-                .then(() => {
-                    return null;
-                })
-        } else {
+                )
+                    .sort({ _id: -1 })
+                    .then(() => {
+                        return null;
+                    })
+            } else {
+                return null;
+            }
+        }else{
             return null;
         }
     }else{
         return null;
     }
-    
 }
 
 //--------------------------------------------------API-----------------------------------------------//
@@ -194,7 +197,24 @@ async function trigPerformance(params, callback) {
         })
 }
 
+//Reset Performance
+async function resetPerformance(params,callback){
+    var m_id = params.machine_id;
+    performance.updateMany({machine_id:m_id},{
+        $set:{
+            state: 0,
+        }
+    }).then((response)=>{
+        if(!response) callback("Gagal");
+        return callback(null, response);
+    })
+    .catch((error)=>{
+        return callback(error);
+    })
+}
+
 
 module.exports = {
     trigPerformance,
+    resetPerformance,
 }

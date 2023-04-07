@@ -2,7 +2,7 @@ const { oee } = require('../models/oee.model');
 const { performance } = require('../models/oee.model');
 const { availability } = require('../models/oee.model');
 
-//Nilai OEE
+//Trigger OEE
 async function createoee(params, callback) {
     if (!params) {
         return callback({

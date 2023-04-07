@@ -21,3 +21,20 @@ exports.triggerPerform = (req, res, next)=>{
         }
     })
 }
+
+//Reset Performance State
+exports.resetPerform = (req, res, next)=>{
+    var model = {
+        machine_id: req.body.machine_id,
+    }
+    performanceService.resetPerformance(model,(error,result)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message: "Success",
+                data: result,
+            })
+        }
+    })
+}

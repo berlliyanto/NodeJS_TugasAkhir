@@ -38,3 +38,19 @@ exports.latestAvai = (req, res, next)=>{
         }
     })
 }
+
+exports.resetAvai = (req, res, next)=>{
+    var model = {
+        machine_id: req.body.machine_id
+    }
+    availabilityService.resetAvailability(model,(error,result)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message: "Success",
+                data: result,
+            });
+        }
+    })
+}
