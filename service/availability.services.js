@@ -70,19 +70,20 @@ function runAllFunctions() {
     fetchP2();
     fetchP3();
     fetchP4();
+    OpTimeM1();
+    OpTimeM2();
+    OpTimeM3();
+    OpTimeM4();
 }
 
 let interval = setInterval(runAllFunctions, 1000);
-let intervalOP;
-setTimeout(() => {
-    function runQueryOP(){
-        OpTimeM1();
-        OpTimeM2();
-        OpTimeM3();
-        OpTimeM4();
-    }
-    intervalOP = setInterval(runQueryOP,1000);
-}, 1500);
+// let intervalOP;
+// setTimeout(() => {
+//     function runQueryOP(){
+
+//     }
+//     intervalOP = setInterval(runQueryOP,1000);
+// }, 1500);
 
 //CLEAR INTERVAL
 setTimeout(function () {
@@ -179,7 +180,7 @@ async function OpTimeM1() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 }).then(()=>{});
+                    ).sort({ _id: -1 }).then(() => { });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     //return null;
@@ -197,7 +198,7 @@ async function OpTimeM1() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 }).then(()=>{});
+                    ).sort({ _id: -1 }).then(() => { });
                 }
             } else {
                 TimeplusD1 = 0;
@@ -250,7 +251,7 @@ async function OpTimeM2() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 }).then(()=>{});
+                    ).sort({ _id: -1 }).then(() => { });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD2++;
@@ -320,7 +321,7 @@ async function OpTimeM3() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 }).then(()=>{});
+                    ).sort({ _id: -1 }).then(() => { });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD3++;
@@ -407,7 +408,7 @@ async function OpTimeM4() {
                         }, {
                         new: true,
                     }
-                    ).sort({ _id: -1 }).then(()=>{});
+                    ).sort({ _id: -1 }).then(() => { });
                 }
             } else {
                 TimeplusD4 = 0;
