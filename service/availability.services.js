@@ -179,7 +179,7 @@ async function OpTimeM1() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 })
+                    ).sort({ _id: -1 }).then(()=>{});
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     //return null;
@@ -197,7 +197,7 @@ async function OpTimeM1() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 })
+                    ).sort({ _id: -1 }).then(()=>{});
                 }
             } else {
                 TimeplusD1 = 0;
@@ -250,7 +250,7 @@ async function OpTimeM2() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 });
+                    ).sort({ _id: -1 }).then(()=>{});
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD2++;
@@ -285,11 +285,11 @@ async function OpTimeM2() {
         if (TimeO2 > 0) {
             await availability.findOneAndUpdate({
                 $and: [
-                    { machine_id: 1 }, { state: 1 }
+                    { machine_id: 2 }, { state: 1 }
                 ]
             }, {
                 $set: {
-                    availabilityrate: (TimeO1 - TimeD1) / TimeO1
+                    availabilityrate: (TimeO2 - TimeD2) / TimeO2
                 }
             }
             )
@@ -320,7 +320,7 @@ async function OpTimeM3() {
                         }, {
                         new: true
                     }
-                    ).sort({ _id: -1 });
+                    ).sort({ _id: -1 }).then(()=>{});
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD3++;
@@ -355,11 +355,11 @@ async function OpTimeM3() {
         if (TimeO3 > 0) {
             await availability.findOneAndUpdate({
                 $and: [
-                    { machine_id: 1 }, { state: 1 }
+                    { machine_id: 3 }, { state: 1 }
                 ]
             }, {
                 $set: {
-                    availabilityrate: (TimeO1 - TimeD1) / TimeO1
+                    availabilityrate: (TimeO3 - TimeD3) / TimeO3
                 }
             }
             )
@@ -407,7 +407,7 @@ async function OpTimeM4() {
                         }, {
                         new: true,
                     }
-                    ).sort({ _id: -1 });
+                    ).sort({ _id: -1 }).then(()=>{});
                 }
             } else {
                 TimeplusD4 = 0;
@@ -425,11 +425,11 @@ async function OpTimeM4() {
         if (TimeO4 > 0) {
             await availability.findOneAndUpdate({
                 $and: [
-                    { machine_id: 1 }, { state: 1 }
+                    { machine_id: 4 }, { state: 1 }
                 ]
             }, {
                 $set: {
-                    availabilityrate: (TimeO1 - TimeD1) / TimeO1
+                    availabilityrate: (TimeO4 - TimeD4) / TimeO4
                 }
             }
             )
