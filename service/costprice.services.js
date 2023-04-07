@@ -44,16 +44,19 @@ function runAllFunctions() {
     fetchM4();
   }
   
- let inval =  setInterval(runAllFunctions, 1000);
+setInterval(runAllFunctions, 1000);
   
 // //TIMER QUERY
+setTimeout(() => {
     function runQuery(){
         updateCM1();
         updateCM2();
         updateCM3();
         updateCM4();
     }
-setInterval(runQuery,1500);
+setInterval(runQuery,2000); 
+}, 2000);
+
 
 //CLEAR INTERVAL
 // setTimeout(function() {
