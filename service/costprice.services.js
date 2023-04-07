@@ -53,32 +53,9 @@ function runAllFunctions() {
   }
   
  let inval =  setInterval(runAllFunctions, 1000);
-  
-// let intervalH = setInterval(fetchHarga,1000);
-// let intervalM1 = setInterval(fetchM1,1100);
-// let intervalM2 = setInterval(fetchM2,1200);
-// let intervalM3 = setInterval(fetchM3,1300);
-// let intervalM4 = setInterval(fetchM4,1400);
-
-// //TIMER QUERY
-// setTimeout(() => {
-//     intervalCM1 = setInterval(updateCM1,1000);
-//     intervalCM2 = setInterval(updateCM2,1000);
-//     intervalCM3 = setInterval(updateCM3,1000);
-//     intervalCM4 = setInterval(updateCM4,1000);
-// }, 2000);
 
 //CLEAR INTERVAL
 setTimeout(function() {
-    // clearInterval(intervalCM1);
-    // clearInterval(intervalCM2);
-    // clearInterval(intervalCM3);
-    // clearInterval(intervalCM4);
-    // clearInterval(intervalH);
-    // clearInterval(intervalM1);
-    // clearInterval(intervalM2);
-    // clearInterval(intervalM3);
-    // clearInterval(intervalM4);
     clearInterval(inval);
 }, 1000000);
 
