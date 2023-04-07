@@ -186,7 +186,7 @@ async function OpTimeM1() {
             if (Time1 < (loadingM1 * 60)) {
                 Time1++;
                 if (statusM1 == 1) {
-                    await availability.findOneAndUpdate({
+                    availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 1 }, { state: 1 }
                         ]
@@ -199,13 +199,11 @@ async function OpTimeM1() {
                         },{
                             new:true
                         }
-                    ).sort({ _id: -1 }).then(() => {
-                        console.log(Time1)
-                    });
+                    ).sort({ _id: -1 })
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     //return null;
-                    await availability.findOneAndUpdate({
+                    availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 1 }, { state: 1 }
                         ]
@@ -218,10 +216,10 @@ async function OpTimeM1() {
                         },{
                             new:true
                         }
-                    ).sort({ _id: -1 }).then(() => { });
+                    ).sort({ _id: -1 })
                 }
             } else {
-                await availability.updateMany({ machine_id: 1 }, {
+                 availability.updateMany({ machine_id: 1 }, {
                     $set: {
                         state: 0
                     }
@@ -233,7 +231,7 @@ async function OpTimeM1() {
             return null;
         }
         if (TimeO1 > 0) {
-            await availability.findOneAndUpdate({
+             availability.findOneAndUpdate({
                 $and: [
                     { machine_id: 1 }, { state: 1 }
                 ]
@@ -256,7 +254,7 @@ async function OpTimeM2() {
             if (Time2 < (loadingM2 * 60)) {
                 Time2++;
                 if (statusM2 == 1) {
-                    await availability.findOneAndUpdate({
+                     availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 2 }, { state: 1 }
                         ]
@@ -272,7 +270,7 @@ async function OpTimeM2() {
                     ).sort({ _id: -1 }).then(() => { })
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
-                    await availability.findOneAndUpdate({
+                     availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 2 }, { state: 1 }
                         ]
@@ -288,7 +286,7 @@ async function OpTimeM2() {
                     ).sort({ _id: -1 }).then(() => { });
                 }
             } else {
-                await availability.updateMany({ machine_id: 2 }, {
+                 availability.updateMany({ machine_id: 2 }, {
                     $set: {
                         state: 0
                     }
@@ -300,7 +298,7 @@ async function OpTimeM2() {
             return null;
         }
         if (TimeO2 > 0) {
-            await availability.findOneAndUpdate({
+             availability.findOneAndUpdate({
                 $and: [
                     { machine_id: 1 }, { state: 1 }
                 ]
@@ -323,7 +321,7 @@ async function OpTimeM3() {
             if (Time3 < (loadingM3 * 60)) {
                 Time3++;
                 if (statusM3 == 1) {
-                    await availability.findOneAndUpdate({
+                     availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 3 }, { state: 1 }
                         ]
@@ -339,7 +337,7 @@ async function OpTimeM3() {
                     ).sort({ _id: -1 }).then(() => { });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
-                    await availability.findOneAndUpdate({
+                     availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 3 }, { state: 1 }
                         ]
@@ -355,7 +353,7 @@ async function OpTimeM3() {
                     ).sort({ _id: -1 }).then(() => { });
                 }
             } else {
-                await availability.updateMany({ machine_id: 3 }, {
+                 availability.updateMany({ machine_id: 3 }, {
                     $set: {
                         state: 0
                     }
@@ -367,7 +365,7 @@ async function OpTimeM3() {
             return null;
         }
         if (TimeO3 > 0) {
-            await availability.findOneAndUpdate({
+             availability.findOneAndUpdate({
                 $and: [
                     { machine_id: 1 }, { state: 1 }
                 ]
@@ -390,7 +388,7 @@ async function OpTimeM4() {
             if (Time4 < (loadingM4 * 60)) {
                 Time4++;
                 if (statusM4 == 1) {
-                    await availability.findOneAndUpdate({
+                     availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 4 }, { state: 1 }
                         ]
@@ -406,7 +404,7 @@ async function OpTimeM4() {
                     ).sort({ _id: -1 }).then(() => { })
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
-                    await availability.findOneAndUpdate({
+                     availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 4 }, { state: 1 }
                         ]
@@ -422,7 +420,7 @@ async function OpTimeM4() {
                     ).sort({ _id: -1 }).then(() => { });
                 }
             } else {
-                await availability.updateMany({ machine_id: 4 }, {
+                 availability.updateMany({ machine_id: 4 }, {
                     $set: {
                         state: 0
                     }
@@ -434,7 +432,7 @@ async function OpTimeM4() {
             return null;
         }
         if (TimeO4 > 0) {
-            await availability.findOneAndUpdate({
+             availability.findOneAndUpdate({
                 $and: [
                     { machine_id: 1 }, { state: 1 }
                 ]
