@@ -45,28 +45,44 @@ let TimeD3 = 0;
 let TimeD4 = 0;
 
 //TIMER FETCH AVAILABLITY
-setInterval(fetchA1, 1000);
-setInterval(fetchA2, 1000);
-setInterval(fetchA3, 1000);
-setInterval(fetchA4, 1000);
+// setInterval(fetchA1, 1000);
+// setInterval(fetchA2, 1000);
+// setInterval(fetchA3, 1000);
+// setInterval(fetchA4, 1000);
 
-//TIMER FETCH STATUS
-setInterval(fetchS1, 1000);
-setInterval(fetchS2, 1000);
-setInterval(fetchS3, 1000);
-setInterval(fetchS4, 1000);
+// //TIMER FETCH STATUS
+// setInterval(fetchS1, 1000);
+// setInterval(fetchS2, 1000);
+// setInterval(fetchS3, 1000);
+// setInterval(fetchS4, 1000);
 
-//TIMER FETCH PARAMETER
-setInterval(fetchP1, 1000);
-setInterval(fetchP2, 1000);
-setInterval(fetchP3, 1000);
-setInterval(fetchP4, 1000);
+// //TIMER FETCH PARAMETER
+// setInterval(fetchP1, 1000);
+// setInterval(fetchP2, 1000);
+// setInterval(fetchP3, 1000);
+// setInterval(fetchP4, 1000);
 
 //TIMER QUERY OPERATION TIME
-setInterval(OpTimeM1, 1000);
-setInterval(OpTimeM2, 1000);
-setInterval(OpTimeM3, 1000);
-setInterval(OpTimeM4, 1000);
+function runAllFunctions() {
+    fetchA1();
+    fetchA2();
+    fetchA3();
+    fetchA4();
+    fetchS1();
+    fetchS2();
+    fetchS3();
+    fetchS4();
+    fetchP1();
+    fetchP2();
+    fetchP3();
+    fetchP4();
+    OpTimeM1();
+    OpTimeM2();
+    OpTimeM3();
+    OpTimeM4();
+  }
+setInterval(runAllFunctions, 1000);
+  
 
 //FETCH AVAILABILITY
 async function fetchA1() {
