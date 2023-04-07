@@ -15,18 +15,34 @@ let M4_B;
 let M4_C;
 
 //TRIGGER FUNCTION FETCH
-setInterval(fetchM1_A,2100);
-setInterval(fetchM1_B,2200);
-setInterval(fetchM1_C,2300);
-setInterval(fetchM2_A,2400);
-setInterval(fetchM2_B,2500);
-setInterval(fetchM2_C,2600);
-setInterval(fetchM3_A,2700);
-setInterval(fetchM3_B,2800);
-setInterval(fetchM3_C,2900);
-setInterval(fetchM4_A,3000);
-setInterval(fetchM4_B,3100);
-setInterval(fetchM4_C,3200);
+let intervalM1A = setInterval(fetchM1_A,2100);
+let intervalM1B = setInterval(fetchM1_B,2200);
+let intervalM1C = setInterval(fetchM1_C,2300);
+let intervalM2A = setInterval(fetchM2_A,2400);
+let intervalM2B = setInterval(fetchM2_B,2600);
+let intervalM2C = setInterval(fetchM2_C,2600);
+let intervalM3A = setInterval(fetchM3_A,2700);
+let intervalM3B = setInterval(fetchM3_B,2800);
+let intervalM3C = setInterval(fetchM3_C,2900);
+let intervalM4A = setInterval(fetchM4_A,3000);
+let intervalM4B = setInterval(fetchM4_B,3100);
+let intervalM4C = setInterval(fetchM4_C,3200);
+
+//CLEAR INTERVAL
+setTimeout(function() {
+    clearInterval(intervalM1A);
+    clearInterval(intervalM1B);
+    clearInterval(intervalM1C);
+    clearInterval(intervalM2A);
+    clearInterval(intervalM2B);
+    clearInterval(intervalM2C);
+    clearInterval(intervalM3A);
+    clearInterval(intervalM3B);
+    clearInterval(intervalM3C);
+    clearInterval(intervalM4A);
+    clearInterval(intervalM4B);
+    clearInterval(intervalM4C);
+}, 100000);
 
 //--------------------------------FETCH--------------------------------------//
 //-------------------------------MACHINE 1-----------------------------------//

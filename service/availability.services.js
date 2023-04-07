@@ -45,37 +45,51 @@ let TimeD3 = 0;
 let TimeD4 = 0;
 
 //TIMER FETCH AVAILABLITY
-setInterval(fetchA1, 1000);
-setInterval(fetchA2, 1000);
-setInterval(fetchA3, 1000);
-setInterval(fetchA4, 1000);
+let intervalA1 = setInterval(fetchA1, 1000);
+let intervalA2 = setInterval(fetchA2, 1000);
+let intervalA3 = setInterval(fetchA3, 1000);
+let intervalA4 = setInterval(fetchA4, 1000);
 
 //TIMER FETCH STATUS
-setInterval(fetchS1, 1000);
-setInterval(fetchS2, 1000);
-setInterval(fetchS3, 1000);
-setInterval(fetchS4, 1000);
+let intervalS1 = setInterval(fetchS1, 1000);
+let intervalS2 = setInterval(fetchS2, 1000);
+let intervalS3 = setInterval(fetchS3, 1000);
+let intervalS4 = setInterval(fetchS4, 1000);
 
 //TIMER FETCH PARAMETER
-setInterval(fetchP1, 1000);
-setInterval(fetchP2, 1000);
-setInterval(fetchP3, 1000);
-setInterval(fetchP4, 1000);
+let intervalP1 = setInterval(fetchP1, 1000);
+let intervalP2 = setInterval(fetchP2, 1000);
+let intervalP3 = setInterval(fetchP3, 1000);
+let intervalP4 = setInterval(fetchP4, 1000);
 
 //TIMER QUERY OPERATION TIME
-setTimeout(() => {
-    setInterval(OpTimeM1,1000);
-}, 1100);
-setTimeout(() => {
-    setInterval(OpTimeM2,1000);
-}, 1200);
-setTimeout(() => {
-    setInterval(OpTimeM3,1000);
-}, 1300);
-setTimeout(() => {
-    setInterval(OpTimeM4,1000);
-}, 1400);
-  
+
+let intervalOP1 = setInterval(OpTimeM1, 1000);
+let intervalOP2 = setInterval(OpTimeM2, 1000);
+let intervalOP3 = setInterval(OpTimeM3, 1000);
+let intervalOP4 = setInterval(OpTimeM4, 1000);
+
+
+//CLEAR INTERVAL
+setTimeout(function() {
+    clearInterval(intervalA1);
+    clearInterval(intervalA2);
+    clearInterval(intervalA3);
+    clearInterval(intervalS4);
+    clearInterval(intervalS1);
+    clearInterval(intervalS2);
+    clearInterval(intervalS3);
+    clearInterval(intervalS4);
+    clearInterval(intervalP1);
+    clearInterval(intervalP2);
+    clearInterval(intervalP3);
+    clearInterval(intervalP4);
+    clearInterval(intervalOP1);
+    clearInterval(intervalOP2);
+    clearInterval(intervalOP3);
+    clearInterval(intervalOP4);
+    console.log("clear")
+}, 100000);
 
 //FETCH AVAILABILITY
 async function fetchA1() {
@@ -151,7 +165,7 @@ async function OpTimeM1() {
             if (Time1 < (loadingM1 * 60)) {
                 Time1++;
                 if (statusM1 == 1) {
-                    await availability.updateOne({
+                    await availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 1 }, { state: 1 }
                         ]
@@ -161,6 +175,8 @@ async function OpTimeM1() {
                                 runningtime: 1, //Second
                                 operationtime: 1 //Second
                             },
+                        },{
+                            new:true
                         }
                     ).sort({ _id: -1 }).then(() => {
                         console.log(Time1)
@@ -430,13 +446,13 @@ async function getAvaiLatest(params, callback) {
 }
 
 //Reset Availability
-async function resetAvailability(params,callback){
+async function resetAvailability(params, callback) {
     var m_id = params.machine_id
-    availability.updateMany({machine_id:m_id},{
-        $set:{
+    availability.updateMany({ machine_id: m_id }, {
+        $set: {
             state: 0
         }
-    }).then((response)=>{
+    }).then((response) => {
         if (!response) callback("Gagal");
         return callback(null, response);
     }).catch((error) => {
