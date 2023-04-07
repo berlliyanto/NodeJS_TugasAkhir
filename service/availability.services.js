@@ -162,7 +162,7 @@ async function fetchP4() {
 async function OpTimeM1() {
     if (stateAM1 == 1) {
         if (statePM1 == 1) {
-            if (Time1 <= (loadingM1 * 60)) {
+            if (Time1 < (loadingM1 * 60)) {
                 Time1++;
                 if (statusM1 == 1) {
                     TimeplusO1=TimeplusO1+1;
