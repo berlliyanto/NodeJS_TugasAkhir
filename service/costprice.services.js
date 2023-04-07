@@ -36,10 +36,10 @@ var stateCM4;
 
 //TIMER FETCH
 setInterval(fetchHarga,1000);
-setInterval(fetchM1,1000);
-setInterval(fetchM2,1000);
-setInterval(fetchM3,1000);
-setInterval(fetchM4,1000);
+setInterval(fetchM1,1100);
+setInterval(fetchM2,1200);
+setInterval(fetchM3,1300);
+setInterval(fetchM4,1400);
 
 //TIMER QUERY
 setTimeout(() => {

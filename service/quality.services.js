@@ -15,18 +15,18 @@ let M4_B;
 let M4_C;
 
 //TRIGGER FUNCTION FETCH
-setInterval(fetchM1_A,2000);
-setInterval(fetchM1_B,2000);
-setInterval(fetchM1_C,2000);
-setInterval(fetchM2_A,2000);
-setInterval(fetchM2_B,2000);
-setInterval(fetchM2_C,2000);
-setInterval(fetchM3_A,2000);
-setInterval(fetchM3_B,2000);
-setInterval(fetchM3_C,2000);
-setInterval(fetchM4_A,2000);
-setInterval(fetchM4_B,2000);
-setInterval(fetchM4_C,2000);
+setInterval(fetchM1_A,2100);
+setInterval(fetchM1_B,2200);
+setInterval(fetchM1_C,2300);
+setInterval(fetchM2_A,2400);
+setInterval(fetchM2_B,2500);
+setInterval(fetchM2_C,2600);
+setInterval(fetchM3_A,2700);
+setInterval(fetchM3_B,2800);
+setInterval(fetchM3_C,2900);
+setInterval(fetchM4_A,3000);
+setInterval(fetchM4_B,3100);
+setInterval(fetchM4_C,3200);
 
 //--------------------------------FETCH--------------------------------------//
 //-------------------------------MACHINE 1-----------------------------------//
