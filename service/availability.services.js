@@ -76,7 +76,7 @@ function runAllFunctions() {
     OpTimeM4();
 }
 
-let interval = setInterval(runAllFunctions, 1000);
+setInterval(runAllFunctions, 1000);
 // let intervalOP;
 // setTimeout(() => {
 //     function runQueryOP(){

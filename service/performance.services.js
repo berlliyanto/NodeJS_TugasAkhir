@@ -1,3 +1,4 @@
+
 const { performance } = require('../models/oee.model');
 const { quality } = require('../models/oee.model')
 const { availability } = require('../models/oee.model');
@@ -33,26 +34,30 @@ var statePM2;
 var statePM3;
 var statePM4;
 
-//TIMER FETCH PARAMETER
-setInterval(fetchC1, 1000);
-setInterval(fetchC2, 1000);
-setInterval(fetchC3, 1000);
-setInterval(fetchC4, 1000);
+function runFetch(){
+    //TIMER FETCH PARAMETER
+    fetchC1();
+    fetchC2();
+    fetchC3();
+    fetchC4();
+    //TIMER FETCH QUALITIY
+    fetchG1();
+    fetchG2();
+    fetchG3();
+    fetchG4();
+    //TIMER FETCH AVAILABILITY
+    fetchO1();
+    fetchO2();
+    fetchO3();
+    fetchO4();
+    //TIMER QUERY
+    updatePerformanceM1();
+    updatePerformanceM2();
+    updatePerformanceM3();
+    updatePerformanceM4();
+}
 
-//TIMER FETCH QUALITIY
-setInterval(fetchG1, 1000);
-setInterval(fetchG2, 1000);
-setInterval(fetchG3, 1000);
-setInterval(fetchG4, 1000);
-
-//TIMER FETCH AVAILABILITY
-setInterval(fetchO1, 1000);
-setInterval(fetchO2, 1000);
-setInterval(fetchO3, 1000);
-setInterval(fetchO4, 1000);
-
-//TIMER QUERY
-setInterval(updatePerformanceM1,1000);
+setInterval(runFetch,1000);
 
 //-------------------------------------FETCH----------------------------------------//
 //-----------------------PARAMETER-------------------------//
@@ -182,6 +187,108 @@ async function updatePerformanceM1() {
         return null;
     }
 }
+//------------------------MACHINE 2-------------------------//
+async function updatePerformanceM2() {
+    if(statePMCM2==2){
+        if(processedM2>0&&OPtimeM2>0&&cycleM2>0){
+            if (statePM2 == 2) {
+                await performance.updateOne(
+                    {
+                        $and: [
+                            { machine_id: 2 }, { state: 1 }
+                        ]
+                    },
+                    {
+                        $set: {
+                            processed: processedM2,
+                            operationtime: OPtimeM2,
+                            cycle_time: cycleM2,
+                            performancerate: (processedM2*cycleM2)/OPtimeM2
+                        }
+                    }
+                )
+                    .sort({ _id: -1 })
+                    .then(() => {
+                        return null;
+                    })
+            } else {
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }else{
+        return null;
+    }
+}
+//------------------------MACHINE 3-------------------------//
+async function updatePerformanceM3() {
+    if(statePMCM3==3){
+        if(processedM3>0&&OPtimeM3>0&&cycleM3>0){
+            if (statePM3 == 3) {
+                await performance.updateOne(
+                    {
+                        $and: [
+                            { machine_id: 3 }, { state: 1 }
+                        ]
+                    },
+                    {
+                        $set: {
+                            processed: processedM3,
+                            operationtime: OPtimeM3,
+                            cycle_time: cycleM3,
+                            performancerate: (processedM3*cycleM3)/OPtimeM3
+                        }
+                    }
+                )
+                    .sort({ _id: -1 })
+                    .then(() => {
+                        return null;
+                    })
+            } else {
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }else{
+        return null;
+    }
+}
+//------------------------MACHINE 4-------------------------//
+async function updatePerformanceM4() {
+    if(statePMCM4==4){
+        if(processedM4>0&&OPtimeM4>0&&cycleM4>0){
+            if (statePM4 == 4) {
+                await performance.updateOne(
+                    {
+                        $and: [
+                            { machine_id: 4 }, { state: 1 }
+                        ]
+                    },
+                    {
+                        $set: {
+                            processed: processedM4,
+                            operationtime: OPtimeM4,
+                            cycle_time: cycleM4,
+                            performancerate: (processedM4*cycleM4)/OPtimeM4
+                        }
+                    }
+                )
+                    .sort({ _id: -1 })
+                    .then(() => {
+                        return null;
+                    })
+            } else {
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }else{
+        return null;
+    }
+}
 
 //--------------------------------------------------API-----------------------------------------------//
 //Trigger Performance
@@ -213,8 +320,22 @@ async function resetPerformance(params,callback){
     })
 }
 
+//Latest Performance
+async function latestPerformance(params,callback){
+    var m_id = params.machine_id;
+    performance.find({machine_id:m_id}).sort({_id:-1}).limit(1)
+    .then((response)=>{
+        if(!response)callback("gagal");
+        return callback(null,response);
+    })
+    .catch((error)=>{
+        return callback(error);
+    })
+}
+
 
 module.exports = {
     trigPerformance,
     resetPerformance,
+    latestPerformance,
 }

@@ -34,7 +34,6 @@ var stateCM2;
 var stateCM3;
 var stateCM4;
 
-let intervalCM;
 
 //TIMER FETCH
 function runAllFunctions() {
@@ -48,21 +47,19 @@ function runAllFunctions() {
  let inval =  setInterval(runAllFunctions, 1000);
   
 // //TIMER QUERY
-setTimeout(() => {
     function runQuery(){
         updateCM1();
         updateCM2();
         updateCM3();
         updateCM4();
     }
-    intervalCM = setInterval(runQuery,1500);
-}, 2000);
+setInterval(runQuery,1500);
 
 //CLEAR INTERVAL
-setTimeout(function() {
-    clearInterval(inval);
-    clearInterval(intervalCM);
-}, 1000000);
+// setTimeout(function() {
+//     clearInterval(inval);
+//     clearInterval(intervalCM);
+// }, 1000000);
 
 //-------------------------------FETCH-----------------------------//
 //--------------HARGA-----------------//

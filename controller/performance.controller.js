@@ -38,3 +38,19 @@ exports.resetPerform = (req, res, next)=>{
         }
     })
 }
+
+exports.latestPerform = (req, res, next) =>{
+    var model = {
+        machine_id: req.query.machine_id,
+    }
+    performanceService.latestPerformance(model,(error,result)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message: "Success",
+                data: result,
+            })
+        }
+    })
+}

@@ -30,12 +30,12 @@ function runAllFunctions() {
     fetchM4_C();
   }
   
-  let invtal = setInterval(runAllFunctions, 2000);
+setInterval(runAllFunctions, 2000);
   
 //CLEAR INTERVAL
-setTimeout(function() {
-    clearInterval(invtal);
-}, 1000000);
+// setTimeout(function() {
+//     clearInterval(invtal);
+// }, 1000000);
 
 //--------------------------------FETCH--------------------------------------//
 //-------------------------------MACHINE 1-----------------------------------//

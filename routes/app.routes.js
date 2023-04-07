@@ -90,6 +90,7 @@ router.put("/defect", qualityController.defectUnit);
 //PERFORMANCE
 router.post("/trigPerformance", performanceController.triggerPerform);
 router.put("/resetPerformance", performanceController.resetPerform);
+router.get("/latestPerformance", performanceController.latestPerform);
 
 //PRODUCTION
 router.post("/insertProduction", productionController.processed);
