@@ -86,10 +86,10 @@ let interval = setInterval(runAllFunctions, 1000);
 // }, 1500);
 
 //CLEAR INTERVAL
-setTimeout(function () {
-    clearInterval(interval);
-    console.log("clear")
-}, 1000000);
+// setTimeout(function () {
+//     clearInterval(interval);
+//     console.log("clear")
+// }, 1000000);
 
 //FETCH AVAILABILITY
 async function fetchA1() {
