@@ -63,16 +63,10 @@ setInterval(fetchP3, 1000);
 setInterval(fetchP4, 1000);
 
 //TIMER QUERY OPERATION TIME
-setTimeout(() => {
-    setInterval(OpTimeM1, 1000);
-    setInterval(OpTimeM2, 1000);
-    setInterval(OpTimeM3, 1000);
-    setInterval(OpTimeM4, 1000);
-}, 1000);
-
-
-
-
+setInterval(OpTimeM1, 1000);
+setInterval(OpTimeM2, 1000);
+setInterval(OpTimeM3, 1000);
+setInterval(OpTimeM4, 1000);
 
 //FETCH AVAILABILITY
 async function fetchA1() {
