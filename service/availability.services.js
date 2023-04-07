@@ -32,17 +32,29 @@ let Time2 = 0;
 let Time3 = 0;
 let Time4 = 0;
 
-//TIMER Operation Time INC +1
+//TIMER Operation Time Fetch
 let TimeO1 = 0;
 let TimeO2 = 0;
 let TimeO3 = 0;
 let TimeO4 = 0;
 
-//TIMER Down Time +1
+//TIMER Down Time Fetch
 let TimeD1 = 0;
 let TimeD2 = 0;
 let TimeD3 = 0;
 let TimeD4 = 0;
+
+//TIMER OP TIME +1
+let TimeplusO1 = 0;
+let TimeplusO2 = 0;
+let TimeplusO3 = 0;
+let TimeplusO4 = 0;
+
+//TIMER DT TIME +1
+let TimeplusD1 = 0;
+let TimeplusD2 = 0;
+let TimeplusD3 = 0;
+let TimeplusD4 = 0;
 
 //TIMER QUERY OPERATION TIME
 function runAllFunctions() {
@@ -62,12 +74,12 @@ function runAllFunctions() {
     OpTimeM2();
     OpTimeM3();
     OpTimeM4();
-  }
-  
-  let interval = setInterval(runAllFunctions, 1000);
+}
+
+let interval = setInterval(runAllFunctions, 1000);
 
 //CLEAR INTERVAL
-setTimeout(function() {
+setTimeout(function () {
     clearInterval(interval);
     console.log("clear")
 }, 1000000);
@@ -146,39 +158,43 @@ async function OpTimeM1() {
             if (Time1 < (loadingM1 * 60)) {
                 Time1++;
                 if (statusM1 == 1) {
+                    TimeplusO1++
                     await availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 1 }, { state: 1 }
                         ]
                     },
                         {
-                            $inc: {
-                                runningtime: 1, //Second
-                                operationtime: 1 //Second
+                            $set: {
+                                runningtime: Time1, //Second
+                                operationtime: TimeplusO1 //Second
                             },
-                        },{
-                            new:true
-                        }
+                        }, {
+                        new: true
+                    }
                     ).sort({ _id: -1 })
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     //return null;
-                   await availability.findOneAndUpdate({
+                    TimeplusD1++;
+                    await availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 1 }, { state: 1 }
                         ]
                     },
                         {
-                            $inc: {
-                                runningtime: 1, //Second
-                                downtime: 1, //Second
+                            $set: {
+                                runningtime: Time1, //Second
+                                downtime: TimeplusD1, //Second
                             },
-                        },{
-                            new:true
-                        }
+                        }, {
+                        new: true
+                    }
                     ).sort({ _id: -1 })
                 }
             } else {
+                TimeplusD1 = 0;
+                TimeplusO1 = 0;
                 await availability.updateMany({ machine_id: 1 }, {
                     $set: {
                         state: 0
@@ -224,9 +240,9 @@ async function OpTimeM2() {
                                 runningtime: 1, //Second
                                 operationtime: 1 //Second
                             }
-                        },{
-                            new:true
-                        }
+                        }, {
+                        new: true
+                    }
                     ).sort({ _id: -1 }).then(() => { })
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
@@ -240,9 +256,9 @@ async function OpTimeM2() {
                                 runningtime: 1, //Second
                                 downtime: 1, //Second
                             }
-                        },{
-                            new:true
-                        }
+                        }, {
+                        new: true
+                    }
                     ).sort({ _id: -1 }).then(() => { });
                 }
             } else {
@@ -291,9 +307,9 @@ async function OpTimeM3() {
                                 runningtime: 1, //Second
                                 operationtime: 1 //Second
                             }
-                        },{
-                            new:true
-                        }
+                        }, {
+                        new: true
+                    }
                     ).sort({ _id: -1 }).then(() => { });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
@@ -307,9 +323,9 @@ async function OpTimeM3() {
                                 runningtime: 1, //Second
                                 downtime: 1, //Second
                             }
-                        },{
-                            new:true
-                        }
+                        }, {
+                        new: true
+                    }
                     ).sort({ _id: -1 }).then(() => { });
                 }
             } else {
@@ -358,9 +374,9 @@ async function OpTimeM4() {
                                 runningtime: 1, //Second
                                 operationtime: 1 //Second
                             }
-                        },{
-                            new:true
-                        }
+                        }, {
+                        new: true
+                    }
                     ).sort({ _id: -1 }).then(() => { })
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
@@ -374,9 +390,9 @@ async function OpTimeM4() {
                                 runningtime: 1, //Second
                                 downtime: 1, //Second
                             }
-                        },{
-                            new:true,
-                        }
+                        }, {
+                        new: true,
+                    }
                     ).sort({ _id: -1 }).then(() => { });
                 }
             } else {
