@@ -45,16 +45,16 @@ let TimeD3 = 0;
 let TimeD4 = 0;
 
 //TIMER OP TIME +1
-let TimeplusO1 = 1;
-let TimeplusO2 = 1;
-let TimeplusO3 = 1;
-let TimeplusO4 = 1;
+let TimeplusO1 = 0;
+let TimeplusO2 = 0;
+let TimeplusO3 = 0;
+let TimeplusO4 = 0;
 
 //TIMER DT TIME +1
-let TimeplusD1 = 1;
-let TimeplusD2 = 1;
-let TimeplusD3 = 1;
-let TimeplusD4 = 1;
+let TimeplusD1 = 0;
+let TimeplusD2 = 0;
+let TimeplusD3 = 0;
+let TimeplusD4 = 0;
 
 //TIMER QUERY OPERATION TIME
 function runAllFunctions() {
@@ -162,7 +162,7 @@ async function fetchP4() {
 async function OpTimeM1() {
     if (stateAM1 == 1) {
         if (statePM1 == 1) {
-            if (Time1 < (loadingM1 * 60)) {
+            if (Time1 <= (loadingM1 * 60)) {
                 Time1++;
                 if (statusM1 == 1) {
                     TimeplusO1=TimeplusO1+1;
