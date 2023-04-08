@@ -208,7 +208,6 @@ async function fetchM4_C() {
 async function Query() {
     //MACHINE 1
     if (MPS1 == 1) {
-
         if (MPT1 == "A" && M1_A > 0) {
             await quality.findOneAndUpdate({
                 $and: [

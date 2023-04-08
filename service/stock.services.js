@@ -34,20 +34,10 @@ async function deletestock(params, callback) {
         });
 };
 
-//READ DATA Mesin 1
-async function stock1(params,callback) {
-    stock.find({ machine_id: 1 }).limit(1).then((response) => {
-        if (!response) callback("No Data");
-        else return callback(null, response);
-    }).catch((error) => {
-        return callback(error);
-    });
-    
-}
-
-//READ DATA Mesin 2
-async function stock2(params,callback) {
-    stock.find({ machine_id: 2 }).limit(1).then((response) => {
+//READ DATA MESIN
+async function latestStock(params,callback) {
+    var m_id = params.machine_id;
+    stock.find({ machine_id: m_id }).limit(1).then((response) => {
         if (!response) callback("No Data");
         else return callback(null, response);
     }).catch((error) => {
@@ -137,8 +127,9 @@ async function riwayatStock(params, callback) {
 };
 
 //READ HISTORY MESIN 1
-async function historyM1 (params, callback){
-    riwayatstock.find({machine_id:1}).sort({_id: -1}).limit(30).then(response=>{
+async function history (params, callback){
+    var m_id = params.machine_id;
+    riwayatstock.find({machine_id:m_id}).sort({_id: -1}).limit(30).then(response=>{
         if (!response) callback("No Data");
         else return callback(null, response);
     }).catch((error)=>{
@@ -150,9 +141,8 @@ module.exports = {
     riwayatStock,
     getstock,
     deletestock,
-    stock1,
-    stock2,
+    latestStock,
     stockAdd,
     kurangiStock,
-    historyM1,
+    history,
 };

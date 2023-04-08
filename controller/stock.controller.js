@@ -43,29 +43,12 @@ exports.delete = (req, res, next) => {
     });
 };
 
-//READ DATA MESIN 1
-exports.M1 = (req, res, next) => {
+//READ DATA MESIN 
+exports.Stock = (req, res, next) => {
     var model = {
-        stockId: req.params.id,
+        machine_id: req.query.machine_id,
     }
-    stockServices.stock1(model,(error, results)=>{
-        if(error){
-            return next(error);
-        }else{
-            return res.status(200).send({
-                message: "Success",
-                data: results,
-            })
-        }
-    })
-}
-
-//READ DATA MESIN 2
-exports.M2 = (req, res, next) => {
-    var model = {
-        stockId: req.params.id,
-    }
-    stockServices.stock2(model,(error, results)=>{
+    stockServices.latestStock(model,(error, results)=>{
         if(error){
             return next(error);
         }else{
@@ -146,12 +129,12 @@ exports.create = (req, res, next) => {
     });
 };
 
-//RIWAYAT MESIN 1
-exports.riwayatStockM1 = (req, res, next) => {
+//RIWAYAT MESIN
+exports.riwayatStock = (req, res, next) => {
     var model = {
-        stockId: req.params.id,
+        machine_id: req.query.m_id
     }
-    stockServices.historyM1(model,(error, results)=>{
+    stockServices.history(model,(error, results)=>{
         if(error){
             return next(error);
         }else{
