@@ -72,6 +72,8 @@ router.get("/pressureChart", pressureController.pressChart);
 
 //OEE
 router.post("/trigOEE", oeeController.OEE);
+router.put("/resetOEE", oeeController.resetOee);
+router.get("/getOEE", oeeController.getResultOEE);
 
 //AVAILABILITY
 router.post("/trigAvailability",availabilityController.trigAvai);

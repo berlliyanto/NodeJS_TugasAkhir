@@ -7,12 +7,12 @@ let nowdate = localDate.toLocaleString('id', { timeZone: 'UTC' });
 
 exports.OEE = (req, res, next) => {
     var model = {
-        machine_id: req.body.machibe_id,
+        machine_id: req.body.machine_id,
         tanggal: nowdate,
         quality: 0,
         performance: 0,
         availability: 0,
-        oee: 0,
+        nilaioee: 0,
         state: 1
     }
     oeeService.createoee(model, (error, results) => {
@@ -26,4 +26,36 @@ exports.OEE = (req, res, next) => {
         }
     });
 };
+
+exports.resetOee  = (req, res, next) =>{
+    var model = {
+        machine_id: req.body.machine_id,
+    }
+    oeeService.resetOEE(model,(error,results)=>{
+        if (error) {
+            return next(error);
+        } else {
+            return res.status(200).send({
+                message: "Success",
+                data: results
+            });
+        }
+    })
+}
+
+exports.getResultOEE = (req, res, next) =>{
+    var model = {
+        machine_id: req.query.machine_id,
+    }
+    oeeService.getOEE(model,(error,results)=>{
+        if (error) {
+            return next(error);
+        } else {
+            return res.status(200).send({
+                message: "Success",
+                data: results
+            });
+        }
+    })
+}
 

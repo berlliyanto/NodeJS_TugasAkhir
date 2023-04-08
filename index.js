@@ -61,7 +61,8 @@ app.use(
             //PRESSURE
             { url: "/api/insertPressure", methods: ["POST"] },
             //OEE
-            { url: "/api/OEE", methods: ["POST"] },
+            { url: "/api/trigOEE", methods: ["POST"] },
+            { url: "/api/resetOEE", methods: ["PUT"] },
             //QUALITY
             { url: "/api/trigQuality", methods: ["POST"] },
             { url: "/api/processed", methods: ["PUT"] },

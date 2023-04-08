@@ -54,18 +54,10 @@ const oee = mongoose.model(
     mongoose.Schema({
         machine_id: Number,
         tanggal: String,
-        operationtime: Number,
-        downtime: Number,
-        runningtime: Number,
-        cycletime: Number,
-        good: Number,
-        defect: Number,
-        processed: Number,
         availability: Number,
         quality:Number,
         performance:Number,
         nilaioee: Number,
-        hasiloee: String,
         state: Number,
     },
     {

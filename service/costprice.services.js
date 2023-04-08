@@ -169,7 +169,7 @@ async function fetchM4(){
 async function updateCM1(){
     if(stateCM1==1){
         if(statePM1>0&&goodM1>0){
-            if(tipeM1=="A"){
+            if(tipeM1=="A"&&hargaA>0){
                 await cost.updateOne({
                     $and:[
                         {machine_id:1},{state:1}
@@ -184,7 +184,7 @@ async function updateCM1(){
                     }
                 }
                 ).sort({_id:-1}).then(()=>{});
-            }else if(tipeM1=="B"){
+            }else if(tipeM1=="B"&&hargaB>0){
                 await cost.updateOne({
                     $and:[
                         {machine_id:1},{state:1}
@@ -199,7 +199,7 @@ async function updateCM1(){
                     }
                 }
                 ).sort({_id:-1}).then(()=>{});
-            }else if(tipeM1=="C"){
+            }else if(tipeM1=="C"&&hargaC>0){
                 await cost.updateOne({
                     $and:[
                         {machine_id:1},{state:1}
@@ -225,7 +225,7 @@ async function updateCM1(){
 async function updateCM2(){
     if(stateCM2==1){
         if(statePM2>0&&goodM2>0){
-            if(tipeM2=="A"){
+            if(tipeM2=="A"&&hargaA>0){
                 await cost.updateOne({
                     $and:[
                         {machine_id:2},{state:1}
@@ -240,7 +240,7 @@ async function updateCM2(){
                     }
                 }
                 ).sort({_id:-1}).then(()=>{});
-            }else if(tipeM2=="B"){
+            }else if(tipeM2=="B"&&hargaB>0){
                 await cost.updateOne({
                     $and:[
                         {machine_id:2},{state:1}
@@ -255,7 +255,7 @@ async function updateCM2(){
                     }
                 }
                 ).sort({_id:-1}).then(()=>{});
-            }else if(tipeM2=="C"){
+            }else if(tipeM2=="C"&&hargaC>0){
                 await cost.updateOne({
                     $and:[
                         {machine_id:2},{state:1}
@@ -277,7 +277,7 @@ async function updateCM2(){
 async function updateCM3(){
     if(stateCM3==1){
         if(statePM3>0&&goodM3>0){
-            if(tipeM3=="A"){
+            if(tipeM3=="A"&&hargaA>0){
                 await cost.updateOne({
                     $and:[
                         {machine_id:3},{state:1}
@@ -292,7 +292,7 @@ async function updateCM3(){
                     }
                 }
                 ).sort({_id:-1}).then(()=>{});
-            }else if(tipeM3=="B"){
+            }else if(tipeM3=="B"&&hargaB>0){
                 await cost.updateOne({
                     $and:[
                         {machine_id:3},{state:1}
@@ -307,7 +307,7 @@ async function updateCM3(){
                     }
                 }
                 ).sort({_id:-1}).then(()=>{});
-            }else if(tipeM3=="C"){
+            }else if(tipeM3=="C"&&hargaC>0){
                 await cost.updateOne({
                     $and:[
                         {machine_id:3},{state:1}
@@ -329,7 +329,7 @@ async function updateCM3(){
 async function updateCM4(){
     if(stateCM4==1){
         if(statePM4>0&&goodM4>0){
-            if(tipeM4=="A"){
+            if(tipeM4=="A"&&hargaA>0){
                 await cost.updateOne({
                     $and:[
                         {machine_id:4},{state:1}
@@ -344,7 +344,7 @@ async function updateCM4(){
                     }
                 }
                 ).sort({_id:-1}).then(()=>{});
-            }else if(tipeM4=="B"){
+            }else if(tipeM4=="B"&&hargaB>0){
                 await cost.updateOne({
                     $and:[
                         {machine_id:4},{state:1}
@@ -359,7 +359,7 @@ async function updateCM4(){
                     }
                 }
                 ).sort({_id:-1}).then(()=>{});
-            }else if(tipeM4=="C"){
+            }else if(tipeM4=="C"&&hargaC>0){
                 await cost.updateOne({
                     $and:[
                         {machine_id:4},{state:1}
