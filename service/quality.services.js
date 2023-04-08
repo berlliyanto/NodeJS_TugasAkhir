@@ -208,149 +208,149 @@ async function fetchM4_C() {
 async function Query() {
     //MACHINE 1
     if (MPS1 == 1) {
-        if (M1_A > 0) {
-            if (MPT1 == "A") {
-                await quality.findOneAndUpdate({
-                    $and: [
-                        { machine_id: 1 }, { tipe: "A" }, { state: 1 }
-                    ]
-                }, {
-                    $set: {
-                        qualityrate: (M1_A - M1D_A) / M1_A
-                    }
-                })
-            } else if (MPT1 == "B") {
-                await quality.findOneAndUpdate({
-                    $and: [
-                        { machine_id: 1 }, { tipe: "B" }, { state: 1 }
-                    ]
-                }, {
-                    $set: {
-                        qualityrate: (M1_B - M1D_B) / M1_B
-                    }
-                })
-            } else if (MPT1 == "C") {
-                await quality.findOneAndUpdate({
-                    $and: [
-                        { machine_id: 1 }, { tipe: "C" }, { state: 1 }
-                    ]
-                }, {
-                    $set: {
-                        qualityrate: (M1_C - M1D_C) / M1_C
-                    }
-                })
-            }
 
+        if (MPT1 == "A" && M1_A > 0) {
+            await quality.findOneAndUpdate({
+                $and: [
+                    { machine_id: 1 }, { tipe: "A" }, { state: 1 }
+                ]
+            }, {
+                $set: {
+                    qualityrate: (M1_A - M1D_A) / M1_A
+                }
+            })
+        } else if (MPT1 == "B" && M1_B > 0) {
+            await quality.findOneAndUpdate({
+                $and: [
+                    { machine_id: 1 }, { tipe: "B" }, { state: 1 }
+                ]
+            }, {
+                $set: {
+                    qualityrate: (M1_B - M1D_B) / M1_B
+                }
+            })
+        } else if (MPT1 == "C" && M1_C > 0) {
+            await quality.findOneAndUpdate({
+                $and: [
+                    { machine_id: 1 }, { tipe: "C" }, { state: 1 }
+                ]
+            }, {
+                $set: {
+                    qualityrate: (M1_C - M1D_C) / M1_C
+                }
+            })
         }
+
+
 
     }
     //MACHINE 2
     if (MPS2 == 1) {
-        if (M2_A > 0) {
-            if (MPT2 == "A") {
-                await quality.findOneAndUpdate({
-                    $and: [
-                        { machine_id: 2 }, { tipe: "A" }, { state: 1 }
-                    ]
-                }, {
-                    $set: {
-                        qualityrate: (M2_A - M2D_A) / M2_A
-                    }
-                })
-            } else if (MPT2 == "B") {
-                await quality.findOneAndUpdate({
-                    $and: [
-                        { machine_id: 2 }, { tipe: "B" }, { state: 1 }
-                    ]
-                }, {
-                    $set: {
-                        qualityrate: (M2_B - M2D_B) / M2_B
-                    }
-                })
-            } else if (MPT2 == "C") {
-                await quality.findOneAndUpdate({
-                    $and: [
-                        { machine_id: 2 }, { tipe: "C" }, { state: 1 }
-                    ]
-                }, {
-                    $set: {
-                        qualityrate: (M2_C - M2D_C) / M2_C
-                    }
-                })
-            }
+
+        if (MPT2 == "A" && M2_A > 0) {
+            await quality.findOneAndUpdate({
+                $and: [
+                    { machine_id: 2 }, { tipe: "A" }, { state: 1 }
+                ]
+            }, {
+                $set: {
+                    qualityrate: (M2_A - M2D_A) / M2_A
+                }
+            })
+        } else if (MPT2 == "B" && M2_B > 0) {
+            await quality.findOneAndUpdate({
+                $and: [
+                    { machine_id: 2 }, { tipe: "B" }, { state: 1 }
+                ]
+            }, {
+                $set: {
+                    qualityrate: (M2_B - M2D_B) / M2_B
+                }
+            })
+        } else if (MPT2 == "C" && M2_C > 0) {
+            await quality.findOneAndUpdate({
+                $and: [
+                    { machine_id: 2 }, { tipe: "C" }, { state: 1 }
+                ]
+            }, {
+                $set: {
+                    qualityrate: (M2_C - M2D_C) / M2_C
+                }
+            })
         }
+
     }
     //MACHINE 3
     if (MPS3 == 1) {
-        if (M3_A > 0) {
-            if (MPT3 == "A") {
-                await quality.findOneAndUpdate({
-                    $and: [
-                        { machine_id: 3 }, { tipe: "A" }, { state: 1 }
-                    ]
-                }, {
-                    $set: {
-                        qualityrate: (M3_A - M3D_A) / M3_A
-                    }
-                })
-            } else if (MPT3 == "B") {
-                await quality.findOneAndUpdate({
-                    $and: [
-                        { machine_id: 3 }, { tipe: "B" }, { state: 1 }
-                    ]
-                }, {
-                    $set: {
-                        qualityrate: (M3_B - M3D_B) / M3_B
-                    }
-                })
-            } else if (MPT3 == "C") {
-                await quality.findOneAndUpdate({
-                    $and: [
-                        { machine_id: 3 }, { tipe: "C" }, { state: 1 }
-                    ]
-                }, {
-                    $set: {
-                        qualityrate: (M3_C - M3D_C) / M3_C
-                    }
-                })
-            }
+
+        if (MPT3 == "A" && M3_A > 0) {
+            await quality.findOneAndUpdate({
+                $and: [
+                    { machine_id: 3 }, { tipe: "A" }, { state: 1 }
+                ]
+            }, {
+                $set: {
+                    qualityrate: (M3_A - M3D_A) / M3_A
+                }
+            })
+        } else if (MPT3 == "B" && M3_B > 0) {
+            await quality.findOneAndUpdate({
+                $and: [
+                    { machine_id: 3 }, { tipe: "B" }, { state: 1 }
+                ]
+            }, {
+                $set: {
+                    qualityrate: (M3_B - M3D_B) / M3_B
+                }
+            })
+        } else if (MPT3 == "C" && M3_C > 0) {
+            await quality.findOneAndUpdate({
+                $and: [
+                    { machine_id: 3 }, { tipe: "C" }, { state: 1 }
+                ]
+            }, {
+                $set: {
+                    qualityrate: (M3_C - M3D_C) / M3_C
+                }
+            })
         }
+
     }
     //MACHINE 4
     if (MPS4 == 1) {
-        if (M4_A > 0) {
-            if (MPT4 == "A") {
-                await quality.findOneAndUpdate({
-                    $and: [
-                        { machine_id: 4 }, { tipe: "A" }, { state: 1 }
-                    ]
-                }, {
-                    $set: {
-                        qualityrate: (M4_A - M4D_A) / M4_A
-                    }
-                })
-            } else if (MPT4 == "B") {
-                await quality.findOneAndUpdate({
-                    $and: [
-                        { machine_id: 4 }, { tipe: "B" }, { state: 1 }
-                    ]
-                }, {
-                    $set: {
-                        qualityrate: (M4_B - M4D_B) / M4_B
-                    }
-                })
-            } else if (MPT4 == "C") {
-                await quality.findOneAndUpdate({
-                    $and: [
-                        { machine_id: 4 }, { tipe: "C" }, { state: 1 }
-                    ]
-                }, {
-                    $set: {
-                        qualityrate: (M4_C - M4D_C) / M4_C
-                    }
-                })
-            }
+
+        if (MPT4 == "A" && M4_A > 0) {
+            await quality.findOneAndUpdate({
+                $and: [
+                    { machine_id: 4 }, { tipe: "A" }, { state: 1 }
+                ]
+            }, {
+                $set: {
+                    qualityrate: (M4_A - M4D_A) / M4_A
+                }
+            })
+        } else if (MPT4 == "B" && M4_B > 0) {
+            await quality.findOneAndUpdate({
+                $and: [
+                    { machine_id: 4 }, { tipe: "B" }, { state: 1 }
+                ]
+            }, {
+                $set: {
+                    qualityrate: (M4_B - M4D_B) / M4_B
+                }
+            })
+        } else if (MPT4 == "C" && M4_C > 0) {
+            await quality.findOneAndUpdate({
+                $and: [
+                    { machine_id: 4 }, { tipe: "C" }, { state: 1 }
+                ]
+            }, {
+                $set: {
+                    qualityrate: (M4_C - M4D_C) / M4_C
+                }
+            })
         }
+
     }
 }
 
