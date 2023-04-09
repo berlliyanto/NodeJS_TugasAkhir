@@ -230,7 +230,7 @@ async function getOEE(params,callback){
 async function dashOEE(machine_id) {
     const latestdata = [];
     for (const id of machine_id) {
-        const result = await oee.findOne({ machine_id: id }).sort({ _id: -1 }).select('machine_id nilaioee state updatedAt');
+        const result = await oee.findOne({ machine_id: id }).sort({ _id: -1 });
         latestdata.push(result);
     }
     return latestdata;
