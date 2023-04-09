@@ -126,7 +126,7 @@ async function riwayatStock(params, callback) {
         });
 };
 
-//READ HISTORY MESIN 1
+//READ HISTORY
 async function history (params, callback){
     var m_id = params.machine_id;
     riwayatstock.find({machine_id:m_id}).sort({_id: -1}).limit(30).then(response=>{

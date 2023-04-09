@@ -226,8 +226,19 @@ async function getOEE(params,callback){
     })
 }
 
+//GET OEE FOR DASHBOARD
+async function dashOEE(machine_id) {
+    const latestdata = [];
+    for (const id of machine_id) {
+        const result = await oee.findOne({ machine_id: id }).sort({ _id: -1 }).select('machine_id nilaioee state updatedAt');
+        latestdata.push(result);
+    }
+    return latestdata;
+}
+
 module.exports = {
     createoee,
     resetOEE,
-    getOEE
+    getOEE,
+    dashOEE,
 }

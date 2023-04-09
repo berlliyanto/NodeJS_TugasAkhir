@@ -59,3 +59,16 @@ exports.getResultOEE = (req, res, next) =>{
     })
 }
 
+exports.getDashOEE= async (req, res, next)=>{
+    const machine_id = [1,2,3,4];
+    try {
+        const latestdata = await oeeService.dashOEE(machine_id);
+        res.status(200).send({
+            message: "Success",
+            data: latestdata
+        });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+

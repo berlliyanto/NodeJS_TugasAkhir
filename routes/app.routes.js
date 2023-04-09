@@ -73,6 +73,7 @@ router.get("/pressureChart", pressureController.pressChart);
 router.post("/trigOEE", oeeController.OEE);
 router.put("/resetOEE", oeeController.resetOee);
 router.get("/getOEE", oeeController.getResultOEE);
+router.get("/getdashOEE", oeeController.getDashOEE);
 
 //AVAILABILITY
 router.post("/trigAvailability",availabilityController.trigAvai);
