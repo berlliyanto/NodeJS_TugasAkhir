@@ -55,6 +55,20 @@ exports.ResetM1 = (req, res, next) => {
     });
 };
 
+//GET 4 DATA FOR REPORT
+exports.getDashParam = async (req, res, next)=>{
+    const machine_id = [1,2,3,4];
+    try {
+        const latestdata = await parameterServices.dashParam(machine_id);
+        res.status(200).send({
+            message: "Success",
+            data: latestdata
+        });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 //RESET PARAMETER M2
 exports.ResetM2 = (req, res, next) => {
     upload(req, res, function (err) {

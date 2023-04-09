@@ -34,6 +34,7 @@ router.put("/resetParamM2", paramController.ResetM2);
 router.put("/resetParamM3", paramController.ResetM3);
 router.put("/resetParamM4", paramController.ResetM4);
 router.get("/allParam", paramController.findAll);
+router.get("/reportParam", paramController.getDashParam);
 router.get("/latestParamM1", paramController.latestM1);
 router.get("/latestParamM2", paramController.latestM2);
 router.get("/latestParamM3", paramController.latestM3);

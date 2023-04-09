@@ -38,6 +38,15 @@ async function getParameter(params, callback) {
         });
 };
 
+async function dashParam(machine_id) {
+    const latestdata = [];
+    for (const id of machine_id) {
+        const result = await parameter.findOne({ machine_id: id }).sort({ _id: -1 });
+        latestdata.push(result);
+    }
+    return latestdata;
+}
+
 //UPDATE / RESET DATA Mesin 1
 async function resetParam(params,callback){
     parameter.updateMany({machine_id: 1},params)
@@ -134,6 +143,7 @@ async function latestParameter4(params, callback) {
 module.exports = {
     createParameter,
     getParameter,
+    dashParam,
     resetParam,
     resetParamM2,
     resetParamM3,
