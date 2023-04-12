@@ -80,6 +80,8 @@ app.use(
             //PRODUCTION
             { url: "/api/insertProduction", methods: ["POST"] },
             { url: "/api/resetProcessed", methods: ["PUT"] },
+            //LIFETIME
+            { url: "/api/trigLT", methods: ["POST"] },
 
         ],
     })

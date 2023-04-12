@@ -11,6 +11,7 @@ const qualityController = require("../controller/quality.controller");
 const availabilityController = require("../controller/availability.controller");
 const performanceController = require("../controller/performance.controller");
 const costpriceController = require("../controller/costprice.controller");
+const liftimeController = require("../controller/lifetime.controller");
 
 const express = require("express");
 const router = express.Router();
@@ -110,5 +111,10 @@ router.get("/getDashCost", costpriceController.getDashCost);
 router.get("/getCostHistori", costpriceController.getCostHistori);
 router.get("/getPrice", costpriceController.getPrice);
 router.put("/resetCost", costpriceController.resetCP);
+
+//LIFETIME
+router.post("/trigLT", liftimeController.trigLT);
+router.get("/getAllLT", liftimeController.getAllLT);
+router.get("/getOneLT", liftimeController.getOneLT);
 
 module.exports = router;
