@@ -38,6 +38,7 @@ async function getParameter(params, callback) {
         });
 };
 
+//DASH PARAM
 async function dashParam(machine_id) {
     const latestdata = [];
     for (const id of machine_id) {
@@ -45,6 +46,19 @@ async function dashParam(machine_id) {
         latestdata.push(result);
     }
     return latestdata;
+}
+
+//HISTORI PARAM
+async function paramHistori(params,callback){
+    m_id = params.m_id;
+    parameter.find({machine_id:m_id}).sort({_id:-1}).limit(30)
+    .then((result)=>{
+        if(!result) callback("GAGAL");
+        return callback(null,result);
+    })
+    .catch((error)=>{
+        return callback(error);
+    })
 }
 
 //UPDATE / RESET DATA Mesin 1
@@ -144,6 +158,7 @@ module.exports = {
     createParameter,
     getParameter,
     dashParam,
+    paramHistori,
     resetParam,
     resetParamM2,
     resetParamM3,

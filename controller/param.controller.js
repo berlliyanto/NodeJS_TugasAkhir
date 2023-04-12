@@ -69,6 +69,22 @@ exports.getDashParam = async (req, res, next)=>{
     }
 }
 
+exports.getParamHistori = (req, res, next)=>{
+    var model = {
+        m_id: req.query.machine_id
+    }
+    parameterServices.paramHistori(model,(error,result)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message: "Success",
+                data: result,
+            })
+        }
+    })
+}
+
 //RESET PARAMETER M2
 exports.ResetM2 = (req, res, next) => {
     upload(req, res, function (err) {

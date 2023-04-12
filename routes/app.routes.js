@@ -35,6 +35,7 @@ router.put("/resetParamM3", paramController.ResetM3);
 router.put("/resetParamM4", paramController.ResetM4);
 router.get("/allParam", paramController.findAll);
 router.get("/reportParam", paramController.getDashParam);
+router.get("/getParamHistori", paramController.getParamHistori);
 router.get("/latestParamM1", paramController.latestM1);
 router.get("/latestParamM2", paramController.latestM2);
 router.get("/latestParamM3", paramController.latestM3);
@@ -75,6 +76,7 @@ router.post("/trigOEE", oeeController.OEE);
 router.put("/resetOEE", oeeController.resetOee);
 router.get("/getOEE", oeeController.getResultOEE);
 router.get("/getdashOEE", oeeController.getDashOEE);
+router.get("/getOEEHistori", oeeController.getOEEHistori);
 
 //AVAILABILITY
 router.post("/trigAvailability",availabilityController.trigAvai);
@@ -104,6 +106,7 @@ router.delete("/deleteProduction", productionController.delete)
 //COST PRICE
 router.post("/trigCost", costpriceController.triggerCost);
 router.get("/getCost", costpriceController.getCostM);
+router.get("/getDashCost", costpriceController.getDashCost);
 router.get("/getCostHistori", costpriceController.getCostHistori);
 router.get("/getPrice", costpriceController.getPrice);
 router.put("/resetCost", costpriceController.resetCP);

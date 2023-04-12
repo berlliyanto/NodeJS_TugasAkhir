@@ -111,3 +111,17 @@ exports.resetCP = (req, res, next)=>{
         }
     })
 }
+
+//GET 4 DATA FOR DASHBOARD COST PRICE
+exports.getDashCost = async (req, res, next)=>{
+    const machine_id = [1,2,3,4];
+    try {
+        const latestdata = await costpriceService.dashCost(machine_id);
+        res.status(200).send({
+            message: "Success",
+            data: latestdata
+        });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}

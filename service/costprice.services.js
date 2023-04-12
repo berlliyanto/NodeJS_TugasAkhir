@@ -444,10 +444,21 @@ async function resetCost(params,callback){
         return callback(error);
     })
 }
+
+//GET 4 DATA FOR DASHBOARD COST PRICE
+async function dashCost(machine_id) {
+    const latestdata = [];
+    for (const id of machine_id) {
+        const result = await cost.findOne({ machine_id: id }).sort({ _id: -1 });
+        latestdata.push(result);
+    }
+    return latestdata;
+}
 module.exports = {
     getCostHistory,
     resetCost,
     getCost,
     trigCost,
     getPricelist,
+    dashCost
 }

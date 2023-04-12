@@ -72,3 +72,19 @@ exports.getDashOEE= async (req, res, next)=>{
     }
 }
 
+exports.getOEEHistori = (req, res, next)=>{
+    var model = {
+        m_id: req.query.machine_id
+    }
+    oeeService.getOEEHistory(model,(error,result)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message: "Success",
+                data: result,
+            })
+        }
+    })
+}
+

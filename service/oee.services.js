@@ -236,9 +236,23 @@ async function dashOEE(machine_id) {
     return latestdata;
 }
 
+//GET OEE HSITORY
+async function getOEEHistory(params,callback){
+    m_id = params.m_id;
+    oee.find({machine_id:m_id}).sort({_id:-1}).limit(30)
+    .then((result)=>{
+        if(!result) callback("GAGAL");
+        return callback(null,result);
+    })
+    .catch((error)=>{
+        return callback(error);
+    })
+}
+
 module.exports = {
     createoee,
     resetOEE,
     getOEE,
     dashOEE,
+    getOEEHistory,
 }
