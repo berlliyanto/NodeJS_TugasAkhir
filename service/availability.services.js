@@ -181,12 +181,6 @@ async function OpTimeM1() {
                         new: true
                     }
                     ).sort({ _id: -1 });
-                    //----------LifeTime----------//
-                    await lifetime.findOneAndUpdate({machine_id:1},{
-                        $inc:{
-                            timeValue: -1
-                        }
-                    });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     //return null;
@@ -262,12 +256,6 @@ async function OpTimeM2() {
                         new: true
                     }
                     ).sort({ _id: -1 });
-                    //----------LifeTime----------//
-                    await lifetime.findOneAndUpdate({machine_id:2},{
-                        $inc:{
-                            timeValue: -1
-                        }
-                    });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD2++;
@@ -286,12 +274,6 @@ async function OpTimeM2() {
                     }
                     ).sort({ _id: -1 });
                 }
-                //----------LifeTime----------//
-                await lifetime.findOneAndUpdate({machine_id:2},{
-                    $inc:{
-                        timeValue: -1
-                    }
-                });
             } else {
                 TimeplusD2 = 0;
                 TimeplusO2 = 0;
@@ -348,12 +330,6 @@ async function OpTimeM3() {
                         new: true
                     }
                     ).sort({ _id: -1 });
-                    //----------LifeTime----------//
-                    await lifetime.findOneAndUpdate({machine_id:3},{
-                        $inc:{
-                            timeValue: -1
-                        }
-                    });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD3++;
@@ -372,12 +348,6 @@ async function OpTimeM3() {
                     }
                     ).sort({ _id: -1 });
                 }
-                //----------LifeTime----------//
-                await lifetime.findOneAndUpdate({machine_id:3},{
-                    $inc:{
-                        timeValue: -1
-                    }
-                });
             } else {
                 TimeplusD3 = 0;
                 TimeplusO3 = 0;
@@ -434,12 +404,6 @@ async function OpTimeM4() {
                         new: true
                     }
                     ).sort({ _id: -1 });
-                    //----------LifeTime----------//
-                    await lifetime.findOneAndUpdate({machine_id:1},{
-                        $inc:{
-                            timeValue: -1
-                        }
-                    });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD4++;
@@ -458,12 +422,6 @@ async function OpTimeM4() {
                     }
                     ).sort({ _id: -1 });
                 }
-                //----------LifeTime----------//
-                await lifetime.findOneAndUpdate({machine_id:4},{
-                    $inc:{
-                        timeValue: -1
-                    }
-                });
             } else {
                 TimeplusD4 = 0;
                 TimeplusO4 = 0;
@@ -499,7 +457,6 @@ async function OpTimeM4() {
     }
 }
 //-------------------------------OPERATION TIME END--------------------------------//
-
 
 //---------------------------------API----------------------------------------//
 

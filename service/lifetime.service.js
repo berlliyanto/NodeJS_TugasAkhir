@@ -1,6 +1,31 @@
 const {lifetime} = require('../models/lifetime.model');
 
 
+//-----------------------------------LIFE TIME-------------------------------------//
+async function LTM1(){
+    await lifetime.updateOne({machine_id:1},{$inc:{
+        timevalue: -1
+    }});
+}
+async function LTM2(){
+    await lifetime.updateOne({machine_id:2},{$inc:{
+        timevalue: -1
+    }});
+}
+async function LTM3(){
+    await lifetime.updateOne({machine_id:3},{$inc:{
+        timevalue: -1
+    }});
+}
+async function LTM4(){
+    await lifetime.updateOne({machine_id:4},{$inc:{
+        timevalue: -1
+    }});
+}
+
+
+//---------------------------------LIFE TIME END-----------------------------------//
+
 //---------------------------------API----------------------------------------//
 
 //Trigger Lifetime Mesin 
