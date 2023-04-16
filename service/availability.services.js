@@ -181,6 +181,9 @@ async function OpTimeM1() {
                         new: true
                     }
                     ).sort({ _id: -1 });
+                    lifetime.updateOne({machine_id:1},{$inc:{
+                        timevalue: -1
+                    }}).then(()=>{});
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     //return null;
@@ -256,6 +259,9 @@ async function OpTimeM2() {
                         new: true
                     }
                     ).sort({ _id: -1 });
+                    lifetime.updateOne({machine_id:2},{$inc:{
+                        timevalue: -1
+                    }}).then(()=>{});
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD2++;
@@ -330,6 +336,9 @@ async function OpTimeM3() {
                         new: true
                     }
                     ).sort({ _id: -1 });
+                    lifetime.updateOne({machine_id:3},{$inc:{
+                        timevalue: -1
+                    }}).then(()=>{});
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD3++;
@@ -404,6 +413,9 @@ async function OpTimeM4() {
                         new: true
                     }
                     ).sort({ _id: -1 });
+                    lifetime.updateOne({machine_id:4},{$inc:{
+                        timevalue: -1
+                    }}).then(()=>{});
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD4++;
