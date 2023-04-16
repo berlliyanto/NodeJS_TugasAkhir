@@ -7,7 +7,6 @@ const parameter = mongoose.model(
         loading_time: Number,
         cycle_time: Number,
         oee_target: Number,
-        harga_perUnit: Number,
         tipe_benda: String,
         state: Number,
     },

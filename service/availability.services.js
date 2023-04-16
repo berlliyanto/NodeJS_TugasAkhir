@@ -163,7 +163,7 @@ async function fetchP4() {
 async function OpTimeM1() {
     if (stateAM1 == 1) {
         if (statePM1 == 1) {
-            if (Time1 <= (loadingM1 * 60)) {
+            if (Time1 < (loadingM1 * 60)) {
                 Time1++;
                 if (statusM1 == 1) {
                     TimeplusO1=TimeplusO1+1;
@@ -241,7 +241,7 @@ async function OpTimeM1() {
 async function OpTimeM2() {
     if (stateAM2 == 1) {
         if (statePM2 == 1) {
-            if (Time2 <= (loadingM2 * 60)) {
+            if (Time2 < (loadingM2 * 60)) {
                 Time2++;
                 if (statusM2 == 1) {
                     TimeplusO2++
@@ -318,7 +318,7 @@ async function OpTimeM2() {
 async function OpTimeM3() {
     if (stateAM3 == 1) {
         if (statePM3 == 1) {
-            if (Time3 <= (loadingM3 * 60)) {
+            if (Time3 < (loadingM3 * 60)) {
                 Time3++;
                 if (statusM3 == 1) {
                     TimeplusO3++
@@ -395,7 +395,7 @@ async function OpTimeM3() {
 async function OpTimeM4() {
     if (stateAM4 == 1) {
         if (statePM4 == 1) {
-            if (Time4 <= (loadingM4 * 60)) {
+            if (Time4 < (loadingM4 * 60)) {
                 Time4++;
                 if (statusM4 == 1) {
                     TimeplusO4++

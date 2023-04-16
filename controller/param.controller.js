@@ -13,7 +13,6 @@ exports.create = (req, res, next) => {
                 loading_time: req.body.loading_time,
                 cycle_time: req.body.cycle_time,
                 oee_target: req.body.oee_target,
-                harga_perUnit: req.body.harga_perUnit,
                 tipe_benda: req.body.tipe_benda,
                 state: req.body.state
             };
