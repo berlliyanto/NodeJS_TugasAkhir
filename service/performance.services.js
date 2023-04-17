@@ -161,7 +161,7 @@ async function fetchSP4() {
 //------------------------MACHINE 1-------------------------//
 async function updatePerformanceM1() {
     if(statePMCM1==1){
-        if(OPtimeM1>0&&cycleM1>0){
+        if(processedM1>0&&OPtimeM1>0&&cycleM1>0){
             if (statePM1 == 1) {
                 await performance.updateOne(
                     {
@@ -195,7 +195,7 @@ async function updatePerformanceM1() {
 //------------------------MACHINE 2-------------------------//
 async function updatePerformanceM2() {
     if(statePMCM2==1){
-        if(OPtimeM2>0&&cycleM2>0){
+        if(processedM2>0&&OPtimeM2>0&&cycleM2>0){
             if (statePM2 == 1) {
                 await performance.updateOne(
                     {
@@ -229,7 +229,7 @@ async function updatePerformanceM2() {
 //------------------------MACHINE 3-------------------------//
 async function updatePerformanceM3() {
     if(statePMCM3==1){
-        if(OPtimeM3>0&&cycleM3>0){
+        if(processedM3>0&&OPtimeM3>0&&cycleM3>0){
             if (statePM3 == 1) {
                 await performance.updateOne(
                     {
@@ -263,7 +263,7 @@ async function updatePerformanceM3() {
 //------------------------MACHINE 4-------------------------//
 async function updatePerformanceM4() {
     if(statePMCM4==1){
-        if(OPtimeM4>0&&cycleM4>0){
+        if(processedM4>0&&OPtimeM4>0&&cycleM4>0){
             if (statePM4 == 1) {
                 await performance.updateOne(
                     {
