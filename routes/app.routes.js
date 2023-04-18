@@ -12,6 +12,7 @@ const availabilityController = require("../controller/availability.controller");
 const performanceController = require("../controller/performance.controller");
 const costpriceController = require("../controller/costprice.controller");
 const liftimeController = require("../controller/lifetime.controller");
+const troubleshootController = require("../controller/troubleshoot.controller");
 
 const express = require("express");
 const router = express.Router();
@@ -19,6 +20,7 @@ const router = express.Router();
 // USERS LIST
 router.post("/users", userController.create);
 router.get("/users", userController.findAll);
+router.get("/userMT", userController.getUserrMT);
 router.get("/users/:id", userController.findOne);
 router.put("/users/:id", userController.update);
 router.delete("/users/:id", userController.delete);
@@ -116,5 +118,10 @@ router.put("/resetCost", costpriceController.resetCP);
 router.post("/trigLT", liftimeController.trigLT);
 router.get("/getAllLT", liftimeController.getAllLT);
 router.get("/getOneLT", liftimeController.getOneLT);
+
+//TROUBLESHOOT
+router.post("/trigTB", troubleshootController.triggerTB);
+router.get("/getTB", troubleshootController.getTB);
+router.put("/updateTB", troubleshootController.updateFixed);
 
 module.exports = router;

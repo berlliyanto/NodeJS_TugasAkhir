@@ -85,9 +85,9 @@ app.use(
             { url: "/api/resetProcessed", methods: ["PUT"] },
             //LIFETIME
             { url: "/api/trigLT", methods: ["POST"] },
-            //QRCODE
-            {url: "/qrcode", methods:["GET"]},
-            {url: "/socket.io", methods:["GET"]}
+            //TROUBLESHOOT
+            { url: "/api/trigTB", methods: ["POST"] },
+            { url: "/api/updateTB", methods: ["PUT"] },
         ],
     })
 );

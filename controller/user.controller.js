@@ -65,6 +65,22 @@ exports.findOne = (req, res, next) => {
     });
 };
 
+exports.getUserrMT = (req,res,next) =>{
+    var model = {
+        userId: req.params.id,
+    };
+    userServices.getUserMT(model,(error,results)=>{
+        if (error) {
+            return next(error);
+        } else {
+            return res.status(200).send({
+                message: "Success Read Single Data",
+                data: results
+            });
+        }
+    });
+};
+
 // UPDATE DATA
 exports.update = (req, res, next) => {
     upload(req, res, function (err) {

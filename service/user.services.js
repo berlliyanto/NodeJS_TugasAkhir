@@ -53,6 +53,20 @@ async function getUsersbyId(params, callback) {
         });
 };
 
+//GET USER OTORITAS MAINTENANCE
+async function getUserMT(params,callback){
+    User.find({
+        otoritas:"User-Maintenance"
+    })
+    then((response) => {
+        if (!response) callback("User Id Invalid");
+        else return callback(null, response);
+    })
+    .catch((error) => {
+        return callback(error);
+    });
+}
+
 //UPDATE DATA
 async function updateUser(params, callback) {
     const UserId = params.userId;
@@ -87,4 +101,5 @@ module.exports = {
     updateUser,
     deleteUser,
     getUsersbyId,
+    getUserMT,
 };
