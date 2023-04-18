@@ -58,7 +58,7 @@ async function getUserMT(params,callback){
     User.find({
         otoritas:"User-Maintenance"
     })
-    then((response) => {
+    .then((response) => {
         if (!response) callback("User Id Invalid");
         else return callback(null, response);
     })
