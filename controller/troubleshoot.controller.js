@@ -45,6 +45,7 @@ exports.updateFixed = (req, res, next)=>{
     var model = {
         machine_id: req.query.machine_id,
         idorder: req.query.idorder,
+        to: req.body.to,
         keterangan: req.body.keterangan,
         solved: req.body.solved,
     }
