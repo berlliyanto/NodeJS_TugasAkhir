@@ -4,16 +4,9 @@ const { status } = require("../models/status.model");
 const { lifetime } = require("../models/lifetime.model");
 const { notifikasi } = require("../models/notifikasi.model");
 
-require('dotenv').config();
+const { TOKEN_TELEGRAM_BOT } = require("./config/app.config");
 const { Telegraf } = require('telegraf');
-const { message } = require('telegraf/filters');
-const TOKEN = "6108992878:AAHRyWolXH3UWxgG5ceY924ss9qI-F0ZEgU";
-const bot = new Telegraf(TOKEN);
-
-bot.start((ctx) => ctx.reply('Welcome'));
-bot.help((ctx) => ctx.reply('Send me a sticker'));
-bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
-bot.hears('hi', (ctx) => ctx.reply('Hey there'));
+const bot = new Telegraf(TOKEN_TELEGRAM_BOT.TOKEN);
 bot.launch();
 
 //FUNCTION KIRIM PESAN
@@ -300,7 +293,7 @@ async function OpTimeM1() {
                         state: 0
                     }
                 }).sort({ _id: -1 });
-                await sendTelegramMessage('5460116674','MESIN 1 SELESAI');
+                await sendTelegramMessage('-1001984270471','MESIN 1 SELESAI');
                 console.log("MESIN 1 SELESAI");
             }
         } else {
