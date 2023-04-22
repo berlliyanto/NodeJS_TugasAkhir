@@ -88,6 +88,7 @@ function runAllFunctions() {
     OpTimeM2();
     OpTimeM3();
     OpTimeM4();
+    fetchNotifikasi();
 }
 
 setInterval(runAllFunctions, 1000);
@@ -216,24 +217,24 @@ async function OpTimeM1() {
                     //NOTIFIKASI PER 5 MENIT BUAT MODEL PENGUJIAN PREVENTIVE SAAT SIDANG
                     if (timeNotifM1 >= 300) {
                         notifikasi.bulkWrite(
-                            [
+                            [   {
+                                updateMany:{
+                                    filter:{
+                                        $and:[
+                                            {machine_id:1},{trigger:true}
+                                        ]
+                                    },
+                                    update:{
+                                        trigger: false
+                                    }
+                                }
+                            },
                                 {
                                     insertOne:{
                                         document:{
                                             machine_id: 1,
                                             time: 0,
                                             trigger: true
-                                        }
-                                    }
-                                },{
-                                    updateMany:{
-                                        filter:{
-                                            $and:[
-                                                {machine_id:1},{trigger:true}
-                                            ]
-                                        },
-                                        update:{
-                                            trigger: false
                                         }
                                     }
                                 }
