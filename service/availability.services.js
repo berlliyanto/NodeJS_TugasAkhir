@@ -116,6 +116,7 @@ async function fetchNotifikasi() {
     timeNotifM2 = fetchNotifikasi2.time;
     timeNotifM3 = fetchNotifikasi3.time;
     timeNotifM4 = fetchNotifikasi4.time;
+    
 }
 
 //FETCH AVAILABILITY
@@ -228,7 +229,7 @@ async function OpTimeM1() {
                                     updateMany:{
                                         filter:{
                                             $and:[
-                                                {machine_id:1},{trigger:1}
+                                                {machine_id:1},{trigger:true}
                                             ]
                                         },
                                         update:{
