@@ -236,7 +236,7 @@ async function OpTimeM1() {
                                 }
                             ]
                         ).then(()=>{});
-                        await sendTelegramMessage(chat_ID,'*Warning!!!*/nMesin 1 Sudah Beroperasi Selama 5 Menit, Harap Segera Lakukan Perbaikan')
+                        await sendTelegramMessage(chat_ID,'*Warning*\nMesin 1 Sudah Beroperasi Selama 5 Menit, Harap Segera Lakukan Perbaikan')
                     } else {
                         notifikasi.findOneAndUpdate(
                             { $and: [{ machine_id: 1 }, { trigger: true }] },
@@ -274,7 +274,7 @@ async function OpTimeM1() {
                         state: 0
                     }
                 }).sort({ _id: -1 });
-                await sendTelegramMessage(chat_ID,'*INFO*/nMesin 1 Selesai Beroperasi!');
+                await sendTelegramMessage(chat_ID,'*INFO*\nMesin 1 Selesai Beroperasi!');
                 console.log("MESIN 1 SELESAI");
             }
         } else {
@@ -355,7 +355,7 @@ async function OpTimeM2() {
                                 }
                             ]
                         ).then(()=>{});
-                        await sendTelegramMessage(chat_ID,'*Warning!!!*/nMesin 2 Sudah Beroperasi Selama 5 Menit, Harap Segera Lakukan Perbaikan')
+                        await sendTelegramMessage(chat_ID,'*Warning*\nMesin 2 Sudah Beroperasi Selama 5 Menit, Harap Segera Lakukan Perbaikan')
                     } else {
                         notifikasi.findOneAndUpdate(
                             { $and: [{ machine_id: 2 }, { trigger: true }] },
@@ -392,7 +392,7 @@ async function OpTimeM2() {
                         state: 0
                     }
                 }).sort({ _id: -1 });
-                await sendTelegramMessage(chat_ID,'*INFO*/nMesin 2 Selesai Beroperasi!');
+                await sendTelegramMessage(chat_ID,'*INFO*\nMesin 2 Selesai Beroperasi!');
                 console.log("MESIN 2 SELESAI");
             }
         } else {
@@ -472,7 +472,7 @@ async function OpTimeM3() {
                                 }
                             ]
                         ).then(()=>{});
-                        await sendTelegramMessage(chat_ID,'*Warning!!!*/nMesin 3 Sudah Beroperasi Selama 5 Menit, Harap Segera Lakukan Perbaikan')
+                        await sendTelegramMessage(chat_ID,'*Warning*\nMesin 3 Sudah Beroperasi Selama 5 Menit, Harap Segera Lakukan Perbaikan')
                     } else {
                         notifikasi.findOneAndUpdate(
                             { $and: [{ machine_id: 3 }, { trigger: true }] },
@@ -509,7 +509,7 @@ async function OpTimeM3() {
                         state: 0
                     }
                 }).sort({ _id: -1 });
-                await sendTelegramMessage(chat_ID,'*INFO*/nMesin 3 Selesai Beroperasi!');
+                await sendTelegramMessage(chat_ID,'*INFO*\nMesin 3 Selesai Beroperasi!');
                 console.log("MESIN 3 SELESAI");
             }
         } else {
@@ -589,7 +589,7 @@ async function OpTimeM4() {
                                 }
                             ]
                         ).then(()=>{});
-                        await sendTelegramMessage(chat_ID,'*Warning!!!*/nMesin 4 Sudah Beroperasi Selama 5 Menit, Harap Segera Lakukan Perbaikan')
+                        await sendTelegramMessage(chat_ID,'*Warning*\nMesin 4 Sudah Beroperasi Selama 5 Menit, Harap Segera Lakukan Perbaikan')
                     } else {
                         notifikasi.findOneAndUpdate(
                             { $and: [{ machine_id: 4 }, { trigger: true }] },
@@ -626,7 +626,7 @@ async function OpTimeM4() {
                         state: 0
                     }
                 }).sort({ _id: -1 });
-                await sendTelegramMessage(chat_ID,'*INFO*/nMesin 1 Selesai Beroperasi!');
+                await sendTelegramMessage(chat_ID,'*INFO*\nMesin 1 Selesai Beroperasi!');
                 console.log("MESIN 4 SELESAI");
             }
         } else {

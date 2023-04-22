@@ -114,11 +114,22 @@ const { Telegraf } = require('telegraf');
 const { message } = require('telegraf/filters');
 
 const bot = new Telegraf(TOKEN_TELEGRAM_BOT.TOKEN);
+let chat_ID = '-1001984270471';
 
-bot.start((ctx) => ctx.reply('Welcome'));
+bot.start((ctx) => ctx.reply('Welcome to Production Monitoring System, Bot Sudah Siap...'));
 bot.help((ctx) => ctx.reply('Send me a sticker'));
 bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
 bot.launch();
+
+app.post('/sendMessage', (req, res) => {
+    var machine_id = req.query.machine_id;
+    var from = req.body.from;
+    var to = req.body.from;
+    var message = req.body.message;
+    var messageBOT = `*INFO*\nFrom: ${from}\nTo: ${to}\nMelakukan order perbaikan Mesin ${machine_id} dengan pesan berikut :\nPesan : ${message}`;
+    bot.telegram.sendMessage(chat_ID, messageBOT);
+    res.send('Message sent');
+  });
 
 
