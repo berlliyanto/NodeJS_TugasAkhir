@@ -7,7 +7,6 @@ const { notifikasi } = require("../models/notifikasi.model");
 const { TOKEN_TELEGRAM_BOT } = require("../config/app.config");
 const { Telegraf } = require('telegraf');
 const bot = new Telegraf(TOKEN_TELEGRAM_BOT.TOKEN);
-bot.launch();
 
 //FUNCTION KIRIM PESAN
 async function sendTelegramMessage(chatId, message) {
