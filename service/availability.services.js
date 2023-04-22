@@ -7,7 +7,7 @@ const { notifikasi } = require("../models/notifikasi.model");
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
 const { message } = require('telegraf/filters');
-const TOKEN = process.env.TELEBOT_TOKEN;
+const TOKEN = "6108992878:AAHRyWolXH3UWxgG5ceY924ss9qI-F0ZEgU";
 const bot = new Telegraf(TOKEN);
 
 bot.start((ctx) => ctx.reply('Welcome'));
