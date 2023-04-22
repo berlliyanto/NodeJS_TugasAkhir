@@ -1,7 +1,8 @@
 const { availability } = require("../models/oee.model");
 const { parameter } = require("../models/param.model");
 const { status } = require("../models/status.model");
-const {lifetime} = require("../models/lifetime.model");
+const { lifetime } = require("../models/lifetime.model");
+const { notifikasi } = require("../models/notifikasi.model");
 
 //STATE AVAILABILITY
 var stateAM1;
@@ -57,6 +58,18 @@ let TimeplusD2 = 0;
 let TimeplusD3 = 0;
 let TimeplusD4 = 0;
 
+//TIME DI NOTIFIKASI
+let timeNotifM1;
+let timeNotifM2;
+let timeNotifM3;
+let timeNotifM4;
+
+//TRIGGER NOTIFIKASI
+let trigNotifM1;
+let trigNotifM2;
+let trigNotifM3;
+let trigNotifM4;
+
 //TIMER QUERY OPERATION TIME
 function runAllFunctions() {
     fetchA1();
@@ -91,6 +104,19 @@ setInterval(runAllFunctions, 1000);
 //     clearInterval(interval);
 //     console.log("clear")
 // }, 1000000);
+
+//FETCH NOTIFIKASI
+async function fetchNotifikasi() {
+    const fetchNotifikasi1 = await notifikasi.findOne({ machine_id: 1 }).sort({ _id: -1 });
+    const fetchNotifikasi2 = await notifikasi.findOne({ machine_id: 2 }).sort({ _id: -1 });
+    const fetchNotifikasi3 = await notifikasi.findOne({ machine_id: 3 }).sort({ _id: -1 });
+    const fetchNotifikasi4 = await notifikasi.findOne({ machine_id: 4 }).sort({ _id: -1 });
+
+    timeNotifM1 = fetchNotifikasi1.time;
+    timeNotifM2 = fetchNotifikasi2.time;
+    timeNotifM3 = fetchNotifikasi3.time;
+    timeNotifM4 = fetchNotifikasi4.time;
+}
 
 //FETCH AVAILABILITY
 async function fetchA1() {
@@ -166,7 +192,7 @@ async function OpTimeM1() {
             if (Time1 < (loadingM1 * 60)) {
                 Time1++;
                 if (statusM1 == 1) {
-                    TimeplusO1=TimeplusO1+1;
+                    TimeplusO1 = TimeplusO1 + 1;
                     await availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 1 }, { state: 1 }
@@ -181,13 +207,52 @@ async function OpTimeM1() {
                         new: true
                     }
                     ).sort({ _id: -1 });
-                    lifetime.updateOne({machine_id:1},{$inc:{
-                        timevalue: -1
-                    }}).then(()=>{});
+                    lifetime.updateOne({ machine_id: 1 }, {
+                        $inc: {
+                            timevalue: -1
+                        }
+                    }).then(() => { });
+                    //NOTIFIKASI PER 5 MENIT BUAT MODEL PENGUJIAN PREVENTIVE SAAT SIDANG
+                    if (timeNotifM1 >= 300) {
+                        notifikasi.bulkWrite(
+                            [
+                                {
+                                    insertOne:{
+                                        document:{
+                                            machine_id: 1,
+                                            time: 0,
+                                            trigger: true
+                                        }
+                                    }
+                                },{
+                                    updateMany:{
+                                        filter:{
+                                            $and:[
+                                                {machine_id:1},{trigger:1}
+                                            ]
+                                        },
+                                        update:{
+                                            trigger: false
+                                        }
+                                    }
+                                }
+                            ]
+                        ).then(()=>{});
+                        console.log("send message");
+                    } else {
+                        notifikasi.findOneAndUpdate(
+                            { $and: [{ machine_id: 1 }, { trigger: true }] },
+                            {
+                                $inc: {
+                                    time: 1
+                                }
+                            }
+                        )
+                    }
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     //return null;
-                    TimeplusD1=TimeplusD1+1;
+                    TimeplusD1 = TimeplusD1 + 1;
                     await availability.findOneAndUpdate({
                         $and: [
                             { machine_id: 1 }, { state: 1 }
@@ -259,9 +324,11 @@ async function OpTimeM2() {
                         new: true
                     }
                     ).sort({ _id: -1 });
-                    lifetime.updateOne({machine_id:2},{$inc:{
-                        timevalue: -1
-                    }}).then(()=>{});
+                    lifetime.updateOne({ machine_id: 2 }, {
+                        $inc: {
+                            timevalue: -1
+                        }
+                    }).then(() => { });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD2++;
@@ -336,9 +403,11 @@ async function OpTimeM3() {
                         new: true
                     }
                     ).sort({ _id: -1 });
-                    lifetime.updateOne({machine_id:3},{$inc:{
-                        timevalue: -1
-                    }}).then(()=>{});
+                    lifetime.updateOne({ machine_id: 3 }, {
+                        $inc: {
+                            timevalue: -1
+                        }
+                    }).then(() => { });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD3++;
@@ -413,9 +482,11 @@ async function OpTimeM4() {
                         new: true
                     }
                     ).sort({ _id: -1 });
-                    lifetime.updateOne({machine_id:4},{$inc:{
-                        timevalue: -1
-                    }}).then(()=>{});
+                    lifetime.updateOne({ machine_id: 4 }, {
+                        $inc: {
+                            timevalue: -1
+                        }
+                    }).then(() => { });
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD4++;
