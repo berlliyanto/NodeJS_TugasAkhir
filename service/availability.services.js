@@ -4,6 +4,28 @@ const { status } = require("../models/status.model");
 const { lifetime } = require("../models/lifetime.model");
 const { notifikasi } = require("../models/notifikasi.model");
 
+require('dotenv').config();
+const { Telegraf } = require('telegraf');
+const { message } = require('telegraf/filters');
+const TOKEN = process.env.TELEBOT_TOKEN;
+const bot = new Telegraf(TOKEN);
+
+bot.start((ctx) => ctx.reply('Welcome'));
+bot.help((ctx) => ctx.reply('Send me a sticker'));
+bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
+bot.hears('hi', (ctx) => ctx.reply('Hey there'));
+bot.launch();
+
+//FUNCTION KIRIM PESAN
+async function sendTelegramMessage(chatId, message) {
+    try {
+      await bot.telegram.sendMessage(chatId, message);
+      console.log(`Message sent to ${chatId}: ${message}`);
+    } catch (err) {
+      console.error(`Error sending message to ${chatId}: ${err.message}`);
+    }
+}  
+
 //STATE AVAILABILITY
 var stateAM1;
 var stateAM2;
@@ -215,7 +237,7 @@ async function OpTimeM1() {
                         }
                     }).then(() => { });
                     //NOTIFIKASI PER 5 MENIT BUAT MODEL PENGUJIAN PREVENTIVE SAAT SIDANG
-                    if (timeNotifM1 >= 300) {
+                    if (timeNotifM1 >= 299) {
                         notifikasi.bulkWrite(
                             [   {
                                 updateMany:{
@@ -278,6 +300,7 @@ async function OpTimeM1() {
                         state: 0
                     }
                 }).sort({ _id: -1 });
+                await sendTelegramMessage('5460116674','MESIN 1 SELESAI');
                 console.log("MESIN 1 SELESAI");
             }
         } else {
@@ -304,6 +327,7 @@ async function OpTimeM1() {
     }
 
 }
+//
 //--------------------------------MESIN 2----------------------------------//
 async function OpTimeM2() {
     if (stateAM2 == 1) {
