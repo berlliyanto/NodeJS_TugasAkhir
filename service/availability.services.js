@@ -4,7 +4,7 @@ const { status } = require("../models/status.model");
 const { lifetime } = require("../models/lifetime.model");
 const { notifikasi } = require("../models/notifikasi.model");
 
-const { TOKEN_TELEGRAM_BOT } = require("./config/app.config");
+const { TOKEN_TELEGRAM_BOT } = require("../config/app.config");
 const { Telegraf } = require('telegraf');
 const bot = new Telegraf(TOKEN_TELEGRAM_BOT.TOKEN);
 bot.launch();
