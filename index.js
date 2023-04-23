@@ -108,39 +108,62 @@ const { message } = require('telegraf/filters');
 const bot = new Telegraf(process.env.TELEBOT_TOKEN);
 let chat_ID = '-1001984270471';
 
+const messageHelp = `
+    <b>Selamat datang di Production Monitoring System Bot!</b>
+    <br><br>
+    <i>Berikut adalah perintah yang bisa anda gunakan untuk berinteraksi dengan kami:</i>
+    <ul>
+      <li>/start</li>
+      <li>/help</li>
+      <li>/members</li>
+      <li>/about</li>
+    </ul>
+    <br>
+    <div style="background-color: #c7d2fe; padding: 10px; border-radius: 5px;">
+      <p style="color: #1a2b5d;">Terima kasih!, semoga kita semua sehat selalu.</p>
+    </div>
+  `;
+
 bot.start((ctx) => ctx.reply('Welcome to Production Monitoring System, Bot Sudah Siap...'));
-bot.help((ctx) => ctx.reply('Send me a sticker'));
+bot.help((ctx) => ctx.replyWithHTML(messageHelp));
 bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
+bot.hears('hello', (ctx) => ctx.reply('Hey there'));
 bot.launch();
 
 bot.command('members', async (ctx) => {
     const chatId = ctx.chat.id;
     try {
-      const membersCount = await ctx.telegram.getChatMembersCount(chatId);
-      const admins = await ctx.telegram.getChatAdministrators(chatId);
-      const members = await ctx.telegram.getChatMembers(chatId);
-      const memberUsernames = members.map(member => member.user.username);
-      const adminUsernames = admins.map(admin => admin.user.username);
-  
-      ctx.reply(`Jumlah anggota grup: ${membersCount}`);
-      ctx.reply(`Username admin grup: ${adminUsernames.join(', ')}`);
-      ctx.reply(`Username anggota grup: ${memberUsernames.join(', ')}`);
+        const membersCount = await ctx.telegram.getChatMembersCount(chatId);
+        const admins = await ctx.telegram.getChatAdministrators(chatId);
+        const members = await ctx.telegram.getChatMembers(chatId);
+        const memberUsernames = members.map(member => member.user.username);
+        const adminUsernames = admins.map(admin => admin.user.username);
+
+        ctx.reply(`Jumlah anggota grup: ${membersCount}`);
+        ctx.reply(`Username admin grup: ${adminUsernames.join(', ')}`);
+        ctx.reply(`Username anggota grup: ${memberUsernames.join(', ')}`);
     } catch (err) {
-      console.error(err);
-      ctx.reply('Terjadi kesalahan saat mengambil daftar anggota grup');
+        console.error(err);
+        ctx.reply('Terjadi kesalahan saat mengambil daftar anggota grup');
     }
-  });
+});
 
 //------------------------API TELEBOT---------------------------//
-app.post('/sendMessageTB', (req, res) => {
+app.post('/sendMessageTB', async (req, res) => {
     var machine_id = req.query.machine_id;
     var from = req.body.from;
     var to = req.body.to;
     var message = req.body.message;
-    var messageBOT = `**INFO**\nFrom: **${from}**\nTo: **${to}**\nMelakukan order perbaikan Mesin ${machine_id} dengan pesan berikut :\nPesan : **${message}**`;
-    bot.telegram.sendMessage(chat_ID, messageBOT);
+    const boldText = (text) => `<b>${text}</b>`;
+
+    const text = boldText('INFO') + '\n' +
+        'Dari : ' + boldText(from) + '\n' +
+        'Untuk : ' + boldText(to) + '\n' +
+        'Melakukan order perbaikan Mesin ' + boldText(machine_id) + ' dengan pesan berikut:\n\n' +
+        'Pesan : ' + boldText(message);
+    bot.telegram.sendMessage(chat_ID, text, { parse_mode: 'HTML' });
     res.send('Message sent');
-  });
+});
 
 
