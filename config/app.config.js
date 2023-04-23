@@ -1,9 +1,9 @@
 const MONGO_DB_CONFIG =  {
-    DB: "mongodb+srv://aji:uL4K73naic18DzEB@cluster0.cw6ni6l.mongodb.net/tugasakhir?retryWrites=true&w=majority"
+    DB: " "
 };
 
 const TOKEN_TELEGRAM_BOT = {
-    TOKEN: "6108992878:AAHRyWolXH3UWxgG5ceY924ss9qI-F0ZEgU"
+    TOKEN: " "
 }
 
 module.exports = {

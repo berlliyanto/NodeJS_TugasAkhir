@@ -7,16 +7,14 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { MONGO_DB_CONFIG } = require("./config/app.config");
 
-
 const auth = require("./middleware/auth");
 const errors = require("./middleware/errors");
 const { unless } = require("express-unless");
 
-
 mongoose.Promise = global.Promise;
 var Port = process.env.port || 5000;
 
-mongoose.connect(MONGO_DB_CONFIG.DB, {
+mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(
@@ -27,7 +25,6 @@ mongoose.connect(MONGO_DB_CONFIG.DB, {
         console.log("Database can't connected " + error);
     }
 );
-
 
 app.use(cors());
 //--------------------------------------------------------Authentication--------------------------------------------------------------//
@@ -99,21 +96,16 @@ app.use('/uploads', express.static('uploads'));
 app.use("/api", require("./routes/app.routes"));
 app.use(errors.errorHandler);
 
-app.get('/qrcode', (req, res) => {
-    res.sendFile('index.html', { root: __dirname });
-})
-
 app.listen(Port, function () {
     console.log("Connected to : ", Port);
 });
-
 
 //--------------------------------------------------------NOTIFIKASI--------------------------------------------------------------//
 const { TOKEN_TELEGRAM_BOT } = require("./config/app.config");
 const { Telegraf } = require('telegraf');
 const { message } = require('telegraf/filters');
 
-const bot = new Telegraf(TOKEN_TELEGRAM_BOT.TOKEN);
+const bot = new Telegraf(process.env.TELEBOT_TOKEN);
 let chat_ID = '-1001984270471';
 
 bot.start((ctx) => ctx.reply('Welcome to Production Monitoring System, Bot Sudah Siap...'));
@@ -122,12 +114,31 @@ bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
 bot.launch();
 
-app.post('/sendMessage', (req, res) => {
+bot.command('members', async (ctx) => {
+    const chatId = ctx.chat.id;
+    try {
+      const membersCount = await ctx.telegram.getChatMembersCount(chatId);
+      const admins = await ctx.telegram.getChatAdministrators(chatId);
+      const members = await ctx.telegram.getChatMembers(chatId);
+      const memberUsernames = members.map(member => member.user.username);
+      const adminUsernames = admins.map(admin => admin.user.username);
+  
+      ctx.reply(`Jumlah anggota grup: ${membersCount}`);
+      ctx.reply(`Username admin grup: ${adminUsernames.join(', ')}`);
+      ctx.reply(`Username anggota grup: ${memberUsernames.join(', ')}`);
+    } catch (err) {
+      console.error(err);
+      ctx.reply('Terjadi kesalahan saat mengambil daftar anggota grup');
+    }
+  });
+
+//------------------------API TELEBOT---------------------------//
+app.post('/sendMessageTB', (req, res) => {
     var machine_id = req.query.machine_id;
     var from = req.body.from;
-    var to = req.body.from;
+    var to = req.body.to;
     var message = req.body.message;
-    var messageBOT = `*INFO*\nFrom: ${from}\nTo: ${to}\nMelakukan order perbaikan Mesin ${machine_id} dengan pesan berikut :\nPesan : ${message}`;
+    var messageBOT = `**INFO**\nFrom: **${from}**\nTo: **${to}**\nMelakukan order perbaikan Mesin ${machine_id} dengan pesan berikut :\nPesan : **${message}**`;
     bot.telegram.sendMessage(chat_ID, messageBOT);
     res.send('Message sent');
   });
