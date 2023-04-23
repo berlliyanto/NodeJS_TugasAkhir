@@ -4,6 +4,7 @@ const { status } = require("../models/status.model");
 const { lifetime } = require("../models/lifetime.model");
 const { notifikasi } = require("../models/notifikasi.model");
 
+
 const chat_ID = '-1001984270471';
 const { TOKEN_TELEGRAM_BOT } = require("../config/app.config");
 const { Telegraf } = require('telegraf');
@@ -330,7 +331,7 @@ async function OpTimeM2() {
                         }
                     }).then(() => { });
                     //NOTIFIKASI PER 5 MENIT BUAT MODEL PENGUJIAN PREVENTIVE SAAT SIDANG
-                    if (timeNotifM3 >= 299) {
+                    if (timeNotifM2 >= 299) {
                         notifikasi.bulkWrite(
                             [   {
                                 updateMany:{
