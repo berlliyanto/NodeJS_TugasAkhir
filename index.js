@@ -108,24 +108,8 @@ const { message } = require('telegraf/filters');
 const bot = new Telegraf(process.env.TELEBOT_TOKEN);
 let chat_ID = '-1001984270471';
 
-const messageHelp = `
-    <b>Selamat datang di Production Monitoring System Bot!</b>
-    <br><br>
-    <i>Berikut adalah perintah yang bisa anda gunakan untuk berinteraksi dengan kami:</i>
-    <ul>
-      <li>/start</li>
-      <li>/help</li>
-      <li>/members</li>
-      <li>/about</li>
-    </ul>
-    <br>
-    <div style="background-color: #c7d2fe; padding: 10px; border-radius: 5px;">
-      <p style="color: #1a2b5d;">Terima kasih!, semoga kita semua sehat selalu.</p>
-    </div>
-  `;
-
 bot.start((ctx) => ctx.reply('Welcome to Production Monitoring System, Bot Sudah Siap...'));
-bot.help((ctx) => ctx.replyWithHTML(messageHelp));
+bot.help((ctx) => ctx.replyWithHTML('Hello, User'));
 bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
 bot.launch();
@@ -154,14 +138,8 @@ app.post('/sendMessageTB', async (req, res) => {
     var from = req.body.from;
     var to = req.body.to;
     var message = req.body.message;
-    const boldText = (text) => `<b>${text}</b>`;
-
-    const text = boldText('INFO') + '\n' +
-        'Dari : ' + boldText(from) + '\n' +
-        'Untuk : ' + boldText(to) + '\n' +
-        'Melakukan order perbaikan Mesin ' + boldText(machine_id) + ' dengan pesan berikut:\n\n' +
-        'Pesan : ' + boldText(message);
-    bot.telegram.sendMessage(chat_ID, text, { parse_mode: 'HTML' });
+    const text = `**INFO**\n Dari: **${from}**\nUntuk: **${to}**\nMelakukan order perbaikan Mesin ${machine_id} dengan pesan berikut :\nPesan : **${message}**`;
+    bot.telegram.sendMessage(chat_ID, text,);
     res.send('Message sent');
 });
 
