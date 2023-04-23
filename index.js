@@ -13,7 +13,7 @@ const { unless } = require("express-unless");
 
 mongoose.Promise = global.Promise;
 var Port = process.env.port || 5000;
-
+mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -119,8 +119,14 @@ bot.command('members', async (ctx) => {
     try {
         const membersCount = await ctx.telegram.getChatMembersCount(chatId);
         const admins = await ctx.telegram.getChatAdministrators(chatId);
-        const members = await ctx.telegram.getChatMember(chatId);
-        const memberUsernames = members.map(member => member.user.username);
+        const chat = await ctx.telegram.getChat(chatId);
+        const memberUsernames = [];
+        
+        for (const member of chat.all_members) {
+            const memberInfo = await ctx.telegram.getChatMember(chatId, member.user.id);
+            memberUsernames.push(memberInfo.user.username);
+        }
+        
         const adminUsernames = admins.map(admin => admin.user.username);
 
         ctx.reply(`Jumlah anggota grup: ${membersCount}`);
@@ -131,6 +137,7 @@ bot.command('members', async (ctx) => {
         ctx.reply('Terjadi kesalahan saat mengambil daftar anggota grup');
     }
 });
+
 
 //------------------------API TELEBOT---------------------------//
 app.post('/sendMessageTB', async (req, res) => {
