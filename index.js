@@ -1,4 +1,5 @@
 const cors = require('cors');
+require('dotenv').config();
 
 const express = require("express");
 const app = express();
@@ -117,12 +118,22 @@ bot.launch();
 bot.command('members', async (ctx) => {
     const chatId = ctx.chat.id;
     try {
-        const membersCount = await ctx.telegram.getChatMembersCount(chatId);
+        const chatInfo = await ctx.telegram.getChat(chatId);
+        const membersCount = chatInfo['members_count'];
         const admins = await ctx.telegram.getChatAdministrators(chatId);
-        const chat = await ctx.telegram.getChat(chatId);
+        const members = [];
+        
+        for (let i = 0; i < membersCount; i += 100) {
+            const result = await ctx.telegram.getChatMembers(chatId, {
+                limit: 100,
+                offset: i
+            });
+            members.push(...result);
+        }
+        
         const memberUsernames = [];
         
-        for (const member of chat.all_members) {
+        for (const member of members) {
             const memberInfo = await ctx.telegram.getChatMember(chatId, member.user.id);
             memberUsernames.push(memberInfo.user.username);
         }
@@ -137,7 +148,6 @@ bot.command('members', async (ctx) => {
         ctx.reply('Terjadi kesalahan saat mengambil daftar anggota grup');
     }
 });
-
 
 //------------------------API TELEBOT---------------------------//
 app.post('/sendMessageTB', async (req, res) => {
