@@ -119,7 +119,7 @@ bot.command('members', async (ctx) => {
     try {
         const membersCount = await ctx.telegram.getChatMembersCount(chatId);
         const admins = await ctx.telegram.getChatAdministrators(chatId);
-        const members = await ctx.telegram.getChatMembers(chatId);
+        const members = await ctx.telegram.getChatMember(chatId);
         const memberUsernames = members.map(member => member.user.username);
         const adminUsernames = admins.map(admin => admin.user.username);
 
