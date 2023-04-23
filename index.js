@@ -128,7 +128,6 @@ bot.start((ctx) => ctx.reply('Welcome to Production Monitoring System, Bot Sudah
 bot.help((ctx) => ctx.replyWithHTML(messageHelp));
 bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
-bot.hears('hello', (ctx) => ctx.reply('Hey there'));
 bot.launch();
 
 bot.command('members', async (ctx) => {
