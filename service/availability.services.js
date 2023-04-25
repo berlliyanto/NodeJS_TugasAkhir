@@ -81,6 +81,12 @@ let timeNotifM2;
 let timeNotifM3;
 let timeNotifM4;
 
+//STOPPER
+let isMessage1 = false;
+let isMessage2 = false;
+let isMessage3 = false;
+let isMessage4 = false;
+
 //TIMER QUERY OPERATION TIME
 function runAllFunctions() {
     fetchA1();
@@ -220,7 +226,7 @@ async function OpTimeM1() {
                         }
                     }).then(() => { });
                     //NOTIFIKASI PER 5 MENIT BUAT MODEL PENGUJIAN PREVENTIVE SAAT SIDANG
-                    if (timeNotifM1 >= 299) {
+                    if (timeNotifM1 > 299) {
                         notifikasi.bulkWrite(
                             [   {
                                 updateMany:{
@@ -252,7 +258,8 @@ async function OpTimeM1() {
                                 console.log('Dokumen berhasil disimpan');
                               }
                         });
-                        await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 1 Sudah Beroperasi Selama ${(timeNotifM1/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`)
+                        await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 1 Sudah Beroperasi Selama ${(timeNotifM1/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`);
+                        isMessage1 = true;
                     } else {
                         notifikasi.findOneAndUpdate(
                             { $and: [{ machine_id: 1 }, { trigger: true }] },
@@ -292,8 +299,10 @@ async function OpTimeM1() {
                 }).sort({ _id: -1 });
                 await sendTelegramMessage(chat_ID,'**INFO**\nMesin 1 Selesai Beroperasi!');
                 console.log("MESIN 1 SELESAI");
+                isMessage1 = true;
             }
         } else {
+            isMessage1 = false;
             TimeplusD1 = 0;
             TimeplusO1 = 0;
             return null;
@@ -311,6 +320,7 @@ async function OpTimeM1() {
             )
         }
     } else {
+        isMessage1 = false;
         TimeplusD1 = 0;
         TimeplusO1 = 0;
         Time1 = 0;
@@ -352,7 +362,7 @@ async function OpTimeM2() {
                         }
                     }).then(() => { });
                     //NOTIFIKASI PER 5 MENIT BUAT MODEL PENGUJIAN PREVENTIVE SAAT SIDANG
-                    if (timeNotifM2 >= 299) {
+                    if (timeNotifM2 > 299) {
                         notifikasi.bulkWrite(
                             [   {
                                 updateMany:{
@@ -384,7 +394,8 @@ async function OpTimeM2() {
                                 console.log('Dokumen berhasil disimpan');
                               }
                         });
-                        await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 2 Sudah Beroperasi Selama ${(timeNotifM2/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`)
+                        await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 2 Sudah Beroperasi Selama ${(timeNotifM2/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`);
+                        isMessage2 = true;
                     } else {
                         notifikasi.findOneAndUpdate(
                             { $and: [{ machine_id: 2 }, { trigger: true }] },
@@ -423,8 +434,10 @@ async function OpTimeM2() {
                 }).sort({ _id: -1 });
                 await sendTelegramMessage(chat_ID,'**INFO**\nMesin 2 Selesai Beroperasi!');
                 console.log("MESIN 2 SELESAI");
+                isMessage2 =true;
             }
         } else {
+            isMessage2 = false;
             TimeplusD2 = 0;
             TimeplusO2 = 0;
             return null;
@@ -442,6 +455,7 @@ async function OpTimeM2() {
             )
         }
     } else {
+        isMessage2 = false;
         TimeplusD2 = 0;
         TimeplusO2 = 0;
         Time2 = 0;
@@ -482,7 +496,7 @@ async function OpTimeM3() {
                         }
                     }).then(() => { });
                     //NOTIFIKASI PER 5 MENIT BUAT MODEL PENGUJIAN PREVENTIVE SAAT SIDANG
-                    if (timeNotifM3 >= 299) {
+                    if (timeNotifM3 > 299) {
                         notifikasi.bulkWrite(
                             [   {
                                 updateMany:{
@@ -514,7 +528,8 @@ async function OpTimeM3() {
                                 console.log('Dokumen berhasil disimpan');
                               }
                         });
-                        await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 3 Sudah Beroperasi Selama ${(timeNotifM3/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`)
+                        await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 3 Sudah Beroperasi Selama ${(timeNotifM3/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`);
+                        isMessage3 = true;
                     } else {
                         notifikasi.findOneAndUpdate(
                             { $and: [{ machine_id: 3 }, { trigger: true }] },
@@ -553,8 +568,10 @@ async function OpTimeM3() {
                 }).sort({ _id: -1 });
                 await sendTelegramMessage(chat_ID,'**INFO**\nMesin 3 Selesai Beroperasi!');
                 console.log("MESIN 3 SELESAI");
+                isMessage3 = true;
             }
         } else {
+            isMessage3 = false;
             TimeplusD3 = 0;
             TimeplusO3 = 0;
             return null;
@@ -572,6 +589,7 @@ async function OpTimeM3() {
             )
         }
     } else {
+        isMessage3 = false;
         Time3 = 0;
         TimeplusD3 = 0;
         TimeplusO3 = 0;
@@ -612,7 +630,7 @@ async function OpTimeM4() {
                         }
                     }).then(() => { });
                     //NOTIFIKASI PER 5 MENIT BUAT MODEL PENGUJIAN PREVENTIVE SAAT SIDANG
-                    if (timeNotifM4 >= 299) {
+                    if (timeNotifM4 > 299) {
                         notifikasi.bulkWrite(
                             [   {
                                 updateMany:{
@@ -644,7 +662,8 @@ async function OpTimeM4() {
                                 console.log('Dokumen berhasil disimpan');
                               }
                         });
-                        await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 4 Sudah Beroperasi Selama ${(timeNotifM4/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`)
+                        await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 4 Sudah Beroperasi Selama ${(timeNotifM4/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`);
+                        isMessage4 = true;
                     } else {
                         notifikasi.findOneAndUpdate(
                             { $and: [{ machine_id: 4 }, { trigger: true }] },
@@ -683,8 +702,10 @@ async function OpTimeM4() {
                 }).sort({ _id: -1 });
                 await sendTelegramMessage(chat_ID,'**INFO**\nMesin 1 Selesai Beroperasi!');
                 console.log("MESIN 4 SELESAI");
+                isMessage4 = true;
             }
         } else {
+            isMessage4 = false;
             TimeplusD4 = 0;
             TimeplusO4 = 0;
             return null;
@@ -702,6 +723,7 @@ async function OpTimeM4() {
             )
         }
     } else {
+        isMessage4 = false;
         Time4 = 0;
         TimeplusD4 = 0;
         TimeplusO4 = 0;

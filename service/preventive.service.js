@@ -59,19 +59,19 @@ async function Mesin4(){
 
 setTimeout(() => {
     cron.schedule(`${menit1} ${jam1} * * ${hari1}`, () => {
-        const message = '*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala pada Mesin 1 \n\n Terimakasih';
+        const message = `*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala ${hari1} pukul ${jam1}.${menit1} hari pada Mesin 1 \n\n Terimakasih`;
         bot.telegram.sendMessage(chat_ID, message);
       });
     cron.schedule(`${menit2} ${jam2} * * ${hari2}`, () => {
-        const message = '*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala pada Mesin 2 \n\n Terimakasih';
+        const message = `*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala ${hari2} pukul ${jam2}.${menit2} hari pada Mesin 2 \n\n Terimakasih`;
         bot.telegram.sendMessage(chat_ID, message);
       });
     cron.schedule(`${menit3} ${jam3} * * ${hari3}`, () => {
-        const message = '*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala pada Mesin 3 \n\n Terimakasih';
+        const message = `*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala ${hari3} pukul ${jam3}.${menit3} hari pada Mesin 3 \n\n Terimakasih`;
         bot.telegram.sendMessage(chat_ID, message);
       });
     cron.schedule(`${menit4} ${jam4} * * ${hari4}`, () => {
-        const message = '*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala pada Mesin 4 \n\n Terimakasih';
+        const message = `*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala ${hari4} pukul ${jam4}.${menit4} hari pada Mesin 4 \n\n Terimakasih`;
         bot.telegram.sendMessage(chat_ID, message);
       });
 }, 15000);
