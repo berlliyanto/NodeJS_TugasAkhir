@@ -86,6 +86,8 @@ app.use(
             //TROUBLESHOOT
             { url: "/api/trigTB", methods: ["POST"] },
             { url: "/api/updateTB", methods: ["PUT"] },
+            //PREVENTIVE
+            { url: "/api/updatePrevStatus", methods: ["PUT"] },
         ],
     })
 );
@@ -155,7 +157,7 @@ app.post('/sendMessageTB', async (req, res) => {
     var from = req.body.from;
     var to = req.body.to;
     var message = req.body.message;
-    const text = `**INFO**\n Dari: **${from}**\nUntuk: **${to}**\nMelakukan order perbaikan Mesin ${machine_id} dengan pesan berikut :\nPesan : **${message}**`;
+    const text = `*INFO*\n\n Dari: *${from}*\nUntuk: *${to}*\n\nMeminta melakukan order perbaikan Mesin ${machine_id} dengan pesan berikut :\n*${message}*`;
     bot.telegram.sendMessage(chat_ID, text,);
     res.send('Message sent');
 });

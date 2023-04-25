@@ -8,6 +8,7 @@ const { notifikasi } = require("../models/notifikasi.model");
 const chat_ID = '-1001984270471';
 const { TOKEN_TELEGRAM_BOT } = require("../config/app.config");
 const { Telegraf } = require('telegraf');
+const { preventive } = require("../models/preventive.model");
 const bot = new Telegraf(process.env.TELEBOT_TOKEN);
 
 //FUNCTION KIRIM PESAN
@@ -237,6 +238,12 @@ async function OpTimeM1() {
                                 }
                             ]
                         ).then(()=>{});
+                        await preventive.save({
+                            machine_id: 1,
+                            message: "Perawatan Rutin",
+                            keterangan: "Not Solved",
+                            solved: false
+                        });
                         await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 1 Sudah Beroperasi Selama ${(timeNotifM1/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`)
                     } else {
                         notifikasi.findOneAndUpdate(
@@ -356,6 +363,12 @@ async function OpTimeM2() {
                                 }
                             ]
                         ).then(()=>{});
+                        await preventive.save({
+                            machine_id: 2,
+                            message: "Perawatan Rutin",
+                            keterangan: "Not Solved",
+                            solved: false
+                        });
                         await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 2 Sudah Beroperasi Selama ${(timeNotifM2/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`)
                     } else {
                         notifikasi.findOneAndUpdate(
@@ -473,6 +486,12 @@ async function OpTimeM3() {
                                 }
                             ]
                         ).then(()=>{});
+                        await preventive.save({
+                            machine_id: 3,
+                            message: "Perawatan Rutin",
+                            keterangan: "Not Solved",
+                            solved: false
+                        });
                         await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 3 Sudah Beroperasi Selama ${(timeNotifM3/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`)
                     } else {
                         notifikasi.findOneAndUpdate(
@@ -590,6 +609,12 @@ async function OpTimeM4() {
                                 }
                             ]
                         ).then(()=>{});
+                        await preventive.save({
+                            machine_id: 4,
+                            message: "Perawatan Rutin",
+                            keterangan: "Not Solved",
+                            solved: false
+                        });
                         await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 4 Sudah Beroperasi Selama ${(timeNotifM4/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`)
                     } else {
                         notifikasi.findOneAndUpdate(

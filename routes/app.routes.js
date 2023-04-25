@@ -13,6 +13,7 @@ const performanceController = require("../controller/performance.controller");
 const costpriceController = require("../controller/costprice.controller");
 const liftimeController = require("../controller/lifetime.controller");
 const troubleshootController = require("../controller/troubleshoot.controller");
+const preventiveController = require("../controller/preventive.controller");
 
 const express = require("express");
 const router = express.Router();
@@ -123,5 +124,13 @@ router.get("/getOneLT", liftimeController.getOneLT);
 router.post("/trigTB", troubleshootController.triggerTB);
 router.get("/getTB", troubleshootController.getTB);
 router.put("/updateTB", troubleshootController.updateFixed);
+
+//PREVENTIVE
+router.get("/getNotif5Menit", preventiveController.getNotif5Menit);
+router.get("/getNotifikasi", preventiveController.getNotifikasi);
+router.get("/getPreventive", preventiveController.getPreventive);
+router.put("/updatePrevStatus", preventiveController.updatePrevStatus);
+router.put("/updateJadwalPrev", preventiveController.updateJadwalPrev);
+router.get("/getJadwalPrev", preventiveController.getJadwalPrev);
 
 module.exports = router;
