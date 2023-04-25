@@ -15,9 +15,9 @@ const preventive = mongoose.model(
 const jadwalPrev = mongoose.model(
     'jadwalprev', mongoose.Schema({
         machine_id:Number,
-        jam: Number,
-        menit:Number,
-        hari:Number,
+        jam: String,
+        menit:String,
+        hari:String,
     })
 )
 
