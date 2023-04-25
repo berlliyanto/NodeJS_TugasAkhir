@@ -88,6 +88,7 @@ app.use(
             { url: "/api/updateTB", methods: ["PUT"] },
             //PREVENTIVE
             { url: "/api/updatePrevStatus", methods: ["PUT"] },
+            { url: "/api/updateJadwalPrev", methods: ["PUT"] },
         ],
     })
 );

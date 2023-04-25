@@ -74,7 +74,7 @@ setTimeout(() => {
         const message = '*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala pada Mesin 4 \n\n Terimakasih';
         bot.telegram.sendMessage(chat_ID, message);
       });
-}, 5000);
+}, 15000);
 //----------------------------------------------API----------------------------------------------------------//
 //--------------NOTIFIKASI 5 MENIT SIDANG----------------------//
 async function getNotifikasiFiveMenit(machine_id){
