@@ -183,10 +183,17 @@ async function fetchP4() {
     loadingM4 = fetchPM4.loading_time;
     statePM4 = fetchPM4.state;
 }
+
 //QUERY
 //-------------------------------OPERATION TIME--------------------------------//
 //--------------------------------MESIN 1----------------------------------//
 async function OpTimeM1() {
+    const preventiveModel1 = new preventive({
+        machine_id: 1,
+        message: "Perawatan Rutin",
+        keterangan: "Not Solved",
+        solved: false
+    });
     if (stateAM1 == 1) {
         if (statePM1 == 1) {
             if (Time1 < (loadingM1 * 60)) {
@@ -238,11 +245,12 @@ async function OpTimeM1() {
                                 }
                             ]
                         ).then(()=>{});
-                        await preventive.save({
-                            machine_id: 1,
-                            message: "Perawatan Rutin",
-                            keterangan: "Not Solved",
-                            solved: false
+                        await preventiveModel1.save((error,result)=>{
+                            if (error) {
+                                console.log(error);
+                              } else {
+                                console.log('Dokumen berhasil disimpan');
+                              }
                         });
                         await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 1 Sudah Beroperasi Selama ${(timeNotifM1/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`)
                     } else {
@@ -312,6 +320,12 @@ async function OpTimeM1() {
 //
 //--------------------------------MESIN 2----------------------------------//
 async function OpTimeM2() {
+    const preventiveModel2 = new preventive({
+        machine_id: 2,
+        message: "Perawatan Rutin",
+        keterangan: "Not Solved",
+        solved: false
+    });
     if (stateAM2 == 1) {
         if (statePM2 == 1) {
             if (Time2 < (loadingM2 * 60)) {
@@ -363,11 +377,12 @@ async function OpTimeM2() {
                                 }
                             ]
                         ).then(()=>{});
-                        await preventive.save({
-                            machine_id: 2,
-                            message: "Perawatan Rutin",
-                            keterangan: "Not Solved",
-                            solved: false
+                        await preventiveModel2.save((error,result)=>{
+                            if (error) {
+                                console.log(error);
+                              } else {
+                                console.log('Dokumen berhasil disimpan');
+                              }
                         });
                         await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 2 Sudah Beroperasi Selama ${(timeNotifM2/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`)
                     } else {
@@ -435,6 +450,12 @@ async function OpTimeM2() {
 }
 //--------------------------------MESIN 3----------------------------------//
 async function OpTimeM3() {
+    const preventiveModel3 = new preventive({
+        machine_id: 3,
+        message: "Perawatan Rutin",
+        keterangan: "Not Solved",
+        solved: false
+    });
     if (stateAM3 == 1) {
         if (statePM3 == 1) {
             if (Time3 < (loadingM3 * 60)) {
@@ -486,11 +507,12 @@ async function OpTimeM3() {
                                 }
                             ]
                         ).then(()=>{});
-                        await preventive.save({
-                            machine_id: 3,
-                            message: "Perawatan Rutin",
-                            keterangan: "Not Solved",
-                            solved: false
+                        await preventiveModel3.save((error,result)=>{
+                            if (error) {
+                                console.log(error);
+                              } else {
+                                console.log('Dokumen berhasil disimpan');
+                              }
                         });
                         await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 3 Sudah Beroperasi Selama ${(timeNotifM3/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`)
                     } else {
@@ -558,6 +580,12 @@ async function OpTimeM3() {
 }
 //--------------------------------MESIN 4----------------------------------//
 async function OpTimeM4() {
+    const preventiveModel4 = new preventive({
+        machine_id: 4,
+        message: "Perawatan Rutin",
+        keterangan: "Not Solved",
+        solved: false
+    });
     if (stateAM4 == 1) {
         if (statePM4 == 1) {
             if (Time4 < (loadingM4 * 60)) {
@@ -609,11 +637,12 @@ async function OpTimeM4() {
                                 }
                             ]
                         ).then(()=>{});
-                        await preventive.save({
-                            machine_id: 4,
-                            message: "Perawatan Rutin",
-                            keterangan: "Not Solved",
-                            solved: false
+                        await preventiveModel4.save((error,result)=>{
+                            if (error) {
+                                console.log(error);
+                              } else {
+                                console.log('Dokumen berhasil disimpan');
+                              }
                         });
                         await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 4 Sudah Beroperasi Selama ${(timeNotifM4/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`)
                     } else {
