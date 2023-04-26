@@ -106,9 +106,10 @@ async function getNotifikasi(params,callback){
 
 async function updatePreventive(params, callback){
     var m_id = params.machine_id;
+    var _id = params._id;
     preventive.findOneAndUpdate({
         $and:[
-            {machine_id:m_id},{solved:false}
+            {machine_id:m_id},{_id:_id}
         ]
     },{
         $set:{
@@ -162,7 +163,7 @@ async function jadwalPreventive(params, callback){
 }
 
 async function getJadwalPrev(params, callback){
-    jadwalPrev.find({machine_id:params.machine_id}).sort({_id:-1})
+    jadwalPrev.find().sort({_id:-1})
     .then((response)=>{
         if(!response) callback("Gagal");
         return callback(null, response);

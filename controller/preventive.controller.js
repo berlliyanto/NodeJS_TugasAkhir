@@ -36,6 +36,7 @@ exports.updatePrevStatus = (req, res , next) =>{
     var model = {
         machine_id: req.query.machine_id,
         keterangan: req.body.keterangan,
+        _id: req.body._id,
     }
     notifikasiService.updatePreventive(model, (error,result)=>{
         if(error){
