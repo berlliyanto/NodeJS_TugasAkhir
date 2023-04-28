@@ -4,7 +4,6 @@ const { preventive } = require('../models/preventive.model');
 const { Telegraf } = require('telegraf');
 const cron = require('node-cron');
 
-
 const bot = new Telegraf(process.env.TELEBOT_TOKEN);
 let chat_ID = '-1001984270471';
 const jadwalStream = jadwalPrev.watch();
@@ -12,10 +11,24 @@ const jadwalStream = jadwalPrev.watch();
 //---------------------------------------------INFO PREVENTIVE-------------------------------------------//
 
 async function jadwalKirimPesan(mesinId, hari, jam, menit) {
-    cron.schedule(`${menit} ${jam} * * ${hari}`, () => {
-      const message = `*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala hari Ini pukul ${jam}.${menit} pada Mesin ${mesinId} \n\n Terimakasih`;
+    cron.schedule(`${menit} ${jam} * * ${hari}`, async() => {
+      const message = `*PERAWATAN RUTIN*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala hari Ini pukul ${jam}.${menit} pada Mesin ${mesinId} \n\n Terimakasih`;
       bot.telegram.sendMessage(chat_ID, message);
       console.log(`Pesan terkirim untuk Mesin ${mesinId}`);
+      //INSERT DATA
+      const preventiveModel = new preventive({
+        machine_id: mesinId,
+        message: "Perawatan Rutin",
+        keterangan: "Not Solved",
+        solved: false
+    });
+    await preventiveModel.save((error,result)=>{
+        if (error) {
+            console.log(error);
+          } else {
+            console.log('Dokumen berhasil disimpan');
+          }
+    });
     },{timezone:'Asia/Jakarta'});
   }
 
