@@ -84,10 +84,10 @@ async function getNotifikasi(params,callback){
 
 async function updatePreventive(params, callback){
     var m_id = params.machine_id;
-    var _id = params._id;
+    var idprev = params.idpreventive;
     preventive.findOneAndUpdate({
         $and:[
-            {machine_id:m_id},{_id:_id}
+            {machine_id:m_id},{_id:idprev}
         ]
     },{
         $set:{
