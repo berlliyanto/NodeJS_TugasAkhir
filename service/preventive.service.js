@@ -3,8 +3,7 @@ const {notifikasi} = require('../models/notifikasi.model');
 const { preventive } = require('../models/preventive.model');
 const { Telegraf } = require('telegraf');
 const cron = require('node-cron');
-const moment = require('moment-timezone');
-moment.tz.setDefault('Asia/Jakarta'); 
+
 
 const bot = new Telegraf(process.env.TELEBOT_TOKEN);
 let chat_ID = '-1001984270471';
@@ -17,7 +16,7 @@ async function jadwalKirimPesan(mesinId, hari, jam, menit) {
       const message = `*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala hari Ini pukul ${jam}.${menit} pada Mesin ${mesinId} \n\n Terimakasih`;
       bot.telegram.sendMessage(chat_ID, message);
       console.log(`Pesan terkirim untuk Mesin ${mesinId}`);
-    });
+    },{timezone:'Asia/Jakarta'});
   }
 
   async function sendNotification() {
