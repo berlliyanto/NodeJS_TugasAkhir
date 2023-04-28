@@ -36,11 +36,9 @@ async function jadwalKirimPesan(mesinId, hari, jam, menit) {
       console.error(error);
     }
   }
-
+  sendNotification();
   jadwalStream.on('change', async(change)=>{
-    if(change.operationType==='update'){
-        sendNotification();
-    }
+    sendNotification();
   })
 //
 //----------------------------------------------API----------------------------------------------------------//
