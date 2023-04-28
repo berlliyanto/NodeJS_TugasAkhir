@@ -1,6 +1,6 @@
 const cors = require('cors');
 require('dotenv').config();
-const lockfile = require('lockfile');
+var lockfile = require('lockfile');
 
 const express = require("express");
 const app = express();
