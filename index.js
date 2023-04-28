@@ -105,7 +105,6 @@ app.listen(Port, function () {
 });
 
 //--------------------------------------------------------NOTIFIKASI--------------------------------------------------------------//
-const { TOKEN_TELEGRAM_BOT } = require("./config/app.config");
 const { Telegraf } = require('telegraf');
 const { message } = require('telegraf/filters');
 
@@ -117,40 +116,6 @@ bot.help((ctx) => ctx.replyWithHTML('Hello, User'));
 bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
 bot.launch();
-
-bot.command('members', async (ctx) => {
-    const chatId = ctx.chat.id;
-    try {
-        const chatInfo = await ctx.telegram.getChat(chatId);
-        const membersCount = chatInfo['members_count'];
-        const admins = await ctx.telegram.getChatAdministrators(chatId);
-        const members = [];
-        
-        for (let i = 0; i < membersCount; i += 100) {
-            const result = await ctx.telegram.getChatMembers(chatId, {
-                limit: 100,
-                offset: i
-            });
-            members.push(...result);
-        }
-        
-        const memberUsernames = [];
-        
-        for (const member of members) {
-            const memberInfo = await ctx.telegram.getChatMember(chatId, member.user.id);
-            memberUsernames.push(memberInfo.user.username);
-        }
-        
-        const adminUsernames = admins.map(admin => admin.user.username);
-
-        ctx.reply(`Jumlah anggota grup: ${membersCount}`);
-        ctx.reply(`Username admin grup: ${adminUsernames.join(', ')}`);
-        ctx.reply(`Username anggota grup: ${memberUsernames.join(', ')}`);
-    } catch (err) {
-        console.error(err);
-        ctx.reply('Terjadi kesalahan saat mengambil daftar anggota grup');
-    }
-});
 
 //------------------------API TELEBOT---------------------------//
 app.post('/sendMessageTB', async (req, res) => {

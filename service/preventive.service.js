@@ -2,6 +2,9 @@ const {jadwalPrev} = require('../models/preventive.model');
 const {notifikasi} = require('../models/notifikasi.model');
 const { preventive } = require('../models/preventive.model');
 const { Telegraf } = require('telegraf');
+
+const express = require("express");
+const app = express();
 const cron = require('node-cron');
 
 const bot = new Telegraf(process.env.TELEBOT_TOKEN);
@@ -49,9 +52,9 @@ async function jadwalKirimPesan(mesinId, hari, jam, menit) {
     }
   }
   sendNotification();
-  jadwalStream.on('change', async(change)=>{
-    sendNotification();
-  })
+  jadwalStream.on('change', ()=>{
+        sendNotification();
+  });
 //
 //----------------------------------------------API----------------------------------------------------------//
 //--------------NOTIFIKASI 5 MENIT SIDANG----------------------//
