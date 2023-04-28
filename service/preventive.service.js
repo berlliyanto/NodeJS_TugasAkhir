@@ -11,7 +11,7 @@ const jadwalStream = jadwalPrev.watch();
 //---------------------------------------------INFO PREVENTIVE-------------------------------------------//
 
 async function jadwalKirimPesan(mesinId, hari, jam, menit) {
-    cron.schedule(`${menit} ${jam} * * ${hari}`, async() => {
+    cron.schedule(`${menit} ${jam} * * ${hari}`, () => {
       const message = `*PERAWATAN RUTIN*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala hari Ini pukul ${jam}.${menit} pada Mesin ${mesinId} \n\n Terimakasih`;
       bot.telegram.sendMessage(chat_ID, message);
       console.log(`Pesan terkirim untuk Mesin ${mesinId}`);
@@ -22,13 +22,13 @@ async function jadwalKirimPesan(mesinId, hari, jam, menit) {
         keterangan: "Not Solved",
         solved: false
     });
-    await preventiveModel.save((error,result)=>{
-        if (error) {
-            console.log(error);
-          } else {
-            console.log('Dokumen berhasil disimpan');
-          }
-    });
+    preventiveModel.save((error, result) => {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Dokumen berhasil disimpan');
+            }
+        }).then(()=>{});
     },{timezone:'Asia/Jakarta'});
   }
 
@@ -106,7 +106,7 @@ async function updatePreventive(params, callback){
 
 async function getPreventive(params, callback){
     var m_id = params.machine_id
-    preventive.find({machine_id:m_id}).sort({_id:-1})
+    preventive.find({machine_id:m_id}).sort({_id:-1}).limit(100)
     .then((response)=>{
         if(!response) callback("Gagal");
         return callback(null, response);

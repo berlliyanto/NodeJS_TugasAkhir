@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const mongooseSequence = require('mongoose-sequence')(mongoose);
 
 const preventiveSchema = new mongoose.Schema({
-        idorder: {
+        idpreventive: {
             type: Number,
             unique: true
         },
@@ -14,7 +14,7 @@ const preventiveSchema = new mongoose.Schema({
     {
         timestamps: true
     })
-preventiveSchema.plugin(mongooseSequence, { inc_field: 'idorder' });
+preventiveSchema.plugin(mongooseSequence, { inc_field: 'idpreventive' });
 const preventive = mongoose.model('preventive', preventiveSchema);
 
 const jadwalPrev = mongoose.model(
