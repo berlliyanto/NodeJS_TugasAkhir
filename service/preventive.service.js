@@ -3,78 +3,46 @@ const {notifikasi} = require('../models/notifikasi.model');
 const { preventive } = require('../models/preventive.model');
 const { Telegraf } = require('telegraf');
 const cron = require('node-cron');
-const { message } = require('telegraf/filters');
+const moment = require('moment-timezone');
+moment.tz.setDefault('Asia/Jakarta'); 
 
 const bot = new Telegraf(process.env.TELEBOT_TOKEN);
 let chat_ID = '-1001984270471';
-
-var hari1;
-var hari2;
-var hari3;
-var hari4;
-
-var jam1;
-var jam2;
-var jam3;
-var jam4;
-
-var menit1;
-var menit2;
-var menit3;
-var menit4;
-
-function runAll(){
-    Mesin1();
-    Mesin2();
-    Mesin3();
-    Mesin4();
-}
-setInterval(runAll,1000);
+const jadwalStream = jadwalPrev.watch();
 
 //---------------------------------------------INFO PREVENTIVE-------------------------------------------//
-async function Mesin1(){
-    const fetchM1 = await jadwalPrev.findOne({machine_id:1});
-    hari1 = fetchM1.hari;
-    jam1 = fetchM1.jam;
-    menit1 = fetchM1.menit;
-}
-async function Mesin2(){
-    const fetchM2 = await jadwalPrev.findOne({machine_id:2});
-    hari2 = fetchM2.hari;
-    jam2 = fetchM2.jam;
-    menit2 = fetchM2.menit;
-}
-async function Mesin3(){
-    const fetchM3 = await jadwalPrev.findOne({machine_id:3});
-    hari3 = fetchM3.hari;
-    jam3 = fetchM3.jam;
-    menit3 = fetchM3.menit;
-}
-async function Mesin4(){
-    const fetchM4 = await jadwalPrev.findOne({machine_id:4});
-    hari4 = fetchM4.hari;
-    jam4 = fetchM4.jam;
-    menit4 = fetchM4.menit;
-}
 
-setTimeout(() => {
-    cron.schedule(`${menit1} ${jam1} * * ${hari1}`, () => {
-        const message = `*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala ${hari1} pukul ${jam1}.${menit1} hari pada Mesin 1 \n\n Terimakasih`;
-        bot.telegram.sendMessage(chat_ID, message);
-      });
-    cron.schedule(`${menit2} ${jam2} * * ${hari2}`, () => {
-        const message = `*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala ${hari2} pukul ${jam2}.${menit2} hari pada Mesin 2 \n\n Terimakasih`;
-        bot.telegram.sendMessage(chat_ID, message);
-      });
-    cron.schedule(`${menit3} ${jam3} * * ${hari3}`, () => {
-        const message = `*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala ${hari3} pukul ${jam3}.${menit3} hari pada Mesin 3 \n\n Terimakasih`;
-        bot.telegram.sendMessage(chat_ID, message);
-      });
-    cron.schedule(`${menit4} ${jam4} * * ${hari4}`, () => {
-        const message = `*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala ${hari4} pukul ${jam4}.${menit4} hari pada Mesin 4 \n\n Terimakasih`;
-        bot.telegram.sendMessage(chat_ID, message);
-      });
-}, 15000);
+async function jadwalKirimPesan(mesinId, hari, jam, menit) {
+    cron.schedule(`${menit} ${jam} * * ${hari}`, () => {
+      const message = `*PERAWATAN BERKALA*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan perbaikan berkala hari Ini pukul ${jam}.${menit} pada Mesin ${mesinId} \n\n Terimakasih`;
+      bot.telegram.sendMessage(chat_ID, message);
+      console.log(`Pesan terkirim untuk Mesin ${mesinId}`);
+    });
+  }
+
+  async function sendNotification() {
+    try {
+      const mesin1 = await jadwalPrev.findOne({ machine_id: 1 });
+      const mesin2 = await jadwalPrev.findOne({ machine_id: 2 });
+      const mesin3 = await jadwalPrev.findOne({ machine_id: 3 });
+      const mesin4 = await jadwalPrev.findOne({ machine_id: 4 });
+  
+      await jadwalKirimPesan(1, mesin1.hari, mesin1.jam, mesin1.menit);
+      await jadwalKirimPesan(2, mesin2.hari, mesin2.jam, mesin2.menit);
+      await jadwalKirimPesan(3, mesin3.hari, mesin3.jam, mesin3.menit);
+      await jadwalKirimPesan(4, mesin4.hari, mesin4.jam, mesin4.menit);
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  jadwalStream.on('change', async(change)=>{
+    if(change.operationType==='update'){
+        sendNotification();
+    }
+  })
+//
 //----------------------------------------------API----------------------------------------------------------//
 //--------------NOTIFIKASI 5 MENIT SIDANG----------------------//
 async function getNotifikasiFiveMenit(machine_id){
@@ -163,7 +131,7 @@ async function jadwalPreventive(params, callback){
 }
 
 async function getJadwalPrev(params, callback){
-    jadwalPrev.find().sort({_id:-1})
+    jadwalPrev.find()
     .then((response)=>{
         if(!response) callback("Gagal");
         return callback(null, response);
