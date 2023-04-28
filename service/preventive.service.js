@@ -87,7 +87,7 @@ async function updatePreventive(params, callback){
     var idprev = params.idpreventive;
     preventive.findOneAndUpdate({
         $and:[
-            {machine_id:m_id},{_id:idprev}
+            {machine_id:m_id},{idpreventive:idprev}
         ]
     },{
         $set:{

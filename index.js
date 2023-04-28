@@ -116,7 +116,7 @@ bot.start((ctx) => ctx.reply('Welcome to Production Monitoring System, Bot Sudah
 bot.help((ctx) => ctx.replyWithHTML('Hello, User'));
 bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
-//bot.launch();
+bot.launch();
 
 bot.command('members', async (ctx) => {
     const chatId = ctx.chat.id;
