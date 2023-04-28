@@ -1,13 +1,12 @@
 const cors = require('cors');
 require('dotenv').config();
+const lockfile = require('lockfile');
 
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
 const mongoose = require("mongoose");
-const { MONGO_DB_CONFIG } = require("./config/app.config");
-
 const auth = require("./middleware/auth");
 const errors = require("./middleware/errors");
 const { unless } = require("express-unless");
@@ -115,7 +114,31 @@ bot.start((ctx) => ctx.reply('Welcome to Production Monitoring System, Bot Sudah
 bot.help((ctx) => ctx.replyWithHTML('Hello, User'));
 bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
-bot.launch();
+// Membuat lockfile
+lockfile.lock('bot.lock', (err) => {
+    if (err) {
+      // Jika terjadi error saat membuat lockfile, berhenti bot
+      console.error('Tidak dapat membuat lockfile:', err);
+      process.exit(1);
+    } else {
+      // Jika lockfile berhasil dibuat, jalankan bot
+      console.log('Lockfile berhasil dibuat');
+      bot.launch();
+    }
+  });
+  
+  // Menghapus lockfile saat bot dihentikan
+  process.on('SIGINT', () => {
+    lockfile.unlock('bot.lock', (err) => {
+      if (err) {
+        console.error('Tidak dapat menghapus lockfile:', err);
+        process.exit(1);
+      } else {
+        console.log('Lockfile berhasil dihapus');
+        process.exit(0);
+      }
+    });
+  });
 
 //------------------------API TELEBOT---------------------------//
 app.post('/sendMessageTB', async (req, res) => {
