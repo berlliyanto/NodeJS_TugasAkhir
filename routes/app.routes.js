@@ -114,6 +114,7 @@ router.get("/getDashCost", costpriceController.getDashCost);
 router.get("/getCostHistori", costpriceController.getCostHistori);
 router.get("/getPrice", costpriceController.getPrice);
 router.put("/resetCost", costpriceController.resetCP);
+router.put("/updatePrice", costpriceController.updateHargaMaterial);
 
 //LIFETIME
 router.post("/trigLT", liftimeController.trigLT);
