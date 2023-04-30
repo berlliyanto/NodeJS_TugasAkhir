@@ -74,9 +74,16 @@ async function getstatusM4(params,callback) {
     
 }
 
-//SET STATUS MESIN 1
-async function setStatusM1(params,callback){
-    status.findOneAndUpdate({machine_id: 1},params)
+//SET STATUS MESIN
+async function setStatusM(params,callback){
+    var m_id = params.machine_id;
+    var statusm = params.status;
+    status.findOneAndUpdate(
+        {machine_id: m_id},
+        {$set:{
+            status: statusm
+        }
+    })
     .then((response) => {
         if (!response) callback("Gagal Input");
         else return callback(null, response);
@@ -86,17 +93,6 @@ async function setStatusM1(params,callback){
     });
 }
 
-//SET STATUS MESIN 2
-async function setStatusM2(params,callback){
-    status.findOneAndUpdate({machine_id: 2},params)
-    .then((response) => {
-        if (!response) callback("Gagal Input");
-        else return callback(null, response);
-    })
-    .catch((error) => {
-        return callback(error);
-    });
-}
 
 module.exports = {
     createStatus,
@@ -105,6 +101,5 @@ module.exports = {
     getstatusM2,
     getstatusM3,
     getstatusM4,
-    setStatusM1,
-    setStatusM2
+    setStatusM,
 }

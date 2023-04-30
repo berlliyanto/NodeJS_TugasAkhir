@@ -62,8 +62,7 @@ router.get('/getStatusM1', statusController.statusM1);
 router.get('/getStatusM2', statusController.statusM2);
 router.get('/getStatusM3', statusController.statusM3);
 router.get('/getStatusM4', statusController.statusM4);
-router.put("/statusM1", statusController.updateSM1);
-router.put("/statusM2", statusController.updateSM2);
+router.put("/updateStatusM", statusController.updateStatusM);
 
 //Energy
 router.post("/insertEnergy", energyController.create);

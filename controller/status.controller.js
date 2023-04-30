@@ -9,7 +9,7 @@ exports.create = (req, res, next) => {
         } else {
             var model = {
                 machine_id: req.body.machine_id,
-                status:req.body.status
+                status: req.body.status
             };
 
             statusService.createStatus(model, (error, results) => {
@@ -30,10 +30,10 @@ exports.status = (req, res, next) => {
     var model = {
         status: req.body.status
     }
-    statusService.getstatusM(model,(error, results)=>{
-        if(error){
+    statusService.getstatusM(model, (error, results) => {
+        if (error) {
             return next(error);
-        }else{
+        } else {
             return res.status(200).send({
                 message: "Success",
                 data: results,
@@ -47,10 +47,10 @@ exports.statusM1 = (req, res, next) => {
     var model = {
         status: req.body.status
     }
-    statusService.getstatusM1(model,(error, results)=>{
-        if(error){
+    statusService.getstatusM1(model, (error, results) => {
+        if (error) {
             return next(error);
-        }else{
+        } else {
             return res.status(200).send({
                 message: "Success",
                 data: results,
@@ -64,10 +64,10 @@ exports.statusM2 = (req, res, next) => {
     var model = {
         status: req.body.status
     }
-    statusService.getstatusM2(model,(error, results)=>{
-        if(error){
+    statusService.getstatusM2(model, (error, results) => {
+        if (error) {
             return next(error);
-        }else{
+        } else {
             return res.status(200).send({
                 message: "Success",
                 data: results,
@@ -81,10 +81,10 @@ exports.statusM3 = (req, res, next) => {
     var model = {
         status: req.body.status
     }
-    statusService.getstatusM3(model,(error, results)=>{
-        if(error){
+    statusService.getstatusM3(model, (error, results) => {
+        if (error) {
             return next(error);
-        }else{
+        } else {
             return res.status(200).send({
                 message: "Success",
                 data: results,
@@ -98,10 +98,10 @@ exports.statusM4 = (req, res, next) => {
     var model = {
         status: req.body.status
     }
-    statusService.getstatusM4(model,(error, results)=>{
-        if(error){
+    statusService.getstatusM4(model, (error, results) => {
+        if (error) {
             return next(error);
-        }else{
+        } else {
             return res.status(200).send({
                 message: "Success",
                 data: results,
@@ -111,42 +111,20 @@ exports.statusM4 = (req, res, next) => {
 };
 
 //UPDATE STATUS
-exports.updateSM1 = (req,res,next)=>{
-    upload(req, res, function (err) {
-        if (err) {
-            next(err);
+exports.updateStatusM = (req, res, next) => {
+    var model = {
+        machine_id: req.query.machine_id,
+        status: req.body.status
+    };
+    statusService.setStatusM(model, (error, results) => {
+        if (error) {
+            return next(error);
         } else {
-            var model = {
-                status: req.body.status
-            };
-
-            statusService.setStatusM1(model, (error, results) => {
-                if (error) {
-                    return next(error);
-                } else {
-                    return res.status(200).send({
-                        message: "Success",
-                        data: results
-                    });
-                }
+            return res.status(200).send({
+                message: "Success",
+                data: results
             });
         }
-    });
-};
-
-exports.updateSM2 = (req,res,next)=>{
-    var model = {
-        status: req.body.status
-    }
-    statusService.setStatusM2(model,(error,results)=>{
-        if(error){
-            return next(error);
-        }else{
-            return res.status(200).send({
-                message: "Berhasil",
-                data: results
-            })
-        };
     });
 };
 
