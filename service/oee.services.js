@@ -137,7 +137,7 @@ async function updateOEE() {
         if (qualityM3 > 0 && performanceM3 > 0 && availabilityM3 > 0) {
             await oee.findOneAndUpdate({
                 $and: [
-                    { machine_id: 3 }, { state: 3 }
+                    { machine_id: 3 }, { state: 1 }
                 ]
             }, {
                 $set: {
@@ -154,7 +154,7 @@ async function updateOEE() {
         return null;
     }
     //MACHINE 4
-    if (stateOEEM4 == 4) {
+    if (stateOEEM4 == 1) {
         if (qualityM4 > 0 && performanceM4 > 0 && availabilityM4 > 0) {
             await oee.findOneAndUpdate({
                 $and: [
