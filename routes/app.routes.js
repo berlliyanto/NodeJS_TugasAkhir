@@ -73,6 +73,7 @@ router.get("/grafikEnergy", energyController.graphEnergy);
 router.post("/insertPressure", pressureController.inputPress);
 router.get("/pressureGauge", pressureController.pressGauge);
 router.get("/pressureChart", pressureController.pressChart);
+router.delete("/deletePressure", pressureController.deletePress);
 
 //OEE
 router.post("/trigOEE", oeeController.OEE);

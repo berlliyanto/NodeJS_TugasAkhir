@@ -1,3 +1,4 @@
+const { response } = require('express');
 const { pressure } = require('../models/pressure.model');
 
 //INSERT PRESSURE
@@ -38,8 +39,21 @@ async function pressureChart(callback){
     });
 }
 
+// DELETE ALL
+async function deletePressure(params,callback){
+    pressure.deleteMany()
+    .then((response)=>{
+        if(!response) callback("gagal");
+        return callback(null,response);
+    })
+    .catch((error)=>{
+        return callback(error);
+    })
+}
+
 module.exports ={
     inputPressure,
     pressureGauges,
-    pressureChart
+    pressureChart,
+    deletePressure
 }

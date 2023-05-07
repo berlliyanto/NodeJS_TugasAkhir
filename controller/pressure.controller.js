@@ -57,3 +57,19 @@ exports.pressChart = (req, res, next) => {
         }
     })
 }
+
+//DELETE PRESSURE
+exports.deletePress = (req, res, next) =>{
+    pressureService.deletePressure(
+        (error, results)=>{
+            if(error){
+                return next(error);
+            }else{
+                return res.status(200).send({
+                    message: "Success",
+                    data: results,
+                })
+            }
+        }
+    )
+}

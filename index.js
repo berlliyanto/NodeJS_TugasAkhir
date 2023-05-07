@@ -59,6 +59,7 @@ app.use(
             { url: "/api/insertEnergy", methods: ["POST"] },
             //PRESSURE
             { url: "/api/insertPressure", methods: ["POST"] },
+            { url: "/api/deletePressure", methods: ["DELETE"] },
             //OEE
             { url: "/api/trigOEE", methods: ["POST"] },
             { url: "/api/resetOEE", methods: ["PUT"] },
