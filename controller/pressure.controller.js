@@ -60,7 +60,8 @@ exports.pressChart = (req, res, next) => {
 
 //DELETE PRESSURE
 exports.deletePress = (req, res, next) =>{
-    pressureService.deletePressure(
+    var model = {}
+    pressureService.deletePressure(model,
         (error, results)=>{
             if(error){
                 return next(error);
