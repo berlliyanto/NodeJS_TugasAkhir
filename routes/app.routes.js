@@ -101,7 +101,7 @@ router.post("/trigPerformance", performanceController.triggerPerform);
 router.put("/resetPerformance", performanceController.resetPerform);
 router.get("/latestPerformance", performanceController.latestPerform);
 
-//PRODUCTION
+//PRODUCTION (Tidak dipakai)
 router.post("/insertProduction", productionController.processed);
 router.get("/getProcessed", productionController.getProcessed);
 router.put("/resetProcessed", productionController.resetProcessed);
