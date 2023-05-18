@@ -32,7 +32,7 @@ function Fetch() {
     FetchQuality();
     FetchAvailability();
     FetchPerformance();
-    Fetchoee();
+    // Fetchoee();
     updateOEE();
 }
 
@@ -77,21 +77,21 @@ async function FetchAvailability() {
     availabilityM4 = fetchAM4.availabilityrate;
 }
 
-async function Fetchoee() {
-    const fetchOM1 = await oee.findOne({ machine_id: 1 }).sort({ _id: -1 });
-    const fetchOM2 = await oee.findOne({ machine_id: 2 }).sort({ _id: -1 });
-    const fetchOM3 = await oee.findOne({ machine_id: 3 }).sort({ _id: -1 });
-    const fetchOM4 = await oee.findOne({ machine_id: 4 }).sort({ _id: -1 });
+// async function Fetchoee() {
+//     const fetchOM1 = await oee.findOne({ machine_id: 1 }).sort({ _id: -1 });
+//     const fetchOM2 = await oee.findOne({ machine_id: 2 }).sort({ _id: -1 });
+//     const fetchOM3 = await oee.findOne({ machine_id: 3 }).sort({ _id: -1 });
+//     const fetchOM4 = await oee.findOne({ machine_id: 4 }).sort({ _id: -1 });
 
-    stateOEEM1 = fetchOM1.state;
-    stateOEEM2 = fetchOM2.state;
-    stateOEEM3 = fetchOM3.state;
-    stateOEEM4 = fetchOM4.state;
-}
+//     stateOEEM1 = fetchOM1.state;
+//     stateOEEM2 = fetchOM2.state;
+//     stateOEEM3 = fetchOM3.state;
+//     stateOEEM4 = fetchOM4.state;
+// }
 //-------------------------------------QUERY---------------------------------------//
 async function updateOEE() {
     //MACHINE 1
-    if (stateOEEM1 == 1) {
+    // if (stateOEEM1 == 1) {
         if (qualityM1 > 0 && performanceM1 > 0 && availabilityM1 > 0) {
             await oee.findOneAndUpdate({
                 $and: [
@@ -108,11 +108,11 @@ async function updateOEE() {
         } else {
             return null;
         }
-    } else {
-        return null;
-    }
+    // } else {
+    //     return null;
+    // }
     //MACHINE 2
-    if (stateOEEM2 == 1) {
+    // if (stateOEEM2 == 1) {
         if (qualityM2 > 0 && performanceM2 > 0 && availabilityM2 > 0) {
             await oee.findOneAndUpdate({
                 $and: [
@@ -129,11 +129,11 @@ async function updateOEE() {
         } else {
             return null;
         }
-    } else {
-        return null;
-    }
+    // } else {
+    //     return null;
+    // }
     //MACHINE 3
-    if (stateOEEM3 == 1) {
+    // if (stateOEEM3 == 1) {
         if (qualityM3 > 0 && performanceM3 > 0 && availabilityM3 > 0) {
             await oee.findOneAndUpdate({
                 $and: [
@@ -150,11 +150,11 @@ async function updateOEE() {
         } else {
             return null;
         }
-    } else {
-        return null;
-    }
+    // } else {
+    //     return null;
+    // }
     //MACHINE 4
-    if (stateOEEM4 == 1) {
+    // if (stateOEEM4 == 1) {
         if (qualityM4 > 0 && performanceM4 > 0 && availabilityM4 > 0) {
             await oee.findOneAndUpdate({
                 $and: [
@@ -171,9 +171,9 @@ async function updateOEE() {
         } else {
             return null;
         }
-    } else {
-        return null;
-    }
+    // } else {
+    //     return null;
+    // }
 }
 
 //--------------------------------------API----------------------------------------//

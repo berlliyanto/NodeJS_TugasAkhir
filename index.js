@@ -54,7 +54,7 @@ app.use(
             // { url: "/api/inputStock", methods: ["POST"] },
             // { url: "/api/deleteStock", methods: ["DELETE"] },
             // { url: "/api/addStock", methods: ["PUT"] },
-            // { url: "/api/kurangiStock", methods: ["PUT"] },
+            { url: "/api/kurangiStock", methods: ["PUT"] },
             //STATUS
             { url: "/api/insertStat", methods: ["POST"] },
             { url: "/api/updateStatusM", methods: ["PUT"] },
@@ -68,12 +68,13 @@ app.use(
             // { url: "/api/resetOEE", methods: ["PUT"] },
             //QUALITY
             // { url: "/api/trigQuality", methods: ["POST"] },
-            // { url: "/api/processed", methods: ["PUT"] },
+            { url: "/api/processed", methods: ["PUT"] },
             // { url: "/api/resetQuality", methods: ["PUT"] },
             // { url: "/api/defect", methods: ["PUT"] },
             //AVAILABILITY
             // { url: "/api/trigAvailability", methods: ["POST"] },
             // { url: "/api/resetAvailability", methods: ["PUT"] },
+            { url: "/api/latestAvailability", methods: ["GET"] },
             //PERFORMANCE
             // { url: "/api/trigPerformance", methods: ["POST"] },
             // { url: "/api/resetPerformance", methods: ["PUT"] },

@@ -1,5 +1,6 @@
 const { quality } = require('../models/oee.model');
 const { parameter } = require('../models/param.model');
+const {availability} = require('../models/oee.model');
 
 //VARIABEL PROCESSED
 let M1_A;
@@ -57,11 +58,6 @@ function runAllFunctions() {
 }
 
 setInterval(runAllFunctions, 1000);
-
-//CLEAR INTERVAL
-// setTimeout(function() {
-//     clearInterval(invtal);
-// }, 1000000);
 
 //--------------------------------FETCH--------------------------------------//
 //-------------------------------MACHINE 1-----------------------------------//

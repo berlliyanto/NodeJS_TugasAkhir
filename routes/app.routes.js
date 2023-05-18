@@ -120,6 +120,7 @@ router.put("/updatePrice", costpriceController.updateHargaMaterial);
 router.post("/trigLT", liftimeController.trigLT);
 router.get("/getAllLT", liftimeController.getAllLT);
 router.get("/getOneLT", liftimeController.getOneLT);
+router.put("/updateLT", liftimeController.updateLTmesin);
 
 //TROUBLESHOOT
 router.post("/trigTB", troubleshootController.triggerTB);

@@ -49,3 +49,21 @@ exports.getOneLT  = (req, res, next) =>{
         }
     })
 }
+
+exports.updateLTmesin = (req,res,next) =>{
+    var model = {
+        machine_id:req.query.machine_id,
+        timevalue:req.body.timevalue
+    }
+
+    liftimeService.updateLT(model,(error,result)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message: "Success",
+                data: result
+            })
+        }
+    })
+}

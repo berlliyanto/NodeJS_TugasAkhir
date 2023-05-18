@@ -76,16 +76,16 @@ let TimeplusD3 = 0;
 let TimeplusD4 = 0;
 
 //TIME DI NOTIFIKASI
-let timeNotifM1;
-let timeNotifM2;
-let timeNotifM3;
-let timeNotifM4;
+// let timeNotifM1;
+// let timeNotifM2;
+// let timeNotifM3;
+// let timeNotifM4;
 
 //STOPPER
-let isMessage1 = false;
-let isMessage2 = false;
-let isMessage3 = false;
-let isMessage4 = false;
+// let isMessage1 = false;
+// let isMessage2 = false;
+// let isMessage3 = false;
+// let isMessage4 = false;
 
 //TIMER QUERY OPERATION TIME
 function runAllFunctions() {
@@ -105,24 +105,24 @@ function runAllFunctions() {
     OpTimeM2();
     OpTimeM3();
     OpTimeM4();
-    fetchNotifikasi();
+    // fetchNotifikasi();
 }
 
 setInterval(runAllFunctions, 1000);
 
 //FETCH NOTIFIKASI
-async function fetchNotifikasi() {
-    const fetchNotifikasi1 = await notifikasi.findOne({ machine_id: 1 }).sort({ _id: -1 });
-    const fetchNotifikasi2 = await notifikasi.findOne({ machine_id: 2 }).sort({ _id: -1 });
-    const fetchNotifikasi3 = await notifikasi.findOne({ machine_id: 3 }).sort({ _id: -1 });
-    const fetchNotifikasi4 = await notifikasi.findOne({ machine_id: 4 }).sort({ _id: -1 });
+// async function fetchNotifikasi() {
+//     const fetchNotifikasi1 = await notifikasi.findOne({ machine_id: 1 }).sort({ _id: -1 });
+//     const fetchNotifikasi2 = await notifikasi.findOne({ machine_id: 2 }).sort({ _id: -1 });
+//     const fetchNotifikasi3 = await notifikasi.findOne({ machine_id: 3 }).sort({ _id: -1 });
+//     const fetchNotifikasi4 = await notifikasi.findOne({ machine_id: 4 }).sort({ _id: -1 });
 
-    timeNotifM1 = fetchNotifikasi1.time;
-    timeNotifM2 = fetchNotifikasi2.time;
-    timeNotifM3 = fetchNotifikasi3.time;
-    timeNotifM4 = fetchNotifikasi4.time;
+//     timeNotifM1 = fetchNotifikasi1.time;
+//     timeNotifM2 = fetchNotifikasi2.time;
+//     timeNotifM3 = fetchNotifikasi3.time;
+//     timeNotifM4 = fetchNotifikasi4.time;
     
-}
+// }
 
 //FETCH AVAILABILITY
 async function fetchA1() {
@@ -220,43 +220,43 @@ async function OpTimeM1() {
                         }
                     }).then(() => { });
                     //NOTIFIKASI PER 5 MENIT BUAT MODEL PENGUJIAN PREVENTIVE SAAT SIDANG
-                    if (timeNotifM1 > 299) {
-                        notifikasi.bulkWrite(
-                            [   {
-                                updateMany:{
-                                    filter:{
-                                        $and:[
-                                            {machine_id:1},{trigger:true}
-                                        ]
-                                    },
-                                    update:{
-                                        trigger: false
-                                    }
-                                }
-                            },
-                                {
-                                    insertOne:{
-                                        document:{
-                                            machine_id: 1,
-                                            time: 0,
-                                            trigger: true
-                                        }
-                                    }
-                                }
-                            ]
-                        ).then(()=>{});
-                        await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 1 Sudah Beroperasi Selama ${(timeNotifM1/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`);
-                        isMessage1 = true;
-                    } else {
-                        notifikasi.findOneAndUpdate(
-                            { $and: [{ machine_id: 1 }, { trigger: true }] },
-                            {
-                                $inc: {
-                                    time: 1
-                                }
-                            }
-                        ).then(()=>{});
-                    }
+                    // if (timeNotifM1 > 299) {
+                    //     notifikasi.bulkWrite(
+                    //         [   {
+                    //             updateMany:{
+                    //                 filter:{
+                    //                     $and:[
+                    //                         {machine_id:1},{trigger:true}
+                    //                     ]
+                    //                 },
+                    //                 update:{
+                    //                     trigger: false
+                    //                 }
+                    //             }
+                    //         },
+                    //             {
+                    //                 insertOne:{
+                    //                     document:{
+                    //                         machine_id: 1,
+                    //                         time: 0,
+                    //                         trigger: true
+                    //                     }
+                    //                 }
+                    //             }
+                    //         ]
+                    //     ).then(()=>{});
+                    //     await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 1 Sudah Beroperasi Selama ${(timeNotifM1/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`);
+                    //     isMessage1 = true;
+                    // } else {
+                    //     notifikasi.findOneAndUpdate(
+                    //         { $and: [{ machine_id: 1 }, { trigger: true }] },
+                    //         {
+                    //             $inc: {
+                    //                 time: 1
+                    //             }
+                    //         }
+                    //     ).then(()=>{});
+                    // }
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     //return null;
@@ -343,43 +343,43 @@ async function OpTimeM2() {
                         }
                     }).then(() => { });
                     //NOTIFIKASI PER 5 MENIT BUAT MODEL PENGUJIAN PREVENTIVE SAAT SIDANG
-                    if (timeNotifM2 > 299) {
-                        notifikasi.bulkWrite(
-                            [   {
-                                updateMany:{
-                                    filter:{
-                                        $and:[
-                                            {machine_id:2},{trigger:true}
-                                        ]
-                                    },
-                                    update:{
-                                        trigger: false
-                                    }
-                                }
-                            },
-                                {
-                                    insertOne:{
-                                        document:{
-                                            machine_id: 2,
-                                            time: 0,
-                                            trigger: true
-                                        }
-                                    }
-                                }
-                            ]
-                        ).then(()=>{});
-                        await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 2 Sudah Beroperasi Selama ${(timeNotifM2/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`);
-                        isMessage2 = true;
-                    } else {
-                        notifikasi.findOneAndUpdate(
-                            { $and: [{ machine_id: 2 }, { trigger: true }] },
-                            {
-                                $inc: {
-                                    time: 1
-                                }
-                            }
-                        ).then(()=>{});
-                    }
+                    // if (timeNotifM2 > 299) {
+                    //     notifikasi.bulkWrite(
+                    //         [   {
+                    //             updateMany:{
+                    //                 filter:{
+                    //                     $and:[
+                    //                         {machine_id:2},{trigger:true}
+                    //                     ]
+                    //                 },
+                    //                 update:{
+                    //                     trigger: false
+                    //                 }
+                    //             }
+                    //         },
+                    //             {
+                    //                 insertOne:{
+                    //                     document:{
+                    //                         machine_id: 2,
+                    //                         time: 0,
+                    //                         trigger: true
+                    //                     }
+                    //                 }
+                    //             }
+                    //         ]
+                    //     ).then(()=>{});
+                    //     await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 2 Sudah Beroperasi Selama ${(timeNotifM2/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`);
+                    //     isMessage2 = true;
+                    // } else {
+                    //     notifikasi.findOneAndUpdate(
+                    //         { $and: [{ machine_id: 2 }, { trigger: true }] },
+                    //         {
+                    //             $inc: {
+                    //                 time: 1
+                    //             }
+                    //         }
+                    //     ).then(()=>{});
+                    // }
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD2++;
@@ -464,43 +464,43 @@ async function OpTimeM3() {
                         }
                     }).then(() => { });
                     //NOTIFIKASI PER 5 MENIT BUAT MODEL PENGUJIAN PREVENTIVE SAAT SIDANG
-                    if (timeNotifM3 > 299) {
-                        notifikasi.bulkWrite(
-                            [   {
-                                updateMany:{
-                                    filter:{
-                                        $and:[
-                                            {machine_id:3},{trigger:true}
-                                        ]
-                                    },
-                                    update:{
-                                        trigger: false
-                                    }
-                                }
-                            },
-                                {
-                                    insertOne:{
-                                        document:{
-                                            machine_id: 3,
-                                            time: 0,
-                                            trigger: true
-                                        }
-                                    }
-                                }
-                            ]
-                        ).then(()=>{});
-                        await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 3 Sudah Beroperasi Selama ${(timeNotifM3/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`);
-                        isMessage3 = true;
-                    } else {
-                        notifikasi.findOneAndUpdate(
-                            { $and: [{ machine_id: 3 }, { trigger: true }] },
-                            {
-                                $inc: {
-                                    time: 1
-                                }
-                            }
-                        ).then(()=>{});
-                    }
+                    // if (timeNotifM3 > 299) {
+                    //     notifikasi.bulkWrite(
+                    //         [   {
+                    //             updateMany:{
+                    //                 filter:{
+                    //                     $and:[
+                    //                         {machine_id:3},{trigger:true}
+                    //                     ]
+                    //                 },
+                    //                 update:{
+                    //                     trigger: false
+                    //                 }
+                    //             }
+                    //         },
+                    //             {
+                    //                 insertOne:{
+                    //                     document:{
+                    //                         machine_id: 3,
+                    //                         time: 0,
+                    //                         trigger: true
+                    //                     }
+                    //                 }
+                    //             }
+                    //         ]
+                    //     ).then(()=>{});
+                    //     await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 3 Sudah Beroperasi Selama ${(timeNotifM3/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`);
+                    //     isMessage3 = true;
+                    // } else {
+                    //     notifikasi.findOneAndUpdate(
+                    //         { $and: [{ machine_id: 3 }, { trigger: true }] },
+                    //         {
+                    //             $inc: {
+                    //                 time: 1
+                    //             }
+                    //         }
+                    //     ).then(()=>{});
+                    // }
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD3++;
@@ -585,44 +585,44 @@ async function OpTimeM4() {
                         }
                     }).then(() => { });
                     //NOTIFIKASI PER 5 MENIT BUAT MODEL PENGUJIAN PREVENTIVE SAAT SIDANG
-                    if (timeNotifM4 > 299) {
-                        notifikasi.bulkWrite(
-                            [   {
-                                updateMany:{
-                                    filter:{
-                                        $and:[
-                                            {machine_id:4},{trigger:true}
-                                        ]
-                                    },
-                                    update:{
-                                        trigger: false
-                                    }
-                                }
-                            },
-                                {
-                                    insertOne:{
-                                        document:{
-                                            machine_id: 4,
-                                            time: 0,
-                                            trigger: true
-                                        }
-                                    }
-                                },
+                    // if (timeNotifM4 > 299) {
+                    //     notifikasi.bulkWrite(
+                    //         [   {
+                    //             updateMany:{
+                    //                 filter:{
+                    //                     $and:[
+                    //                         {machine_id:4},{trigger:true}
+                    //                     ]
+                    //                 },
+                    //                 update:{
+                    //                     trigger: false
+                    //                 }
+                    //             }
+                    //         },
+                    //             {
+                    //                 insertOne:{
+                    //                     document:{
+                    //                         machine_id: 4,
+                    //                         time: 0,
+                    //                         trigger: true
+                    //                     }
+                    //                 }
+                    //             },
                                 
-                            ]
-                        ).then(()=>{});
-                        await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 4 Sudah Beroperasi Selama ${(timeNotifM4/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`);
-                        isMessage4 = true;
-                    } else {
-                        notifikasi.findOneAndUpdate(
-                            { $and: [{ machine_id: 4 }, { trigger: true }] },
-                            {
-                                $inc: {
-                                    time: 1
-                                }
-                            }
-                        ).then(()=>{});
-                    }
+                    //         ]
+                    //     ).then(()=>{});
+                    //     await sendTelegramMessage(chat_ID,`**WARNING**\nMesin 4 Sudah Beroperasi Selama ${(timeNotifM4/60).toFixed(1)} Menit, Harap Segera Lakukan Perbaikan`);
+                    //     isMessage4 = true;
+                    // } else {
+                    //     notifikasi.findOneAndUpdate(
+                    //         { $and: [{ machine_id: 4 }, { trigger: true }] },
+                    //         {
+                    //             $inc: {
+                    //                 time: 1
+                    //             }
+                    //         }
+                    //     ).then(()=>{});
+                    // }
                 } else {
                     //-------------------------------DOWNTIME--------------------------------//
                     TimeplusD4++;
