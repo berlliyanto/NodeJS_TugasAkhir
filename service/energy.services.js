@@ -42,8 +42,34 @@ async function graphicEnergy(params, callback) {
     
 }
 
+async function averagePower(params,callback){
+    var tanggal = params.tanggal;
+    energy.aggregate([
+        {
+            $match: {
+              createdAt: {
+                $gte: new Date(`${tanggal}T00:00:00Z`),
+                $lte: new Date(`${tanggal}T23:59:59Z`)
+              }
+            }
+          },
+          {
+            $group: {
+              _id: null,
+              averagePower: { $avg: "$power" }
+            }
+          }
+    ]).then((response)=>{
+        if (!response) callback("No Data");
+        else return callback(null, response);
+    }).catch((error) => {
+        return callback(error);
+    });
+}
+
 module.exports = {
     latestEnergy,
     createEnergy,
-    graphicEnergy
+    graphicEnergy,
+    averagePower,
 }

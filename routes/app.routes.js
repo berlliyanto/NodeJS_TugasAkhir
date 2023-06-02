@@ -68,6 +68,7 @@ router.put("/updateStatusM", statusController.updateStatusM);
 router.post("/insertEnergy", energyController.create);
 router.get("/latestEnergy", energyController.newEnergy);
 router.get("/grafikEnergy", energyController.graphEnergy);
+router.get("/averagepower", energyController.avgPower);
 
 //Pressure
 router.post("/insertPressure", pressureController.inputPress);
