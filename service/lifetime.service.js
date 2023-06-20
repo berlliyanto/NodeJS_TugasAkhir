@@ -41,7 +41,14 @@ function notifikasi() {
     switch (waktuLT1) {
         case 3600:
             if (!finish1) {
+                const startTime = new Date();
                 sendTelegramMessage(chat_ID, "INFO !!!\n\nUmur mesin 1 sudah kurang dari 1 Jam...\n\nKepada pihak maintenance mohon segera lakukan pemeliharaan");
+                const endTime = new Date();
+                const response = startTime.getTime() - endTime.getTime();
+
+                const startTimeFormatted = startTime.toLocaleString();
+                const endTimeFormatted = endTime.toLocaleString();
+                bot.telegram.sendMessage(chat_ID, `triggerNotif : ${startTimeFormatted} - sendNotif : ${endTimeFormatted},\nResponse Notifikasi : ${response.toFixed(2)}`)
                 finish1 = true;
             }
             finish1 = false;
@@ -129,13 +136,13 @@ async function updateLT(params, callback) {
             }
         }
     )
-    .then((response)=>{
-        if(!response) return callback("Gagal");
-        return callback(null,response);
-    })
-    .catch((error)=>{
-        return callback(error);
-    })
+        .then((response) => {
+            if (!response) return callback("Gagal");
+            return callback(null, response);
+        })
+        .catch((error) => {
+            return callback(error);
+        })
 }
 
 module.exports = {

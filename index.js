@@ -89,7 +89,8 @@ app.post('/sendMessageTB', async (req, res) => {
     var from = req.body.from;
     var to = req.body.to;
     var message = req.body.message;
-    const text = `*INFO*\n\n Dari: *${from}*\nUntuk: *${to}*\n\nMeminta melakukan order perbaikan Mesin ${machine_id} dengan pesan berikut :\n*${message}*`;
+    const text = `*INFO*\n\n Dari: *${from}*\nUntuk: *${to}*\n\nMeminta melakukan order 
+                perbaikan Mesin ${machine_id} dengan pesan berikut :\n*${message}*`;
     bot.telegram.sendMessage(chat_ID, text,);
     res.send('Message sent');
 });
@@ -124,7 +125,7 @@ dataChangeStream.on('change', (change) => {
                 console.log(error);
              });
             statusPlant = false;
-        }, 6000); // I
+        }, 10000); // I
     }
 }
 );

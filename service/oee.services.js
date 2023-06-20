@@ -33,8 +33,12 @@ function Fetch() {
     FetchAvailability();
     FetchPerformance();
     // Fetchoee();
-    updateOEE();
+    setTimeout(() => {
+        updateOEE();
+    }, 2000);
 }
+
+
 
 setInterval(() => {
     Fetch();

@@ -1,3 +1,4 @@
+
 const { jadwalPrev } = require('../models/preventive.model');
 const { notifikasi } = require('../models/notifikasi.model');
 const { preventive } = require('../models/preventive.model');
@@ -15,12 +16,8 @@ const jadwalStream = jadwalPrev.watch();
 
 async function jadwalKirimPesan(mesinId, hari, jam, menit) {
     cron.schedule(`${menit} ${jam} * * ${hari}`, () => {
-        // var startTime = performance.now();
         const message = `*PERAWATAN RUTIN*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan Pemeliharaan berkala hari Ini pukul ${jam}.${menit} pada Mesin ${mesinId} \n\n Terimakasih`;
         bot.telegram.sendMessage(chat_ID, message);
-        // var endTime = performance.now();
-        // var elapsedTime = endTime - startTime;
-        // bot.telegram.sendMessage(chat_ID,`triggerNotif : ${startTime} - sendNotif : ${endTime},\nResponse Notifikasi : ${elapsedTime.toFixed(2)}`)
         // console.log(`Pesan terkirim untuk Mesin ${mesinId}`);
         //INSERT DATA
         const preventiveModel = new preventive({

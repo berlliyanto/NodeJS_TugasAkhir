@@ -128,25 +128,25 @@ setInterval(runAllFunctions, 1000);
 async function fetchA1() {
     const fetchAM1 = await availability.findOne({ machine_id: 1 }).sort({ _id: -1 });
     stateAM1 = fetchAM1.state;
-    TimeO1 = fetchAM1.operationtime;
+    TimeO1 = fetchAM1.runningtime;
     TimeD1 = fetchAM1.downtime;
 }
 async function fetchA2() {
     const fetchAM2 = await availability.findOne({ machine_id: 2 }).sort({ _id: -1 });
     stateAM2 = fetchAM2.state;
-    TimeO2 = fetchAM2.operationtime;
+    TimeO2 = fetchAM2.runningtime;
     TimeD2 = fetchAM2.downtime;
 }
 async function fetchA3() {
     const fetchAM3 = await availability.findOne({ machine_id: 3 }).sort({ _id: -1 });
     stateAM3 = fetchAM3.state;
-    TimeO3 = fetchAM3.operationtime;
+    TimeO3 = fetchAM3.runningtime;
     TimeD3 = fetchAM3.downtime;
 }
 async function fetchA4() {
     const fetchAM4 = await availability.findOne({ machine_id: 4 }).sort({ _id: -1 });
     stateAM4 = fetchAM4.state;
-    TimeO4 = fetchAM4.operationtime;
+    TimeO4 = fetchAM4.runningtime;
     TimeD4 = fetchAM4.downtime;
 }
 
