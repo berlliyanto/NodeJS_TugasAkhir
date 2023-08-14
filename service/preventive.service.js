@@ -15,7 +15,16 @@ const jadwalStream = jadwalPrev.watch();
 //---------------------------------------------INFO PREVENTIVE-------------------------------------------//
 
 async function jadwalKirimPesan(mesinId, hari, jam, menit) {
-    cron.schedule(`${menit} ${jam} * * ${hari}`, () => {
+    var jamNotif;
+    if(jam=="1"){
+        jamNotif = "23";
+    }else if(jam=="0"){
+        jamNotif = "22";
+    }else{
+        jamNotif = Number(jam) - 2;
+    }
+    console.log(jamNotif);
+    cron.schedule(`${menit} ${jamNotif} * * ${hari}`, () => {
         const message = `*PERAWATAN RUTIN*\nPesan ini ditujukan kepada pihak Maintenance untuk melakukan Pemeliharaan berkala hari Ini pukul ${jam}.${menit} pada Mesin ${mesinId} \n\n Terimakasih`;
         bot.telegram.sendMessage(chat_ID, message);
         // console.log(`Pesan terkirim untuk Mesin ${mesinId}`);
@@ -159,6 +168,17 @@ async function getJadwalPrev(params, callback) {
         });
 }
 
+async function getSingleJadwalPrev(params, callback){
+    jadwalPrev.findOne({machine_id:params.machine_id})
+    .then((response) => {
+        if (!response) callback("Gagal");
+        return callback(null, response);
+    })
+    .catch((error) => {
+        return callback(error);
+    });
+}
+
 module.exports = {
     getJadwalPrev,
     jadwalPreventive,
@@ -166,4 +186,5 @@ module.exports = {
     updatePreventive,
     getNotifikasiFiveMenit,
     getNotifikasi,
+    getSingleJadwalPrev
 }

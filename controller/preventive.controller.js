@@ -100,3 +100,19 @@ exports.getJadwalPrev = (req, res, next) => {
         }
     })
 }
+
+exports.getSingleJadwalPrev = (req, res, next) =>{
+    var model = {
+        machine_id: req.query.machine_id,
+    }
+    notifikasiService.getSingleJadwalPrev(model,(error, result)=>{
+        if(error){
+            return next(error);
+        }else{
+            return res.status(200).send({
+                message: "Success",
+                data: result
+            })
+        }
+    })
+}

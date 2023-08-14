@@ -135,5 +135,6 @@ router.get("/getPreventive", preventiveController.getPreventive);
 router.put("/updatePrevStatus", preventiveController.updatePrevStatus);
 router.put("/updateJadwalPrev", preventiveController.updateJadwalPrev);
 router.get("/getJadwalPrev", preventiveController.getJadwalPrev);
+router.get("/getSingleJadwalPrev", preventiveController.getSingleJadwalPrev);
 
 module.exports = router;
